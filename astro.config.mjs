@@ -1,14 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://kmbusinessc.pe',
   output: 'static',
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: vercel(),
   i18n: {
     locales: ['es', 'en'],
     defaultLocale: 'es',

@@ -7,4 +7,5 @@ node_modules/
 .claude/*.lock
 .DS_Store
 Thumbs.db
+.vercel/
 

@@ -12,8 +12,9 @@ proyecto (ver `PROJECT_CONTEXT.md`).
 - **CSS vanilla** con Custom Properties como design tokens — sin
   Tailwind, sin CSS-in-JS, sin preprocesador. Es una decisión, no un
   olvido: todo el sistema de diseño vive en `src/styles/tokens/`.
-- **Cloudflare** como adapter, solo para la única ruta dinámica del
-  sitio (`src/pages/api/contacto.ts`). El resto es HTML estático.
+- **Vercel** (`@astrojs/vercel`) como adapter para CI/CD, solo para la
+  única ruta dinámica del sitio (`src/pages/api/contacto.ts`). El resto
+  es HTML estático.
 - Cero frameworks de UI (React/Vue/Svelte). Las islas interactivas
   (formulario, futuro menú móvil) son TypeScript vanilla, con el
   mismo criterio del proyecto hermano `mercedes-portfolio`: lógica
