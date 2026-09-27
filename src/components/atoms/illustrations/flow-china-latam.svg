@@ -18,28 +18,42 @@
     .flow .dots { opacity: 0; }
     .flow .ship-bob { animation: bob 4s ease-in-out infinite; }
 
-    .flow.is-active .draw { animation: draw var(--d, 1.4s) cubic-bezier(.55,0,.35,1) var(--t, 0s) both; }
-    .flow.is-active .seg-1 { --t: .45s; --d: 1.45s; }
-    .flow.is-active .seg-2 { --t: 1.95s; --d: 2s; }
-    .flow.is-active .node { animation: pop .6s cubic-bezier(.3,1.5,.5,1) var(--t, 0s) both; }
-    .flow.is-active .node-origin { --t: .15s; }
-    .flow.is-active .node-transit { --t: 1.8s; }
-    .flow.is-active .node-dest { --t: 3.85s; }
-    .flow.is-active .dots { animation: fade .9s ease-out 4.2s both; }
+    .flow.is-active .draw, .is-active .flow .draw { animation: draw var(--d, 1.4s) cubic-bezier(.55,0,.35,1) var(--t, 0s) both; -webkit-animation: draw var(--d, 1.4s) cubic-bezier(.55,0,.35,1) var(--t, 0s) both; }
+    .flow.is-active .seg-1, .is-active .flow .seg-1 { --t: .45s; --d: 1.45s; }
+    .flow.is-active .seg-2, .is-active .flow .seg-2 { --t: 1.95s; --d: 2s; }
+    .flow.is-active .node, .is-active .flow .node { animation: pop .6s cubic-bezier(.3,1.5,.5,1) var(--t, 0s) both; -webkit-animation: pop .6s cubic-bezier(.3,1.5,.5,1) var(--t, 0s) both; }
+    .flow.is-active .node-origin, .is-active .flow .node-origin { --t: .15s; }
+    .flow.is-active .node-transit, .is-active .flow .node-transit { --t: 1.8s; }
+    .flow.is-active .node-dest, .is-active .flow .node-dest { --t: 3.85s; }
+    .flow.is-active .dots, .is-active .flow .dots { animation: fade .9s ease-out 4.2s both; -webkit-animation: fade .9s ease-out 4.2s both; }
 
     @keyframes draw {
       0%   { stroke-dashoffset: 1; opacity: 0; }
       2%   { opacity: 1; }
       100% { stroke-dashoffset: 0; opacity: 1; }
     }
+    @-webkit-keyframes draw {
+      0%   { stroke-dashoffset: 1; opacity: 0; }
+      2%   { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
     @keyframes pop {
-      0%   { opacity: 0; transform: scale(.3); }
-      100% { opacity: 1; transform: scale(1); }
+      0%   { opacity: 0; transform: scale(.3); -webkit-transform: scale(.3); }
+      100% { opacity: 1; transform: scale(1); -webkit-transform: scale(1); }
+    }
+    @-webkit-keyframes pop {
+      0%   { opacity: 0; transform: scale(.3); -webkit-transform: scale(.3); }
+      100% { opacity: 1; transform: scale(1); -webkit-transform: scale(1); }
     }
     @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    @-webkit-keyframes fade { from { opacity: 0; } to { opacity: 1; } }
     @keyframes bob {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-3px); }
+      0%, 100% { transform: translateY(0); -webkit-transform: translateY(0); }
+      50%      { transform: translateY(-3px); -webkit-transform: translateY(-3px); }
+    }
+    @-webkit-keyframes bob {
+      0%, 100% { transform: translateY(0); -webkit-transform: translateY(0); }
+      50%      { transform: translateY(-3px); -webkit-transform: translateY(-3px); }
     }
 
 

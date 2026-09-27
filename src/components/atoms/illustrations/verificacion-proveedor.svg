@@ -55,20 +55,4 @@ svg:has(.v1:hover) .r1,svg:has(.v2:hover) .r2,svg:has(.v3:hover) .r3,svg:has(.ma
   <circle cx="455.8" cy="257.3" r="23" fill="var(--illu-success-soft)"/>
   <path class="tick a" pathLength="1" d="M445.8,257.8 L452.8,264.8 L466.3,250.3" stroke="#062F40" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="1 1"/>
 </g>
-<script><![CDATA[
-(function(){
-  var s=document.currentScript, svg=(s&&s.ownerSVGElement)||document.getElementById('sourcing-verificacion');
-  if(!svg||!svg.getAnimations||!('IntersectionObserver' in window))return;
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var inView=true;
-  function each(fn){svg.getAnimations({subtree:true}).forEach(fn);}
-  new IntersectionObserver(function(es){
-    var r=es[es.length-1].intersectionRatio;
-    if(r===0&&inView){inView=false;each(function(a){a.pause();a.currentTime=0;});}
-    else if(r>=0.3&&!inView){inView=true;each(function(a){a.currentTime=0;a.play();});}
-  },{threshold:[0,0.3]}).observe(svg);
-  svg.style.cursor='pointer';
-  svg.addEventListener('click',function(){each(function(a){a.currentTime=0;a.play();});});
-})();
-]]></script>
 </svg>

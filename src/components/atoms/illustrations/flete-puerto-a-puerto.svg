@@ -5,7 +5,7 @@
     Serie: Home / Sourcing / Flete (zoom operativo puerto-a-puerto). Sin JavaScript.
     Un único formato de contenedor en toda la pieza (no toma partido FCL/LCL).
   -->
-  <style><![CDATA[
+  <style>
     /* Guion: el barco llega y atraca → la grúa trabaja → el contenedor pasa al camión → el camión arranca.
        Autoplay por defecto. Modo controlado: class="pt-manual" en el svg y luego "is-active"
        en el svg o en un ancestro. */
@@ -261,7 +261,7 @@
       .pt-ghost,.pt-foam,.pt-puff,.pt-exh,.pt-streak,.pt-spin{opacity:0}
       .pt-label{transition:none;transform:none}
     }
-  ]]></style>
+  </style>
   <defs>
     <clipPath id="pt-clip-water"><polygon points="279.1,168 967.6,565.5 829.1,645.5 140.6,248"/></clipPath>
     <clipPath id="pt-clip-road"><polygon points="476.6,464 792.7,646.5 747.7,672.5 431.6,490"/></clipPath>

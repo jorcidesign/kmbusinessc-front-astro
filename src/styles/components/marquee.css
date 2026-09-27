@@ -69,6 +69,7 @@
   --marquee-pad: var(--space-md);
   --marquee-gap: var(--space-xl);
   border-top: 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 

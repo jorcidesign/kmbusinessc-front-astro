@@ -215,6 +215,7 @@
     order: 1;
     opacity: 1 !important;
     filter: none !important;
+    -webkit-filter: none !important;
     font-size: var(--text-sm);
     letter-spacing: 0.12em;
     font-weight: var(--weight-bold);

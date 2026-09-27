@@ -10,7 +10,7 @@ interface Props {
 const { class: className = '', id } = Astro.props;
 ---
 
-<div class={`illustration-wrapper ${className}`} id={id} set:html={svgRaw} />
+<div class={`illustration-wrapper ${className}`} id={id} data-reveal data-reveal-class="is-active" set:html={svgRaw} />
 
 <style>
   .illustration-wrapper {
