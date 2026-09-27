@@ -18,7 +18,7 @@ const {
   title,
   description,
   image = '/og-default.jpg',
-  locale = 'es',
+  locale = 'en',
 } = Astro.props;
 
 const uiEntry = await getEntry('ui', locale);
@@ -57,7 +57,7 @@ const footerEmpresaLinks = ui.footer.empresa.links.map((l) => ({ ...l, href: wit
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="es" href={esHref} />
     <link rel="alternate" hreflang="en" href={enHref} />
-    <link rel="alternate" hreflang="x-default" href={esHref} />
+    <link rel="alternate" hreflang="x-default" href={enHref} />
 
     <title>{title} | KM Business Consulting</title>
     <meta name="description" content={description} />
