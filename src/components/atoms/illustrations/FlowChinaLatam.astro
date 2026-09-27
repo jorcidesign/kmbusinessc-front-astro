@@ -10,21 +10,18 @@ interface Props {
 const { class: className = '', id } = Astro.props;
 ---
 
-<div class={`illustration-wrapper ${className}`} id={id} data-reveal data-reveal-class="is-active" set:html={svgRaw} />
+<div class={`illustration-wrapper illustration-wrapper--flow ${className}`} id={id} data-reveal data-reveal-class="is-active" set:html={svgRaw} />
 
 <style>
   .illustration-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     width: 100%;
-    height: 100%;
   }
 
   .illustration-wrapper :global(svg) {
     width: 100%;
     height: auto;
-    max-height: 100%;
     display: block;
+    aspect-ratio: 1232 / 520;
   }
 </style>

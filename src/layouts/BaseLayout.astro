@@ -150,8 +150,12 @@ const footerEmpresaLinks = ui.footer.empresa.links.map((l) => ({ ...l, href: wit
     <script>
       import { initScrollReveal } from '@lib/scrollReveal';
       import { initDecorParallax } from '@lib/decorParallax';
+      import { initHeroKattyaScroll } from '@lib/heroKattyaScroll';
+      import { initContactForm } from '@molecules/ContactForm/ContactForm';
       initScrollReveal();
       initDecorParallax();
+      initHeroKattyaScroll();
+      initContactForm();
     </script>
   </body>
 </html>
