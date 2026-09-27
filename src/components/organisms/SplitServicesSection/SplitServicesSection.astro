@@ -1,0 +1,74 @@
+---
+// src/components/organisms/SplitServicesSection/SplitServicesSection.astro
+//
+// Props opcionales para soportar ES/EN (ver src/content/pages/home/*.json):
+// los valores por defecto son el español actual, tal cual. Los links
+// de destino (href) y las ilustraciones se quedan fijos: los slugs no
+// se traducen (fuera de alcance, ver plan) y las ilustraciones son
+// diseño, no copy.
+import VerificacionProveedor from '@atoms/illustrations/VerificacionProveedor.astro';
+import FletePuertoAPuerto from '@atoms/illustrations/FletePuertoAPuerto.astro';
+
+interface Cell {
+  title: string;
+  text: string;
+  ctaLabel: string;
+  href: string;
+}
+
+interface Props {
+  cell1?: Cell;
+  cell2?: Cell;
+}
+
+const {
+  cell1 = {
+    title: 'Búsqueda & Verificación en China',
+    text: 'Auditamos fábricas directamente en China. Verificamos licencias gubernamentales, instalaciones, capacidad real de producción y controlamos muestras antes de que comprometas capital.',
+    ctaLabel: 'Ver solución de verificación',
+    href: '/servicios/busqueda-proveedores',
+  },
+  cell2 = {
+    title: 'Flete Marítimo & Logística Integral',
+    text: 'Transporte marítimo por contenedor completo (FCL) desde los principales puertos asiáticos hacia el Callao y Latinoamérica. Despacho aduanero y entrega directa con tarifas transparentes y sin cobros ocultos.',
+    ctaLabel: 'Conocer fletes y logística',
+    href: '/servicios/flete-maritimo',
+  },
+} = Astro.props;
+---
+
+<section class="section--flush section--framed" id="servicios">
+  <div class="split">
+    <!-- Celda 1: Búsqueda y Validación en China -->
+    <div class="split__cell">
+      <article class="service">
+        <h2 class="service__title">{cell1.title}</h2>
+        <div class="service__media">
+          <VerificacionProveedor />
+        </div>
+        <p class="service__text">
+          {cell1.text}
+        </p>
+        <a class="btn service__action" href={cell1.href}>
+          {cell1.ctaLabel}
+        </a>
+      </article>
+    </div>
+
+    <!-- Celda 2: Flete Marítimo y Logística Integral -->
+    <div class="split__cell">
+      <article class="service">
+        <h2 class="service__title">{cell2.title}</h2>
+        <div class="service__media">
+          <FletePuertoAPuerto />
+        </div>
+        <p class="service__text">
+          {cell2.text}
+        </p>
+        <a class="btn service__action" href={cell2.href}>
+          {cell2.ctaLabel}
+        </a>
+      </article>
+    </div>
+  </div>
+</section>

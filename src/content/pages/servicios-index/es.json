@@ -1,0 +1,53 @@
+{
+  "seo": {
+    "title": "Servicios de Importación y Logística Internacional",
+    "description": "Soluciones completas de comercio exterior entre Asia y Latinoamérica: búsqueda de proveedores, auditoría de fábricas, flete marítimo FCL y logística integral."
+  },
+  "hero": {
+    "eyebrow": "SOLUCIONES TÉCNICAS",
+    "title": "Nuestros Servicios de Abastecimiento e Importación",
+    "lead": "Controlamos cada eslabón crítico de tu cadena de suministro en origen para que recibas tu carga con la calidad acordada y sin sobrecostos sorpresa.",
+    "primaryActionLabel": "Pedir cotización",
+    "secondaryActionLabel": "Ver proceso",
+    "imageAlt": "Barco portacontenedores en ruta marítima de China a Latinoamérica"
+  },
+  "catalog": {
+    "title": "Cuatro soluciones diseñadas para importadores exigentes",
+    "lead": "Puedes contratar el servicio integral llave en mano o activar únicamente los módulos que requiera tu operación actual.",
+    "specsCtaLabel": "Ver especificaciones completas",
+    "moduleFallbackPrefix": "Módulo 0"
+  },
+  "process": {
+    "tag": "METODOLOGÍA KM",
+    "title": "Cómo trabajamos de inicio a fin",
+    "lead": "Un flujo estandarizado con aprobaciones formales en cada etapa para garantizar que nada quede al azar.",
+    "ctaLabel": "Iniciar evaluación",
+    "steps": [
+      {
+        "label": "1. Definición técnica y búsqueda de fuentes",
+        "description": "Recibimos tus requerimientos, fichas técnicas o muestras para identificar fabricantes calificados."
+      },
+      {
+        "label": "2. Envío y test de muestras",
+        "description": "Revisión física de acabados, tolerancias y empaques antes de comprometer fondos de producción."
+      },
+      {
+        "label": "3. Auditoría presencial en planta",
+        "description": "Inspección de maquinaria, capacidad instalada y antecedentes legales del fabricante."
+      },
+      {
+        "label": "4. Control de calidad AQL pre-embarque",
+        "description": "Muestreo riguroso antes de liberar el pago final al proveedor asiático."
+      },
+      {
+        "label": "5. Flete marítimo y nacionalización",
+        "description": "Reserva naviera, coordinación de puerto, liquidación aduanera y entrega en tu depósito."
+      }
+    ]
+  },
+  "closingCta": {
+    "title": "¿Tienes un contenedor en mente o quieres auditar una fábrica?",
+    "lead": "Agenda una llamada técnica con Kattya Mejía o solicita una cotización formal.",
+    "ctaLabel": "Pedir cotización ahora"
+  }
+}

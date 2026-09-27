@@ -1,0 +1,32 @@
+/* ============================================================
+   TOKENS — ANIMATION
+   Curvas con nombre por intención, no por número — mismo criterio
+   que en Mercedes. Aquí el catálogo es más corto a propósito:
+   KM necesita transmitir confianza y velocidad de lectura, no
+   espectáculo. Un solo reveal sutil al hacer scroll, hover en
+   tarjetas y botones. Nada más.
+   ============================================================ */
+
+:root {
+    --dur-fast: 150ms;
+    --dur-base: 300ms;
+    --dur-slow: 500ms;
+
+    --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+
+    --transition-colors: color var(--dur-fast) var(--ease-out),
+                          background-color var(--dur-fast) var(--ease-out),
+                          border-color var(--dur-fast) var(--ease-out);
+    --transition-transform: transform var(--dur-base) var(--ease-out);
+}
+
+/* Respeta la preferencia de movimiento reducido en todo el sitio */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

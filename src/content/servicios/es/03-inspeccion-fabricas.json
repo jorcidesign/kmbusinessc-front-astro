@@ -1,0 +1,57 @@
+{
+  "orden": 3,
+  "titulo": "Inspección de fábricas en China",
+  "subtitulo": "Auditorías de calidad y control pre-embarque con reporte fotográfico y de video.",
+  "badge": "Control de calidad",
+  "descripcion": "Verificamos en sitio que la fábrica exista, opere y cumpla lo acordado antes de que tu pedido salga de origen.",
+  "queHacemos": [
+    "Auditoría de fábrica (Factory Audit) para evaluar infraestructura y cumplimiento laboral",
+    "Inspección durante la producción (DUPRO) para detectar anomalías a tiempo",
+    "Inspección final pre-embarque (PSI) basada en tablas de muestreo estadístico AQL",
+    "Supervisión del llenado de contenedores (Container Loading Check) para prevenir daños",
+    "Reporte técnico detallado con fotografías en alta resolución y video en menos de 24 horas"
+  ],
+  "beneficios": [
+    {
+      "titulo": "Protección de tu inversión",
+      "descripcion": "No liberes el saldo restante del pago hasta tener certeza del cumplimiento de calidad."
+    },
+    {
+      "titulo": "Normas internacionales AQL",
+      "descripcion": "Criterios técnicos reconocidos a nivel global (AQL nivel II / tolerancias de defectos)."
+    },
+    {
+      "titulo": "Inspecciones sin aviso previo",
+      "descripcion": "Verificamos la realidad del taller productivo sin escenografías preparadas."
+    },
+    {
+      "titulo": "Rapidez de informe",
+      "descripcion": "Recibe el dictamen detallado el mismo día de la visita a la fábrica."
+    }
+  ],
+  "etapas": [
+    {
+      "paso": "1. Programación de visita",
+      "detalle": "Coordinación de acceso con la administración de la planta en China."
+    },
+    {
+      "paso": "2. Auditoría en sitio",
+      "detalle": "Inspección de líneas, conteo de piezas y test de funcionamiento."
+    },
+    {
+      "paso": "3. Muestreo AQL",
+      "detalle": "Extracción aleatoria de cajas para verificación de tolerancias y rotulado."
+    },
+    {
+      "paso": "4. Emisión de dictamen",
+      "detalle": "Veredicto Aprobado/Rechazado con reporte multimedia completo."
+    }
+  ],
+  "specs": {
+    "Estándar": "Muestreo AQL (ISO 2859-1 / ANSI/ASQC Z1.4)",
+    "Reporte": "PDF técnico con fotos en alta resolución, mediciones y videos de prueba",
+    "Tiempos de entrega": "Reporte preliminar en 12h, reporte final en 24h"
+  },
+  "pendiente": "Confirmar si el reporte de inspección incluye fotos/video.",
+  "icono": "clipboard-check"
+}

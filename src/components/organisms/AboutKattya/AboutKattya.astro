@@ -1,0 +1,123 @@
+---
+// src/components/organisms/AboutKattya/AboutKattya.astro
+//
+// "¿Quién está detrás de KM?" en el sitio actual. El texto de abajo
+// ya NO es el genérico del sitio Wix viejo ni una redacción nuestra:
+// es su cita casi textual del brief de marca del 23 de septiembre
+// (pregunta 9, "¿qué significa para ti trabajar en tu marca
+// personal?"), recortada para caber en la sección. El original
+// completo está en PROJECT_CONTEXT.md — si se quiere ajustar el
+// recorte, comparar contra ese texto fuente, no parafrasear de
+// memoria. La credencial de "150+ clientes internacionales" se deja
+// apagada por defecto: el Hallazgo 2 de la auditoría marcó esa cifra
+// como algo a verificar, no como un hecho confirmado. Se activa
+// cuando Kattya la confirme.
+import Badge from '@atoms/Badge/Badge.astro';
+
+const MOSTRAR_150_CLIENTES = false; // ⚠️ cambiar a true solo cuando Kattya lo confirme
+---
+
+<section id="kattya" class="o-about-kattya">
+  <div class="o-about-kattya__inner">
+    <div class="o-about-kattya__media" data-reveal>
+      {/* PLACEHOLDER — mismo criterio que en el Hero: reservar espacio,
+          no inventar imagen. */}
+      <div class="o-about-kattya__photo-placeholder">
+        <span>Foto de Kattya — PENDIENTE</span>
+      </div>
+    </div>
+
+    <div class="o-about-kattya__content" data-reveal>
+      <h2 class="o-about-kattya__title">
+        ¿Quién está detrás de <span class="o-about-kattya__title-accent">KM</span>?
+      </h2>
+      <blockquote class="o-about-kattya__quote">
+        <p class="o-about-kattya__text">
+          "Quiero ser reconocida, ante todo, por ser
+          <strong>un buen ser humano</strong>, una persona íntegra que
+          trabaja con amor, pasión y propósito."
+        </p>
+        <p class="o-about-kattya__text">
+          "El verdadero éxito no solo se mide por los resultados que
+          alcanzamos, sino por
+          <strong class="o-about-kattya__highlight">la confianza que
+          generamos, las relaciones que construimos</strong> y el
+          impacto positivo que dejamos en los demás."
+        </p>
+      </blockquote>
+
+      <p class="o-about-kattya__signature">
+        Kattya Mejía<br />
+        <span class="o-about-kattya__role">CEO &amp; Sales Manager</span>
+      </p>
+
+      <div class="o-about-kattya__badges">
+        <Badge icon="briefcase">10+ años de experiencia</Badge>
+        <Badge icon="graduation-cap">Magíster en Negocios Internacionales</Badge>
+        {MOSTRAR_150_CLIENTES && <Badge icon="users">150+ clientes internacionales</Badge>}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .o-about-kattya__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--section-y-mobile) var(--gutter-mobile);
+    display: grid;
+    gap: var(--space-10);
+  }
+  .o-about-kattya__photo-placeholder {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    background: repeating-linear-gradient(
+      45deg, var(--c-bg-subtle), var(--c-bg-subtle) 10px,
+      var(--c-bg-raised) 10px, var(--c-bg-raised) 20px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-4);
+    color: var(--c-text-muted);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+  }
+  .o-about-kattya__title {
+    font-size: var(--text-h2);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-5);
+  }
+  .o-about-kattya__title-accent { color: var(--c-accent); }
+  .o-about-kattya__quote {
+    margin: 0 0 var(--space-6);
+    padding-left: var(--space-5);
+    border-left: 3px solid var(--c-accent);
+  }
+  .o-about-kattya__text {
+    font-size: var(--text-body-lg);
+    color: var(--c-text-soft);
+    line-height: var(--lh-relaxed);
+    margin-bottom: var(--space-4);
+  }
+  .o-about-kattya__highlight { color: var(--c-accent); }
+  .o-about-kattya__signature {
+    font-size: var(--text-body);
+    margin: var(--space-6) 0;
+  }
+  .o-about-kattya__role { color: var(--c-text-muted); font-size: var(--text-sm); }
+  .o-about-kattya__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 64em) {
+    .o-about-kattya__inner {
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      padding: var(--section-y-desktop) var(--gutter-desktop);
+    }
+  }
+</style>

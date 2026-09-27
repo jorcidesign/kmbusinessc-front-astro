@@ -1,0 +1,104 @@
+/* =========================================================================
+   COMPONENTE · SPLIT + SERVICE
+   .split → N columnas separadas por reglas verticales. En móvil se apilan
+   y la regla pasa a horizontal. .service es el contenido típico de cada
+   columna (título, ilustración, texto, CTA).
+   ========================================================================= */
+.split {
+  display: grid;
+  grid-template-columns: repeat(var(--split-cols, 2), minmax(0, 1fr));
+  border-top: var(--rule-hairline);
+}
+
+.split--3 { --split-cols: 3; }
+
+.split--no-top { border-top: 0; }
+
+.split > * + * {
+  border-left: var(--rule-hairline);
+}
+
+.split__cell {
+  padding: var(--cell-pad-lg);
+}
+
+.split--center { align-items: center; }
+
+/* Columna de media (imagen a sangre, sin padding) */
+.split__media {
+  position: relative;
+  min-height: 20rem;
+  overflow: hidden;
+}
+
+.split__media > img,
+.split__media > video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .split > * + * {
+    border-left: 0;
+    border-top: var(--rule-hairline);
+  }
+
+  .split--media-first > .split__media {
+    order: -1;
+    border-top: 0;
+  }
+
+  .split--media-first > .split__media + * {
+    border-top: var(--rule-hairline);
+  }
+}
+
+/* ---------- Service ---------- */
+.service {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service__title {
+  font-size: var(--text-4xl);
+}
+
+.service__media {
+  width: 100%;
+  max-width: 28rem;
+  height: 17rem;
+  margin-top: clamp(var(--space-2xl), 2rem + 3vw, var(--space-5xl));
+}
+
+.service__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.service__text {
+  margin-top: clamp(var(--space-xl), 1.5rem + 2vw, var(--space-4xl));
+  max-width: var(--measure);
+}
+
+.service__action {
+  margin-top: var(--space-lg);
+  align-self: flex-start;
+}
+
+@media (max-width: 991px) {
+  .service__media { height: 12rem; }
+}
+
+@media (max-width: 767px) {
+  .service__media { max-width: 16rem; }
+}

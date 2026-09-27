@@ -1,0 +1,25 @@
+/* =========================================================================
+   TOKENS · BORDES Y RADIOS
+   La identidad se apoya en líneas finas navy que estructuran la página
+   como un plano técnico. Radios solo en elementos interactivos.
+   ========================================================================= */
+:root {
+  --border-hairline: 0.5px;
+  --border-thin:     1px;
+  --border-medium:   1.5px;
+  --border-thick:    2px;
+
+  /* Atajos de "regla" */
+  --rule:          var(--border-thin) solid var(--color-border);
+  --rule-hairline: var(--border-hairline) solid var(--color-border);
+  --rule-inverse:  var(--border-hairline) solid var(--color-border-inverse);
+  --rule-subtle:   var(--border-thin) solid var(--color-border-subtle);
+
+  /* Radios: estructura cuadrada, interacción suave */
+  --radius-none: 0;
+  --radius-xs:   0.125rem;
+  --radius-sm:   0.3125rem;
+  --radius-md:   0.5rem;     /* botones, inputs, video */
+  --radius-lg:   0.625rem;
+  --radius-full: 999px;
+}

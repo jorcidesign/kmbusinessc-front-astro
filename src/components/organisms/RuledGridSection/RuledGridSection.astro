@@ -1,0 +1,90 @@
+---
+// src/components/organisms/RuledGridSection/RuledGridSection.astro
+//
+// Props opcionales para soportar ES/EN (ver src/content/pages/home/*.json):
+// los valores por defecto son el español actual, tal cual. Los íconos
+// y accents se quedan fijos en este organismo — son diseño, no copy, y
+// no deben variar entre idiomas.
+import RuledFeature from '@molecules/RuledFeature/RuledFeature.astro';
+import type { FeatureIconName, FeatureIconAccent } from '@atoms/FeatureIcon/FeatureIcon.astro';
+
+interface Item {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  heading?: string;
+  lead?: string;
+  items?: Item[];
+}
+
+const {
+  heading = 'Tú haz crecer tu negocio. Nosotros nos encargamos de Asia.',
+  lead = 'Eliminamos la incertidumbre y los intermediarios opacos en tu cadena de importación.',
+  items = [
+    {
+      title: 'Cero sorpresas en costos y aranceles',
+      description: 'Tarifas All-In transparentes desde el inicio, liquidación clara y optimización de partidas arancelarias.',
+    },
+    {
+      title: 'Negociación directa con fábricas auditadas',
+      description: 'Equipo bilingüe propio en China para auditar instalaciones físicas y negociar directo con directores de planta.',
+    },
+    {
+      title: 'Control de calidad estricto pre-embarque',
+      description: 'Inspecciones AQL con reporte fotográfico y de video en menos de 24 horas antes de pagar el saldo.',
+    },
+    {
+      title: 'Acompañamiento cercano y personalizado',
+      description: 'Kattya Mejía lidera directamente la estrategia de tu cuenta para construir relaciones comerciales sólidas a largo plazo.',
+    },
+  ],
+} = Astro.props;
+
+const icons: FeatureIconName[] = ['tariff-tag', 'handshake', 'inspection', 'care'];
+const accents: FeatureIconAccent[] = ['coral', 'mint', 'amber', 'blue'];
+---
+
+<section class="section section--subtle section--ruled section--framed section--sm">
+  <div class="container gutter">
+    <div class="section-header">
+      <h2 class="section-header__title">{heading}</h2>
+      <p class="section-header__lead">
+        {lead}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section--flush section--framed">
+  <div class="ruled-grid ruled-grid--4 ruled-grid--no-left">
+    <RuledFeature
+      title={items[0].title}
+      description={items[0].description}
+      icon={icons[0]}
+      accent={accents[0]}
+    />
+
+    <RuledFeature
+      title={items[1].title}
+      description={items[1].description}
+      icon={icons[1]}
+      accent={accents[1]}
+    />
+
+    <RuledFeature
+      title={items[2].title}
+      description={items[2].description}
+      icon={icons[2]}
+      accent={accents[2]}
+    />
+
+    <RuledFeature
+      title={items[3].title}
+      description={items[3].description}
+      icon={icons[3]}
+      accent={accents[3]}
+    />
+  </div>
+</section>

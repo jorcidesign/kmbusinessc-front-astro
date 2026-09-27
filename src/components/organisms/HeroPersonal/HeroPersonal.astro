@@ -1,0 +1,114 @@
+---
+// src/components/organisms/HeroPersonal/HeroPersonal.astro
+//
+// Responde directo al pedido de Kattya ("quiero que mi página inicie
+// con mi foto") y al Hallazgo 4 de la auditoría (aparecía al ~70% del
+// recorrido). El titular de abajo ya está fundamentado en su brief de
+// marca del 23 de septiembre (público = "importadores frecuentes", no
+// principiantes; tono emocional-cercano-profesional; diferenciador =
+// relación de confianza, no la operación puntual) — pero SIGUE sin
+// pasar por la investigación de palabras clave de Renzo (líneas D2/9
+// de la cotización). No usar en producción sin que él lo revise.
+// No menciona FCL/LCL a propósito: ver la discrepancia sin resolver
+// en PROJECT_CONTEXT.md antes de ser más específico ahí.
+import WhatsAppButton from '@atoms/WhatsAppButton/WhatsAppButton.astro';
+import Badge from '@atoms/Badge/Badge.astro';
+---
+
+<section class="o-hero-personal">
+  <div class="o-hero-personal__inner">
+    <div class="o-hero-personal__content" data-reveal>
+      <p class="o-hero-personal__eyebrow">KM Business Consulting</p>
+      <h1 class="o-hero-personal__title">
+        {/* BORRADOR, ya fundamentado en el brief — falta el paso de
+            keywords de Renzo */}
+        Un socio de confianza<br />para tus importaciones desde Asia.
+      </h1>
+      <p class="o-hero-personal__subtitle">
+        {/* BORRADOR */}
+        Búsqueda de proveedores verificados, inspección en fábrica y
+        logística internacional — con el mismo equipo acompañándote en
+        cada operación, no una relación de una sola vez.
+      </p>
+      <div class="o-hero-personal__actions">
+        <WhatsAppButton location="hero">Cotiza por WhatsApp</WhatsAppButton>
+      </div>
+      <div class="o-hero-personal__badges">
+        <Badge icon="briefcase">10+ años de experiencia</Badge>
+        <Badge icon="graduation-cap">Magíster en Negocios Internacionales</Badge>
+      </div>
+    </div>
+
+    <div class="o-hero-personal__media" data-reveal>
+      {/* PLACEHOLDER — reemplazar con el retrato real de Kattya
+          (ver PROJECT_CONTEXT.md: pendiente de sesión de fotos o
+          foto existente confirmada). Este bloque solo reserva el
+          espacio y el aspect-ratio correctos. */}
+      <div class="o-hero-personal__photo-placeholder" role="img" aria-label="Foto de Kattya Mejía — pendiente">
+        <span>Foto de Kattya — PENDIENTE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .o-hero-personal__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-16) var(--gutter-mobile);
+    display: grid;
+    gap: var(--space-10);
+  }
+  .o-hero-personal__eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--c-accent);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+  }
+  .o-hero-personal__title {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: var(--fw-extrabold);
+    line-height: var(--lh-tight);
+    color: var(--c-text);
+    margin-bottom: var(--space-5);
+  }
+  .o-hero-personal__subtitle {
+    font-size: var(--text-body-lg);
+    color: var(--c-text-muted);
+    max-width: 46ch;
+    margin-bottom: var(--space-6);
+  }
+  .o-hero-personal__actions { margin-bottom: var(--space-8); }
+  .o-hero-personal__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .o-hero-personal__photo-placeholder {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    background: repeating-linear-gradient(
+      45deg, var(--c-bg-subtle), var(--c-bg-subtle) 10px,
+      var(--c-bg-raised) 10px, var(--c-bg-raised) 20px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-4);
+    color: var(--c-text-muted);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+  }
+
+  @media (min-width: 64em) {
+    .o-hero-personal__inner {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      padding: var(--space-24) var(--gutter-desktop);
+    }
+  }
+</style>

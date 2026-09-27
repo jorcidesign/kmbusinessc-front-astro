@@ -1,0 +1,100 @@
+---
+// src/components/organisms/HeroKattya/HeroKattya.astro
+//
+// Estructura idéntica al sitio de referencia Webflow (kasiasiwosz.com):
+// Flujo normal de bloque:
+// 1. .hero-image-sticky-wrap (position: sticky, z-index: 30): la imagen queda fija.
+// 2. .h1.hero-first ("Deja de improvisar."): ubicado justo debajo de la imagen al cargar.
+// 3. .h1.accent.z-50 ("IMPORTA" y "CON CONTROL."): vienen desde abajo en flujo normal con z-index: 50.
+//    Al scrollear, ascienden de forma natural y se deslizan por encima de la imagen pegada.
+// 4. .hero-subtitle-block: párrafo y botón CTA que siguen en flujo normal debajo del título.
+// 5. h1.sr-only: H1 semántico para buscadores y accesibilidad.
+// 6. .hero-flow-animation: animación SVG "China → barco → Latam" en el tramo
+//    que queda vacío antes de que termine el recorrido de scroll (min-height:
+//    170vh) — arranca sola la primera vez que entra en viewport (data-reveal).
+import Button from '@atoms/Button/Button.astro';
+import FlowChinaLatam from '@atoms/illustrations/FlowChinaLatam.astro';
+
+interface Props {
+  heading: string;
+  titleFade: string;
+  titleRiseLines: [string, string];
+  lead?: string;
+  cta?: { label: string; href: string };
+  image?: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
+  class?: string;
+}
+
+const {
+  heading,
+  titleFade,
+  titleRiseLines,
+  lead,
+  cta,
+  image = {
+    src: '/images/kattya-hero.jpg',
+    alt: 'Kattya Mejía - Especialista en sourcing y compras en China',
+    width: 500,
+    height: 700,
+  },
+  class: className = '',
+} = Astro.props;
+---
+
+<section class={`hero-section home-hero-section ${className}`} data-hero-kattya>
+  <div class="site-container">
+    <div class="hero-centered-block">
+      <!-- 1. Imagen fotográfica sticky (z-index: 30) -->
+      <div class="hero-image-sticky-wrap">
+        <img
+          src={image.src}
+          alt={image.alt}
+          class="hero-image"
+          width={image.width || 500}
+          height={image.height || 700}
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
+      <!-- 2. Titular inicial en flujo normal justo debajo de la imagen -->
+      <div class="h1 hero-first" aria-hidden="true">{titleFade}</div>
+
+      <!-- 3. Titulares accent en flujo normal con z-index: 50 que suben sobre la imagen -->
+      <div class="h1 accent z-50" aria-hidden="true">{titleRiseLines[0]}</div>
+      <div class="h1 accent z-50 accent-second" aria-hidden="true">{titleRiseLines[1]}</div>
+
+      <!-- H1 real y accesible para SEO -->
+      <h1 class="sr-only">{heading}</h1>
+    </div>
+
+    <!-- 4. Subtítulo y CTA en flujo normal debajo de los titulares -->
+    {(lead || cta) && (
+      <div class="centered-content-block hero-subtitle-block">
+        {lead && <p class="text-18 hero-lead">{lead}</p>}
+        {cta && (
+          <div class="hero-actions">
+            <Button href={cta.href} size="wide" class="cta-btn">
+              {cta.label}
+            </Button>
+          </div>
+        )}
+      </div>
+    )}
+
+    <!-- 6. Animación de flujo: ocupa el tramo vacío antes de que termine el scroll -->
+    <div class="hero-flow-animation">
+      <FlowChinaLatam />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initHeroKattyaScroll } from '@lib/heroKattyaScroll';
+  initHeroKattyaScroll();
+</script>

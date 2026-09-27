@@ -1,0 +1,62 @@
+/* =========================================================================
+   UTILIDADES · DISPLAY, VISIBILIDAD Y FLEX
+   ========================================================================= */
+.block        { display: block; }
+.inline-block { display: inline-block; }
+.flex         { display: flex; }
+.inline-flex  { display: inline-flex; }
+.grid-block   { display: grid; }
+.hidden       { display: none; }
+
+.flex-col     { flex-direction: column; }
+.flex-wrap    { flex-wrap: wrap; }
+.flex-1       { flex: 1 1 0%; }
+.flex-none    { flex: none; }
+.justify-start   { justify-content: flex-start; }
+.justify-center  { justify-content: center; }
+.justify-end     { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.self-start   { align-self: flex-start; }
+.self-center  { align-self: center; }
+.self-end     { align-self: flex-end; }
+.place-center { place-items: center; }
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.sticky   { position: sticky; top: calc(var(--nav-height) + var(--space-md)); }
+.inset-0  { inset: 0; }
+.z-content{ z-index: var(--z-content); }
+
+.overflow-hidden { overflow: hidden; }
+.overflow-auto   { overflow: auto; }
+.overflow-clip   { overflow: clip; }
+
+/* ---------- Mostrar / ocultar por breakpoint ----------
+   hide-*  oculta desde ese breakpoint hacia abajo
+   show-*  muestra SOLO desde ese breakpoint hacia abajo */
+.show-tablet,
+.show-mobile,
+.show-small { display: none; }
+
+@media (max-width: 991px) {
+  .hide-tablet { display: none; }
+  .show-tablet { display: revert; }
+}
+
+@media (max-width: 767px) {
+  .hide-mobile { display: none; }
+  .show-mobile { display: revert; }
+}
+
+@media (max-width: 479px) {
+  .hide-small { display: none; }
+  .show-small { display: revert; }
+}
+
+/* Solo en desktop grande */
+.show-xl { display: none; }
+
+@media (min-width: 1440px) {
+  .show-xl { display: revert; }
+  .hide-xl { display: none; }
+}

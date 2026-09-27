@@ -1,0 +1,75 @@
+/* =========================================================================
+   SISTEMA DE DISEÑO · PUNTO DE ENTRADA
+   ---------------------------------------------------------------------------
+   Arquitectura en capas (@layer). El orden declarado define la prioridad:
+   una capa posterior siempre gana, sin importar la especificidad.
+
+     tokens → base → layout → components → animations → utilities
+
+   Cualquier CSS de proyecto escrito FUERA de una capa gana sobre todo el
+   sistema: úsalo para overrides puntuales sin necesidad de !important.
+
+   En producción, compila este archivo con un bundler (Vite, PostCSS
+   import, Lightning CSS) para resolver los @import en un solo archivo.
+   ========================================================================= */
+@layer tokens, base, layout, components, animations, utilities;
+
+/* ---------- Tokens ---------- */
+@import url("tokens/colors.css")     layer(tokens);
+@import url("tokens/typography.css") layer(tokens);
+@import url("tokens/spacing.css")    layer(tokens);
+@import url("tokens/layout.css")     layer(tokens);
+@import url("tokens/borders.css")    layer(tokens);
+@import url("tokens/elevation.css")  layer(tokens);
+@import url("tokens/motion.css")     layer(tokens);
+@import url("tokens/z-index.css")    layer(tokens);
+
+/* ---------- Base ---------- */
+@import url("base/fonts.css")         layer(base);
+@import url("base/reset.css")         layer(base);
+@import url("base/root.css")          layer(base);
+@import url("base/typography.css")    layer(base);
+@import url("base/accessibility.css") layer(base);
+
+/* ---------- Layout ---------- */
+@import url("layout/container.css") layer(layout);
+@import url("layout/section.css")   layer(layout);
+@import url("layout/grid.css")      layer(layout);
+@import url("layout/stack.css")     layer(layout);
+
+/* ---------- Componentes ---------- */
+@import url("components/button.css")         layer(components);
+@import url("components/link.css")           layer(components);
+@import url("components/navbar.css")         layer(components);
+@import url("components/mobile-nav-drawer.css") layer(components);
+@import url("components/hero.css")           layer(components);
+@import url("components/hero-kattya.css")    layer(components);
+@import url("components/section-header.css") layer(components);
+@import url("components/split.css")          layer(components);
+@import url("components/ruled-grid.css")     layer(components);
+@import url("components/card.css")           layer(components);
+@import url("components/cta-box.css")        layer(components);
+@import url("components/media-overlay.css")  layer(components);
+@import url("components/steps.css")          layer(components);
+@import url("components/stats.css")          layer(components);
+@import url("components/testimonial.css")    layer(components);
+@import url("components/browser-frame.css")  layer(components);
+@import url("components/video.css")          layer(components);
+@import url("components/logo-strip.css")     layer(components);
+@import url("components/social-card.css")    layer(components);
+@import url("components/accordion.css")      layer(components);
+@import url("components/form.css")           layer(components);
+@import url("components/contact.css")        layer(components);
+@import url("components/marquee.css")        layer(components);
+@import url("components/footer.css")         layer(components);
+@import url("components/decor.css")          layer(components);
+
+/* ---------- Animaciones ---------- */
+@import url("animations/keyframes.css") layer(animations);
+@import url("animations/motion.css")    layer(animations);
+
+/* ---------- Utilidades ---------- */
+@import url("utilities/spacing.css") layer(utilities);
+@import url("utilities/text.css")    layer(utilities);
+@import url("utilities/display.css") layer(utilities);
+@import url("utilities/surface.css") layer(utilities);

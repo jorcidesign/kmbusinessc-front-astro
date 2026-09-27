@@ -1,0 +1,48 @@
+/* =========================================================================
+   TOKENS · LAYOUT
+   ---------------------------------------------------------------------------
+   BREAKPOINTS (desktop-first, heredados del sitio original).
+   Las media queries no aceptan var(), así que se documentan aquí y se usan
+   literalmente en todo el sistema:
+
+     xl       >= 1440px   pantallas grandes (más aire interno)
+     lg       >= 1280px   laptops
+     tablet   <=  991px   se apilan layouts de 2 columnas
+     mobile   <=  767px   menú hamburguesa, 1 columna
+     small    <=  479px   teléfonos angostos
+   ========================================================================= */
+:root {
+  /* Contenedores */
+  --container-xl: 90rem;   /* 1440 */
+  --container-lg: 80rem;   /* 1280 */
+  --container-md: 64rem;   /* 1024 */
+  --container-sm: 48rem;   /* 768  */
+  --container-xs: 32rem;   /* 512  */
+
+  /* Grilla */
+  --grid-columns: 12;
+  --grid-gap: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+
+  /* Alturas estructurales */
+  --nav-height: 6rem;
+  --hero-min-height: calc(100svh - var(--nav-height));
+  --media-height: 48.75rem;
+
+  /* Tamaños de icono */
+  --icon-xs: 1rem;
+  --icon-sm: 1.5rem;
+  --icon-md: 3rem;
+  --icon-lg: 4rem;
+  --icon-xl: 6rem;
+}
+
+@media (max-width: 991px) {
+  :root { --media-height: 45rem; }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --nav-height: 5rem;
+    --icon-xl: 4.5rem;
+  }
+}

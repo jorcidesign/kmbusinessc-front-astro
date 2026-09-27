@@ -1,0 +1,55 @@
+---
+// src/components/organisms/ContactSection/ContactSection.astro
+import ContactForm from '@molecules/ContactForm/ContactForm.astro';
+import WhatsAppButton from '@atoms/WhatsAppButton/WhatsAppButton.astro';
+---
+
+<section id="contacto" class="o-contact">
+  <div class="o-contact__inner">
+    <div class="o-contact__intro" data-reveal>
+      <h2 class="o-contact__title">
+        ¿Listo para importar <span class="o-contact__title-accent">con confianza?</span>
+      </h2>
+      <p class="o-contact__subtitle">
+        Cuéntanos qué necesitas y te contactamos en el mismo día.
+        También puedes escribirnos directo por WhatsApp.
+      </p>
+      <WhatsAppButton variant="ghost" location="contact-section">
+        Prefiero escribir por WhatsApp
+      </WhatsAppButton>
+    </div>
+
+    <div class="o-contact__form" data-reveal>
+      <ContactForm />
+    </div>
+  </div>
+</section>
+
+<style>
+  .o-contact__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--section-y-mobile) var(--gutter-mobile);
+    display: grid;
+    gap: var(--space-10);
+  }
+  .o-contact__title {
+    font-size: var(--text-h2);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-4);
+  }
+  .o-contact__title-accent { color: var(--c-accent); }
+  .o-contact__subtitle {
+    font-size: var(--text-body-lg);
+    color: var(--c-text-muted);
+    margin-bottom: var(--space-6);
+    max-width: 42ch;
+  }
+
+  @media (min-width: 64em) {
+    .o-contact__inner {
+      grid-template-columns: 1fr 1fr;
+      padding: var(--section-y-desktop) var(--gutter-desktop);
+    }
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+// src/components/atoms/LocaleSwitcher/LocaleSwitcher.astro
+//
+// Toggle "ES | EN" del Header. Self-contained como Logo.astro/
+// WhatsAppFab.astro (su propio <a> y su propio <style> escoped) para
+// no tener que tocar el tipo `variant` del átomo Button compartido.
+// "ES"/"EN" son códigos de idioma, no se traducen — solo el aria-label
+// del grupo sale de src/content/ui/*.json.
+interface Props {
+  locale: 'es' | 'en';
+  esHref: string;
+  enHref: string;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  locale,
+  esHref,
+  enHref,
+  ariaLabel = 'Seleccionar idioma',
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`locale-switcher ${className}`} role="group" aria-label={ariaLabel}>
+  <a
+    href={esHref}
+    class="locale-switcher__link"
+    aria-current={locale === 'es' ? 'true' : undefined}
+    lang="es"
+    hreflang="es"
+  >
+    ES
+  </a>
+  <a
+    href={enHref}
+    class="locale-switcher__link"
+    aria-current={locale === 'en' ? 'true' : undefined}
+    lang="en"
+    hreflang="en"
+  >
+    EN
+  </a>
+</div>
+
+<style>
+  .locale-switcher {
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    gap: var(--space-3xs);
+    padding: var(--space-3xs);
+    border: var(--rule);
+    border-radius: var(--radius-full);
+  }
+
+  .locale-switcher__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-none, 1);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-standard),
+                color var(--duration-fast) var(--ease-standard);
+  }
+
+  .locale-switcher__link:hover {
+    background-color: var(--color-bg-hover);
+    color: var(--color-text);
+  }
+
+  .locale-switcher__link:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+
+  .locale-switcher__link[aria-current="true"] {
+    background-color: var(--color-action);
+    color: var(--color-action-text);
+    font-weight: var(--weight-semibold);
+  }
+
+  .locale-switcher__link[aria-current="true"]:hover {
+    background-color: var(--color-action);
+    color: var(--color-action-text);
+  }
+</style>

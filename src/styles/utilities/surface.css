@@ -1,0 +1,60 @@
+/* =========================================================================
+   UTILIDADES · FONDOS, BORDES Y MEDIA
+   ========================================================================= */
+
+/* Fondos */
+.bg-default { background-color: var(--color-bg); }
+.bg-subtle  { background-color: var(--color-bg-subtle); }
+.bg-inverse { background-color: var(--color-bg-inverse); color: var(--color-text-inverse); }
+.bg-surface { background-color: var(--color-surface); }
+.bg-lavender{ background-color: var(--lavender-100); }
+.bg-none    { background: none; }
+
+/* Reglas (bordes estructurales) */
+.rule        { border: var(--rule); }
+.rule-top    { border-top: var(--rule-hairline); }
+.rule-bottom { border-bottom: var(--rule-hairline); }
+.rule-left   { border-left: var(--rule-hairline); }
+.rule-right  { border-right: var(--rule-hairline); }
+.rule-x      { border-inline: var(--rule-hairline); }
+.rule-y      { border-block: var(--rule-hairline); }
+.rule-none   { border: 0; }
+
+.divider-h {
+  width: 100%;
+  height: var(--border-thin);
+  background-color: var(--color-border);
+}
+
+.divider-v {
+  width: var(--border-thin);
+  align-self: stretch;
+  background-color: var(--color-border);
+}
+
+/* Radios */
+.rounded-none { border-radius: var(--radius-none); }
+.rounded      { border-radius: var(--radius-md); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* Anchos */
+.w-full   { width: 100%; }
+.w-auto   { width: auto; }
+.max-w-xs { max-width: var(--container-xs); }
+.max-w-sm { max-width: var(--container-sm); }
+.max-w-md { max-width: var(--container-md); }
+.max-w-lg { max-width: var(--container-lg); }
+.max-w-none { max-width: none; }
+
+/* Media */
+.cover   { width: 100%; height: 100%; object-fit: cover; }
+.contain { width: 100%; height: 100%; object-fit: contain; }
+.aspect-square { aspect-ratio: 1; }
+.aspect-video  { aspect-ratio: 16 / 9; }
+.aspect-photo  { aspect-ratio: 4 / 3; }
+.aspect-tall   { aspect-ratio: 7 / 8; }
+
+/* Cuadrado que mantiene 1:1 (heredado de .div-square) */
+.square {
+  aspect-ratio: 1;
+}

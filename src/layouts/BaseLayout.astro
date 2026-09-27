@@ -1,0 +1,157 @@
+---
+// src/layouts/BaseLayout.astro
+import Header from '@organisms/Header/Header.astro';
+import Footer from '@organisms/Footer/Footer.astro';
+import WhatsAppFab from '@atoms/WhatsAppFab/WhatsAppFab.astro';
+import { getEntry } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import '@/styles/main.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  locale?: 'es' | 'en';
+}
+
+const {
+  title,
+  description,
+  image = '/og-default.jpg',
+  locale = 'es',
+} = Astro.props;
+
+const uiEntry = await getEntry('ui', locale);
+if (!uiEntry) throw new Error(`Falta src/content/ui/${locale}.json`);
+const ui = uiEntry.data;
+
+// Localiza un path interno relativo (p.ej. "/servicios") anteponiendo
+// el prefijo de idioma correspondiente (p.ej. "/es/servicios").
+const withLocale = (path: string) => getRelativeLocaleUrl(locale, path);
+
+const siteUrl = Astro.site || new URL('https://kmbusinessc.pe');
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const ogImageURL = new URL(image, siteUrl);
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+
+// hreflang: la misma ruta (sin el prefijo de idioma) existe siempre en
+// ambos locales porque los slugs no se traducen (ver plan, fuera de
+// alcance traducir slugs de servicios).
+const pathWithoutLocale = Astro.url.pathname.replace(/^\/(es|en)(?=\/|$)/, '') || '/';
+const esPath = getRelativeLocaleUrl('es', pathWithoutLocale);
+const enPath = getRelativeLocaleUrl('en', pathWithoutLocale);
+const esHref = new URL(esPath, siteUrl);
+const enHref = new URL(enPath, siteUrl);
+
+const headerNavItems = ui.nav.items.map((item) => ({ ...item, href: withLocale(item.href) }));
+const footerServiciosLinks = ui.footer.servicios.links.map((l) => ({ ...l, href: withLocale(l.href) }));
+const footerEmpresaLinks = ui.footer.empresa.links.map((l) => ({ ...l, href: withLocale(l.href) }));
+---
+
+<!DOCTYPE html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="es" href={esHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="x-default" href={esHref} />
+
+    <title>{title} | KM Business Consulting</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} | KM Business Consulting`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {gtmId && gtmId !== 'GTM-XXXXXXX' && (
+      <script is:inline define:vars={{ gtmId }}>
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', gtmId);
+      </script>
+    )}
+  </head>
+  <body>
+    {gtmId && gtmId !== 'GTM-XXXXXXX' && (
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+          height="0" width="0" style="display:none;visibility:hidden"
+        ></iframe>
+      </noscript>
+    )}
+
+    <a class="skip-link" href="#main">{ui.skipLink}</a>
+
+    <div class="page">
+      <Header
+        navItems={headerNavItems}
+        ctaLabel={ui.nav.ctaLabel}
+        ctaHref={withLocale('/contacto')}
+        navAriaLabel={ui.nav.navAriaLabel}
+        openMenuLabel={ui.nav.openMenuLabel}
+        closeMenuLabel={ui.nav.closeMenuLabel}
+        logoHref={withLocale('/')}
+        logoAriaLabel={ui.logoAriaLabel}
+        locale={locale}
+        esHref={esPath}
+        enHref={enPath}
+        switcherAriaLabel={ui.localeSwitcherAriaLabel}
+      />
+      <main id="main">
+        <slot />
+      </main>
+      <Footer
+        serviciosHeading={ui.footer.servicios.heading}
+        serviciosLinks={footerServiciosLinks}
+        empresaHeading={ui.footer.empresa.heading}
+        empresaLinks={footerEmpresaLinks}
+        contactoHeading={ui.footer.contacto.heading}
+        email={ui.footer.contacto.email}
+        phone={ui.footer.contacto.phone}
+        phoneHref={ui.footer.contacto.phoneHref}
+        whatsappHref={ui.footer.contacto.whatsappHref}
+        whatsappLabel={ui.footer.contacto.whatsappLabel}
+        location={ui.footer.contacto.location}
+        redesHeading={ui.footer.redes.heading}
+        linkedinHref={ui.footer.redes.linkedinHref}
+        linkedinLabel={ui.footer.redes.linkedinLabel}
+        instagramHref={ui.footer.redes.instagramHref}
+        instagramLabel={ui.footer.redes.instagramLabel}
+        destacadoHeading={ui.footer.destacado.heading}
+        destacadoText={ui.footer.destacado.text}
+        destacadoCtaLabel={ui.footer.destacado.ctaLabel}
+        destacadoCtaHref={withLocale(ui.footer.destacado.ctaHref)}
+        empresaLine={ui.footer.legal.empresaLine}
+        rightsLine={ui.footer.legal.rightsLine}
+        logoHref={withLocale('/')}
+        logoAriaLabel={ui.logoAriaLabel}
+      />
+    </div>
+
+    <!-- Átomo de contacto flotante WhatsApp FAB -->
+    <WhatsAppFab
+      message={ui.whatsapp.fabMessage}
+      tooltipTitle={ui.whatsapp.fabTooltipTitle}
+      tooltipSub={ui.whatsapp.fabTooltipSub}
+      ariaLabel={ui.whatsapp.fabAriaLabel}
+    />
+
+    <script>
+      import { initScrollReveal } from '@lib/scrollReveal';
+      import { initDecorParallax } from '@lib/decorParallax';
+      initScrollReveal();
+      initDecorParallax();
+    </script>
+  </body>
+</html>

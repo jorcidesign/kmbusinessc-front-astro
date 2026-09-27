@@ -1,0 +1,57 @@
+{
+  "orden": 2,
+  "titulo": "Búsqueda y verificación de proveedores confiables",
+  "subtitulo": "Validación in situ y auditoría integral de fabricantes reales en China.",
+  "badge": "Auditoría en origen",
+  "descripcion": "Nuestro equipo en China busca y valida fábricas según lo que necesitas, para que no negocies a ciegas con un proveedor que no conoces.",
+  "queHacemos": [
+    "Búsqueda dirigida en clusters industriales especializados de China",
+    "Verificación de licencias comerciales y estatus legal ante el gobierno chino",
+    "Auditoría presencial de capacidad instalada y maquinaria de la planta",
+    "Negociación directa de precios, MOQs y condiciones de pago",
+    "Gestión y revisión exhaustiva de muestras antes de autorizar órdenes de producción"
+  ],
+  "beneficios": [
+    {
+      "titulo": "Evita intermediarios fantasma",
+      "descripcion": "Filtramos revendedores y trading companies que inflan precios y no asumen garantías."
+    },
+    {
+      "titulo": "Precios directos de fábrica",
+      "descripcion": "Negociamos directamente con dueños y directores de planta para maximizar tus márgenes."
+    },
+    {
+      "titulo": "Validación legal y financiera",
+      "descripcion": "Comprobamos antecedentes fiscales, certificaciones ISO/CE y solvencia operativa."
+    },
+    {
+      "titulo": "Muestreo riguroso",
+      "descripcion": "Revisión física de acabados, medidas y empaque antes del primer anticipo de dinero."
+    }
+  ],
+  "etapas": [
+    {
+      "paso": "1. Ficha técnica del producto",
+      "detalle": "Definición exacta de especificaciones, tolerancias y estándares requeridos."
+    },
+    {
+      "paso": "2. Filtro de fábricas candidatas",
+      "detalle": "Shortlist de 3 a 5 plantas idóneas verificadas en bases oficiales."
+    },
+    {
+      "paso": "3. Muestras y pruebas de laboratorio",
+      "detalle": "Envío y validación física de prototipos o muestras de producción."
+    },
+    {
+      "paso": "4. Selección final y contrato",
+      "detalle": "Acuerdo de fabricación bilingüe con penalidades por demoras o defectos."
+    }
+  ],
+  "specs": {
+    "Plazo de reporte": "5 a 10 días laborables para shortlist completo",
+    "Entregable": "Dossier con fotos, licencias, capacidad de planta y matriz comparativa de costos",
+    "Sectores": "Maquinaria, empaques, textiles, ferretería, plásticos, electrodomésticos y tecnología"
+  },
+  "pendiente": "Confirmar con Kattya 2 o 3 categorías de producto reales en las que tiene más experiencia, para dar un ejemplo concreto.",
+  "icono": "search"
+}

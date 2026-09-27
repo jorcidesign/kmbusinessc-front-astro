@@ -1,0 +1,57 @@
+{
+  "orden": 1,
+  "titulo": "Logística integral",
+  "subtitulo": "Tu socio integral de abastecimiento y comercio exterior con soporte directo en Asia y Latinoamérica.",
+  "badge": "Puerta a puerta",
+  "descripcion": "Coordinamos toda tu operación de comercio internacional de punta a punta, para que tengas un solo punto de contacto en vez de varios proveedores sueltos.",
+  "queHacemos": [
+    "Planificación y coordinación completa de la cadena de suministro internacional",
+    "Consolidación de carga y gestión de órdenes de compra con múltiples fabricantes",
+    "Supervisión documental aduanera y cumplimiento normativo en origen y destino",
+    "Seguimiento en tiempo real con reportes de avance en cada hito",
+    "Entrega final en almacén con liquidación transparente de costos"
+  ],
+  "beneficios": [
+    {
+      "titulo": "Un único punto de contacto",
+      "descripcion": "Elimina el caos de hablar con 5 intermediarios distintos. Kattya y su equipo centralizan toda la comunicación técnica."
+    },
+    {
+      "titulo": "Cero sorpresas en costos",
+      "descripcion": "Estructuras de costos abiertas y detalladas antes de embarcar cualquier mercancía."
+    },
+    {
+      "titulo": "Acompañamiento personalizado",
+      "descripcion": "Relaciones a largo plazo con asesoría estratégica adaptada a las metas de tu empresa."
+    },
+    {
+      "titulo": "Presencia bilingüe en origen",
+      "descripcion": "Supervisión directa con personal en China para resolver cualquier contingencia de inmediato."
+    }
+  ],
+  "etapas": [
+    {
+      "paso": "1. Diagnóstico y planificación",
+      "detalle": "Evaluamos tus requerimientos técnicos, volúmenes de compra y plazos de entrega."
+    },
+    {
+      "paso": "2. Negociación y contratos",
+      "detalle": "Cierre de términos comerciales (Incoterms) protegiendo tus intereses."
+    },
+    {
+      "paso": "3. Producción y control",
+      "detalle": "Supervisión de fabricación con pruebas de calidad antes del despacho."
+    },
+    {
+      "paso": "4. Tránsito y desaduanaje",
+      "detalle": "Flete marítimo y desaduanamiento expedito hasta tu almacén."
+    }
+  ],
+  "specs": {
+    "Cobertura": "Asia (China continental) hacia Perú y toda Latinoamérica",
+    "Modalidad": "FCL (Contenedor Completo) y proyectos llave en mano",
+    "Incoterms usuales": "FOB, CIF, DDP según necesidades del cliente",
+    "Soporte": "Atención directa de Kattya Mejía y equipo operativo bilingüe"
+  },
+  "icono": "package"
+}

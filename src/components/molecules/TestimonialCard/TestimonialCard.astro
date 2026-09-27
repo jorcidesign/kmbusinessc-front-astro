@@ -1,0 +1,23 @@
+---
+interface Props {
+  nombre?: string;
+  empresa?: string;
+  cita?: string;
+  className?: string;
+}
+const { nombre = '', empresa = '', cita = '', className = '' } = Astro.props;
+---
+<blockquote class={`m-testimonial-card ${className}`}>
+  <p class="m-testimonial-card__quote">{cita}</p>
+  <footer class="m-testimonial-card__footer">
+    <cite class="m-testimonial-card__author">{nombre}</cite>
+    <span class="m-testimonial-card__company">{empresa}</span>
+  </footer>
+</blockquote>
+
+<style>
+  .m-testimonial-card {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

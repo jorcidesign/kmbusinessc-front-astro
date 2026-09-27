@@ -1,0 +1,150 @@
+/* =========================================================================
+   COMPONENTE · HERO
+   .hero--center → titular centrado sobre ilustración a sangre (home).
+   .hero--split  → texto a la izquierda, ilustración con regla a la derecha
+                   (páginas de servicio).
+   ========================================================================= */
+.hero {
+  position: relative;
+  display: grid;
+  min-height: var(--hero-min-height);
+  background-color: var(--color-bg-subtle);
+  border-inline: var(--rule-hairline);
+  overflow: hidden;
+}
+
+.hero__content {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+.hero__title {
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tighter);
+  text-wrap: balance;
+}
+
+.hero__lead {
+  margin-top: var(--space-xl);
+  font-size: var(--text-2xl);
+  line-height: 1.3;
+  max-width: var(--measure-narrow);
+  text-wrap: balance;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-3xl);
+}
+
+.hero__media {
+  position: relative;
+  pointer-events: none;
+}
+
+.hero__media img,
+.hero__media video,
+.hero__media svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Centrado ---------- */
+.hero--center {
+  grid-template-rows: auto 1fr;
+}
+
+.hero--center .hero__content {
+  padding: calc(var(--section-y-lg) + var(--space-md)) var(--gutter) var(--space-2xl);
+  text-align: center;
+}
+
+.hero--center .hero__lead {
+  margin-inline: auto;
+}
+
+.hero--center .hero__actions {
+  justify-content: center;
+}
+
+.hero--center .hero__media {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: var(--z-raised);
+}
+
+/* ---------- Split ---------- */
+.hero--split {
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  min-height: min(45rem, var(--hero-min-height));
+}
+
+.hero--split .hero__content {
+  align-self: center;
+  padding: calc(var(--section-y) + var(--space-md)) var(--gutter) var(--section-y);
+}
+
+.hero--split .hero__lead {
+  max-width: 26rem;
+  font-size: var(--text-md);
+  margin-top: var(--space-md);
+}
+
+.hero--split .hero__actions {
+  margin-top: var(--space-xl);
+}
+
+.hero--split .hero__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: var(--rule-hairline);
+  background-color: var(--color-bg-subtle);
+  overflow: hidden;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 1440px) {
+  .hero--split { grid-template-columns: minmax(0, 42fr) minmax(0, 58fr); }
+}
+
+@media (max-width: 991px) {
+  .hero--center { min-height: 93svh; }
+
+  .hero--split {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .hero--split .hero__media {
+    height: 30rem;
+    border-left: 0;
+    border-top: var(--rule-hairline);
+  }
+}
+
+@media (max-width: 767px) {
+  /* La ilustración deja de ir absoluta y fluye bajo el texto */
+  .hero--center {
+    min-height: 0;
+  }
+
+  .hero--center .hero__content {
+    padding-top: var(--section-y);
+  }
+
+  .hero--center .hero__media {
+    position: relative;
+    inset: auto;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero--split .hero__media { height: 18rem; }
+  .hero__actions .btn { width: 100%; }
+}

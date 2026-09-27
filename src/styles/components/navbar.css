@@ -1,0 +1,233 @@
+/* =========================================================================
+   COMPONENTE · NAVBAR
+   Fija, blanca, línea inferior fina. Logo | links centrados | CTA contorno.
+   En móvil (<=767px) el menú desktop se oculta y el toggle abre el
+   organismo MobileNavDrawer (full-screen, ver mobile-nav-drawer.css);
+   esta barra solo se recolorea a celeste mientras está abierto.
+   El JS solo alterna [aria-expanded] en el toggle y [data-open] en .navbar.
+
+   <header class="navbar">
+     <div class="navbar__inner">
+       <a class="navbar__brand"><img ...></a>
+       <nav class="navbar__menu" id="menu">
+         <a class="navbar__link" aria-current="page">...</a>
+         <a class="btn navbar__menu-cta">Get a quote</a>
+       </nav>
+       <a class="btn btn--outline navbar__cta">Get a quote</a>
+       <button class="navbar__toggle" aria-controls="menu" aria-expanded="false">
+         <span class="navbar__toggle-icon"></span>
+       </button>
+     </div>
+   </header>
+   ========================================================================= */
+.navbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-nav);
+  height: var(--nav-height);
+  background-color: var(--color-bg);
+  border-bottom: var(--rule-hairline);
+}
+
+.navbar--static {
+  position: relative;
+}
+
+.navbar__inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: 2.75rem;
+  justify-self: start;
+}
+
+.navbar__brand img,
+.navbar__brand svg {
+  width: auto;
+  height: 100%;
+}
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: var(--space-md);
+}
+
+.navbar__link {
+  display: block;
+  padding: var(--space-lg);
+  font-size: var(--text-base);
+  line-height: var(--leading-snug);
+  color: var(--color-text);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.navbar__link:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.navbar__link[aria-current="page"] {
+  font-weight: var(--weight-semibold);
+}
+
+.navbar__cta {
+  --btn-pad-x: var(--space-2xl);
+  flex: none;
+}
+
+.navbar__menu-cta,
+.navbar__toggle {
+  display: none;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 991px) {
+  .navbar__inner { padding-inline: var(--space-md); }
+  .navbar__link { padding: var(--space-sm) var(--space-md); }
+  .navbar__cta  { --btn-pad-x: var(--space-lg); }
+  .navbar__actions { gap: var(--space-sm); }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 767px) {
+  .navbar__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar__actions {
+    gap: var(--space-xs);
+  }
+
+  .navbar__cta { display: none; }
+
+  .navbar__toggle {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: var(--rule);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    transition: background-color var(--duration-fast) var(--ease-standard),
+                color var(--duration-fast) var(--ease-standard);
+  }
+
+  .navbar__toggle[aria-expanded="true"] {
+    background-color: var(--color-action);
+    color: var(--color-action-text);
+  }
+
+  /* Icono hamburguesa → X, dibujado con CSS */
+  .navbar__toggle-icon,
+  .navbar__toggle-icon::before,
+  .navbar__toggle-icon::after {
+    display: block;
+    width: 1.25rem;
+    height: var(--border-thick);
+    background-color: currentColor;
+    border-radius: var(--radius-full);
+    transition: transform var(--duration-base) var(--ease-out),
+                background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  .navbar__toggle-icon {
+    position: relative;
+  }
+
+  .navbar__toggle-icon::before,
+  .navbar__toggle-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .navbar__toggle-icon::before { transform: translateY(-6px); }
+  .navbar__toggle-icon::after  { transform: translateY(6px); }
+
+  .navbar__toggle[aria-expanded="true"] .navbar__toggle-icon {
+    background-color: transparent;
+  }
+
+  .navbar__toggle[aria-expanded="true"] .navbar__toggle-icon::before {
+    transform: rotate(45deg);
+  }
+
+  .navbar__toggle[aria-expanded="true"] .navbar__toggle-icon::after {
+    transform: rotate(-45deg);
+  }
+
+  /* El panel de link/CTA ahora lo pinta MobileNavDrawer (full-screen,
+     ver mobile-nav-drawer.css) — .navbar__menu ya no se muestra en
+     mobile, solo queda visible como nav horizontal en desktop. */
+  .navbar__menu {
+    display: none;
+  }
+
+  /* Barra recoloreada a celeste mientras el drawer full-screen está
+     abierto, para que ambas capas (barra + drawer) pinten el 100% de
+     la pantalla en un solo tono. */
+  .navbar[data-open] {
+    background-color: var(--color-action);
+    border-bottom-color: transparent;
+    /* El isotipo del logo (variant="color") trae su propio
+       fill:var(--color-brand-accent) fijo — sobre el celeste del
+       fondo quedaba invisible (mismo tono). Redefinir la variable
+       acá lo pone blanco solo mientras el drawer está abierto, sin
+       tocar el SVG ni afectar el logo en el resto del sitio. */
+    --color-brand-accent: var(--color-action-text);
+  }
+
+  .navbar[data-open] .navbar__brand {
+    color: var(--color-action-text);
+  }
+
+  .navbar[data-open] .navbar__toggle {
+    border-color: var(--color-action-text);
+    color: var(--color-action-text);
+  }
+
+  .navbar[data-open] .navbar__toggle[aria-expanded="true"] {
+    background-color: transparent;
+  }
+
+  .navbar[data-open] .locale-switcher {
+    border-color: var(--color-action-text);
+  }
+
+  .navbar[data-open] .locale-switcher__link {
+    color: rgb(255 255 255 / 0.82);
+  }
+
+  .navbar[data-open] .locale-switcher__link:hover {
+    background-color: rgb(255 255 255 / 0.16);
+    color: var(--color-action-text);
+  }
+
+  .navbar[data-open] .locale-switcher__link[aria-current="true"] {
+    background-color: var(--color-action-text);
+    color: var(--color-action);
+  }
+}
+
+/* Bloquea el scroll de fondo mientras el drawer mobile está abierto */
+html.has-nav-open {
+  overflow: hidden;
+}

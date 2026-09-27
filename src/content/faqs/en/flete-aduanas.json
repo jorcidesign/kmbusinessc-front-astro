@@ -1,0 +1,18 @@
+{
+  "orden": 2,
+  "categoria": "Freight & Customs",
+  "preguntas": [
+    {
+      "pregunta": "Do you handle customs clearance and taxes at destination?",
+      "respuesta": "Yes. We offer full-service management by coordinating with customs agents at destination (Callao and Latin America), ensuring correct tariff classification to take advantage of the Peru-China FTA and avoid fines or extra costs."
+    },
+    {
+      "pregunta": "How do you handle timelines and cargo tracking?",
+      "respuesta": "From departure at the origin port (Shanghai, Ningbo, Shenzhen) to arrival at destination (usually 28 to 35 days of ocean transit), we provide you with periodic position and documentation status reports."
+    },
+    {
+      "pregunta": "How do we get started?",
+      "respuesta": "Just fill out the contact form or message us directly on WhatsApp. We review your product specifications and within 48 hours present you a clear, no-commitment work proposal."
+    }
+  ]
+}

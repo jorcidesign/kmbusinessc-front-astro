@@ -1,0 +1,76 @@
+/* =========================================================================
+   LAYOUT · SECCIONES
+   Firma visual del sitio: cada sección está delimitada por reglas navy
+   (arriba y a los lados), como un plano técnico. Las variantes controlan
+   fondo, padding y reglas de forma independiente.
+   ========================================================================= */
+.section {
+  position: relative;
+  padding-block: var(--section-pad, var(--section-y));
+}
+
+/* Las variantes de fondo funcionan también sin .section
+   (ej. un bloque full-bleed que maneja su propio padding) */
+.section,
+.section--subtle,
+.section--surface,
+.section--inverse,
+.section--brand {
+  background-color: var(--section-bg, transparent);
+  color: var(--section-color, inherit);
+}
+
+/* Padding */
+.section--sm    { --section-pad: var(--section-y-sm); }
+.section--lg    { --section-pad: var(--section-y-lg); }
+.section--flush { --section-pad: 0; }
+
+/* Fondos */
+.section--subtle  { --section-bg: var(--color-bg-subtle); }
+.section--surface { --section-bg: var(--color-bg); }
+.section--inverse {
+  --section-bg: var(--color-bg-inverse);
+  --section-color: var(--color-text-inverse);
+  /* Las variables compuestas se resuelven donde se declaran,
+     por eso se redefinen aquí y no solo --color-border */
+  --color-border: var(--color-border-inverse);
+  --rule: var(--border-thin) solid var(--color-border-inverse);
+  --rule-hairline: var(--border-hairline) solid var(--color-border-inverse);
+}
+.section--brand {
+  --section-bg: var(--blue-500);
+  --section-color: var(--navy-900);
+  --color-border: var(--navy-900);
+  --rule: var(--border-thin) solid var(--navy-900);
+  --rule-hairline: var(--border-hairline) solid var(--navy-900);
+}
+
+/* Reglas (líneas estructurales) */
+.section--ruled       { border-top: var(--rule-hairline); }
+.section--ruled-both  { border-block: var(--rule-hairline); }
+.section--framed      { border-inline: var(--rule-hairline); }
+
+/* En pantallas grandes el marco lateral acompaña al contenedor máximo */
+@media (min-width: 1440px) {
+  .section--framed-xl {
+    border-inline: var(--rule-hairline);
+    max-width: var(--container-xl);
+    margin-inline: auto;
+  }
+}
+
+/* Contenido por encima de decoraciones absolutas */
+.section > .container,
+.section > .gutter {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+/* Secciones que ocupan el alto del viewport */
+.section--screen {
+  min-height: var(--hero-min-height);
+}
+
+.section--clip {
+  overflow: hidden;
+}

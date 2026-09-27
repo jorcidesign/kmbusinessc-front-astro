@@ -1,0 +1,282 @@
+---
+// src/pages/_templates/NosotrosTemplate.astro
+// Ver HomeTemplate.astro para la explicación del patrón _templates/.
+import { getEntry } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@organisms/Hero/Hero.astro';
+import RuledFeature from '@molecules/RuledFeature/RuledFeature.astro';
+import type { FeatureIconName, FeatureIconAccent } from '@atoms/FeatureIcon/FeatureIcon.astro';
+import WhatsAppButton from '@atoms/WhatsAppButton/WhatsAppButton.astro';
+import ContactForm from '@molecules/ContactForm/ContactForm.astro';
+
+interface Props {
+  locale: 'es' | 'en';
+}
+
+const { locale } = Astro.props;
+const withLocale = (path: string) => getRelativeLocaleUrl(locale, path);
+
+const pageEntry = await getEntry('pageNosotros', locale);
+if (!pageEntry) throw new Error(`Falta src/content/pages/nosotros/${locale}.json`);
+const page = pageEntry.data;
+
+const uiEntry = await getEntry('ui', locale);
+if (!uiEntry) throw new Error(`Falta src/content/ui/${locale}.json`);
+const ui = uiEntry.data;
+const contactForm = ui.contactForm;
+
+const principiosIcons: FeatureIconName[] = ['verified-check', 'inspection', 'open-ledger', 'care'];
+const principiosAccents: FeatureIconAccent[] = ['blue', 'mint', 'amber', 'coral'];
+---
+
+<BaseLayout title={page.seo.title} description={page.seo.description} locale={locale}>
+  <!-- HERO SPLIT DE NOSOTROS -->
+  <Hero
+    variant="split"
+    eyebrow={page.hero.eyebrow}
+    title={page.hero.title}
+    lead={page.hero.lead}
+    primaryAction={{ label: page.hero.primaryActionLabel, href: '#contacto-directo' }}
+    secondaryAction={{ label: page.hero.secondaryActionLabel, href: withLocale('/servicios') }}
+  >
+    <div slot="media" class="about-hero__media">
+      <div class="about-hero__profile-card">
+        <div class="profile-card__badge">{page.profileCard.badge}</div>
+        <div class="profile-card__avatar" role="img" aria-label={page.profileCard.imageAlt}>
+          <span class="profile-card__avatar-caption">{page.profileCard.imagePlaceholder}</span>
+        </div>
+        <h3 class="profile-card__name">{page.profileCard.name}</h3>
+        <p class="profile-card__role">{page.profileCard.role}</p>
+        <div class="profile-card__creds">
+          {page.profileCard.creds.map((cred) => <span>&bull; {cred}</span>)}
+        </div>
+      </div>
+    </div>
+  </Hero>
+
+  <!-- MANIFIESTO PERSONAL -->
+  <section class="section section--subtle section--framed section--clip">
+    <div class="decor-field" aria-hidden="true">
+      <div class="decor-field__line-wrap" style="--x:4%; --y:6%" data-parallax-speed="0.05">
+        <span class="decor-field__line decor-field__line--1" style="--angle:-30deg; --length:34rem"></span>
+      </div>
+      <div class="decor-field__line-wrap" style="--x:24%; --y:60%" data-parallax-speed="0.1">
+        <span class="decor-field__line decor-field__line--2" style="--angle:30deg; --length:26rem"></span>
+      </div>
+      <div class="decor-field__line-wrap" style="--x:48%; --y:4%" data-parallax-speed="0.07">
+        <span class="decor-field__line decor-field__line--3" style="--angle:-30deg; --length:28rem"></span>
+      </div>
+      <div class="decor-field__line-wrap" style="--x:70%; --y:58%" data-parallax-speed="0.12">
+        <span class="decor-field__line decor-field__line--1" style="--angle:30deg; --length:22rem"></span>
+      </div>
+      <div class="decor-field__line-wrap" style="--x:90%; --y:2%" data-parallax-speed="0.08">
+        <span class="decor-field__line decor-field__line--2" style="--angle:-30deg; --length:16rem"></span>
+      </div>
+    </div>
+    <div class="container gutter">
+      <div class="cta-box">
+        <div class="cta-box__inner">
+          <div class="cta-box__body">
+            <span class="tag tag--navy mb-sm">{page.manifiesto.tag}</span>
+            <h2 class="cta-box__title">{page.manifiesto.title}</h2>
+            {page.manifiesto.paragraphs.map((p, i) => (
+              <p class={`cta-box__text ${i > 0 ? 'mt-md' : ''}`}>{p}</p>
+            ))}
+          </div>
+          <div class="cta-box__action">
+            <WhatsAppButton location="about_manifesto" message={page.manifiesto.whatsappMessage}>
+              {page.manifiesto.whatsappLabel}
+            </WhatsAppButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 PILARES DE NUESTRO TRABAJO (RULED GRID) -->
+  <section class="section section--ruled section--framed section--sm">
+    <div class="container gutter">
+      <div class="section-header">
+        <h2 class="section-header__title">{page.principios.title}</h2>
+        <p class="section-header__lead">
+          {page.principios.lead}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--flush section--framed">
+    <div class="ruled-grid ruled-grid--4 ruled-grid--no-left">
+      <RuledFeature
+        title={page.principios.items[0].title}
+        description={page.principios.items[0].description}
+        icon={principiosIcons[0]}
+        accent={principiosAccents[0]}
+      />
+
+      <RuledFeature
+        title={page.principios.items[1].title}
+        description={page.principios.items[1].description}
+        icon={principiosIcons[1]}
+        accent={principiosAccents[1]}
+      />
+
+      <RuledFeature
+        title={page.principios.items[2].title}
+        description={page.principios.items[2].description}
+        icon={principiosIcons[2]}
+        accent={principiosAccents[2]}
+      />
+
+      <RuledFeature
+        title={page.principios.items[3].title}
+        description={page.principios.items[3].description}
+        icon={principiosIcons[3]}
+        accent={principiosAccents[3]}
+      />
+    </div>
+  </section>
+
+  <!-- FORMULARIO DE CONTACTO DIRECTO -->
+  <section class="section--subtle section--ruled" id="contacto-directo">
+    <div class="container">
+      <div class="contact">
+        <div class="contact__heading">
+          <span class="tag tag--navy mb-sm">{page.contactSection.tag}</span>
+          <h2 class="contact__title">{page.contactSection.title}</h2>
+          <p class="contact__lead">
+            {page.contactSection.lead}
+          </p>
+          <div class="mt-xl">
+            <WhatsAppButton location="about_contact" message={ui.whatsapp.defaultMessage}>{page.contactSection.whatsappLabel}</WhatsAppButton>
+          </div>
+        </div>
+        <div class="contact__divider" aria-hidden="true"></div>
+        <ContactForm
+          labelNombre={contactForm.labels.nombre}
+          labelWhatsapp={contactForm.labels.whatsapp}
+          labelProducto={contactForm.labels.producto}
+          labelCantidad={contactForm.labels.cantidad}
+          labelMensaje={contactForm.labels.mensaje}
+          labelHoneypot={contactForm.labels.honeypot}
+          placeholderNombre={contactForm.placeholders.nombre}
+          placeholderWhatsapp={contactForm.placeholders.whatsapp}
+          placeholderProducto={contactForm.placeholders.producto}
+          placeholderCantidad={contactForm.placeholders.cantidad}
+          placeholderMensaje={contactForm.placeholders.mensaje}
+          submitLabel={contactForm.submitLabel}
+          sendingLabel={contactForm.sendingLabel}
+          validationError={contactForm.validationError}
+          successMessage={contactForm.successMessage}
+          errorMessage={contactForm.errorMessage}
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2xl);
+    height: 100%;
+  }
+  .about-hero__profile-card {
+    background-color: var(--color-surface);
+    border: var(--rule-hairline);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 24rem;
+    width: 100%;
+    box-shadow: 0 10px 25px -5px rgba(6, 6, 64, 0.06);
+  }
+  .profile-card__badge {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    color: var(--color-action);
+    background-color: var(--color-bg-subtle);
+    padding: var(--space-3xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-lg);
+  }
+  .profile-card__avatar {
+    width: 8rem;
+    height: 8rem;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-full);
+    border: var(--rule-hairline);
+    margin-bottom: var(--space-md);
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--color-bg-subtle),
+      var(--color-bg-subtle) 0.4rem,
+      var(--color-bg) 0.4rem,
+      var(--color-bg) 0.8rem
+    );
+  }
+  .profile-card__avatar-caption {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: 1.2;
+    padding-inline: var(--space-xs);
+  }
+  .profile-card__name {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+  }
+  .profile-card__role {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: 2px;
+  }
+  .profile-card__creds {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    font-size: var(--text-xs);
+    color: var(--color-text-subtle);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: var(--rule-hairline);
+    text-align: left;
+    width: 100%;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 767px) {
+    .about-hero__media {
+      padding: var(--space-lg);
+    }
+    .about-hero__profile-card {
+      padding: var(--space-xl);
+    }
+  }
+
+  @media (max-width: 479px) {
+    .about-hero__media {
+      padding: var(--space-md);
+    }
+    .about-hero__profile-card {
+      padding: var(--space-lg);
+      max-width: 100%;
+    }
+    .profile-card__avatar {
+      width: 6rem;
+      height: 6rem;
+    }
+    .profile-card__name {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

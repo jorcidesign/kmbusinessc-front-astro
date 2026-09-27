@@ -1,0 +1,73 @@
+/* =========================================================================
+   BASE · ACCESIBILIDAD
+   ========================================================================= */
+
+/* Foco visible solo para teclado, con el azul de marca */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Sobre fondos oscuros, el anillo pasa a claro */
+.section--inverse :focus-visible,
+.footer :focus-visible {
+  outline-color: var(--color-text-inverse);
+}
+
+/* Sobre el celeste sólido del drawer mobile, el mismo anillo azul se
+   pierde — pasa a blanco (color de texto sobre --color-action). */
+.o-mobile-nav-drawer :focus-visible {
+  outline-color: var(--color-action-text);
+}
+
+/* Oculto visualmente, disponible para lectores de pantalla */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Link "saltar al contenido" */
+.skip-link {
+  position: absolute;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  z-index: var(--z-toast);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-action);
+  color: var(--color-action-text);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  transform: translateY(-150%);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Desactiva interacción de un elemento */
+.clickable-off { pointer-events: none; }
+.clickable-on  { pointer-events: auto; }
+
+/* Movimiento reducido: detiene animaciones y transiciones por completo */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

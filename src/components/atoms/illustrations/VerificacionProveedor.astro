@@ -1,0 +1,30 @@
+---
+// src/components/atoms/illustrations/VerificacionProveedor.astro
+import svgRaw from './verificacion-proveedor.svg?raw';
+
+interface Props {
+  class?: string;
+  id?: string;
+}
+
+const { class: className = '', id } = Astro.props;
+---
+
+<div class={`illustration-wrapper ${className}`} id={id} set:html={svgRaw} />
+
+<style>
+  .illustration-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .illustration-wrapper :global(svg) {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    display: block;
+  }
+</style>

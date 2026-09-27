@@ -1,0 +1,63 @@
+{
+  "seo": {
+    "title": "About Us | Kattya Mejía and KM Business Consulting",
+    "description": "Learn the story, values, and track record of Kattya Mejía and KM Business Consulting: over a decade connecting companies with Asia with integrity, transparency, and technical rigor."
+  },
+  "hero": {
+    "eyebrow": "OUR STORY & VALUES",
+    "title": "Foreign trade built on trust and integrity.",
+    "lead": "Behind every container that reaches port is an unwavering human commitment. We help companies grow while protecting their assets at every stage of importing.",
+    "primaryActionLabel": "Talk to Kattya",
+    "secondaryActionLabel": "Our services"
+  },
+  "profileCard": {
+    "badge": "10+ YEARS OF EXPERIENCE",
+    "name": "Kattya Mejía",
+    "role": "Founder & Director of Operations",
+    "imagePlaceholder": "Photo pending",
+    "imageAlt": "Photo of Kattya Mejía — pending",
+    "creds": [
+      "Master's in International Business",
+      "Sourcing & Negotiation Specialist in China",
+      "Advisor to importers in Peru and Latin America"
+    ]
+  },
+  "manifiesto": {
+    "tag": "BRAND MANIFESTO",
+    "title": "\"To me, the most important thing is being a good human being and speaking the truth.\"",
+    "paragraphs": [
+      "I started in foreign trade more than ten years ago, seeing the constant frustration of business owners losing capital to unscrupulous middlemen: samples that didn't match mass production, made-up customs surcharges, and phantom factories that disappeared after the deposit.",
+      "At KM Business Consulting we built our practice on one radical premise: working with absolute transparency. If a supplier doesn't meet quality standards or a route isn't right for your budget, we tell you upfront. We're not looking to rush a deal — we're building a long-term partnership that protects your peace of mind."
+    ],
+    "whatsappMessage": "Hi Kattya, I read your manifesto on the website and I'd like to talk about an import.",
+    "whatsappLabel": "Message Kattya"
+  },
+  "principios": {
+    "title": "Our four non-negotiable principles",
+    "lead": "The foundation of how we operate and handle our clients' money and goods.",
+    "items": [
+      {
+        "title": "1. Integrity and technical truth",
+        "description": "No false promises of impossible timelines or misleading quotes. Truthful information and formal contracts from day one."
+      },
+      {
+        "title": "2. Direct control at origin",
+        "description": "We don't triangulate through unknown third parties. We have our own inspectors in China who walk the plants and check the packaging."
+      },
+      {
+        "title": "3. Cost efficiency",
+        "description": "Open-book cost structures where you know exactly the factory value, freight, and tariffs."
+      },
+      {
+        "title": "4. Lifelong relationships",
+        "description": "We take pride in seeing our clients grow and keep importing with us year after year, as business partners."
+      }
+    ]
+  },
+  "contactSection": {
+    "tag": "LET'S TALK",
+    "title": "Let's talk about your next container",
+    "lead": "Book a free initial consultation to review your import goals or assess the reliability of your suppliers in Asia.",
+    "whatsappLabel": "Talk to Kattya on WhatsApp"
+  }
+}

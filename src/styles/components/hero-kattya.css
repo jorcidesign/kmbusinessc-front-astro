@@ -1,0 +1,297 @@
+/* =========================================================================
+   COMPONENTE · HERO KATTYA (home)
+   Implementación idéntica a la mecánica de Webflow (kasiasiwosz.com):
+     - Escala tipográfica en em basada en 0.83vw (116.25em = 1860px).
+     - .hero-image-sticky-wrap tiene position: sticky (z-index: 30).
+     - .h1.hero-first ("Deja de improvisar.") se posiciona en flujo normal
+       directamente debajo de la imagen al inicio, con fade y blur en scroll.
+     - .h1.accent.z-50 ("IMPORTA" y "CON CONTROL.") están en flujo normal
+       con position: relative y z-index: 50. Al hacer scroll, la imagen
+       queda fija y los textos suben de forma natural cubriendo la parte
+       inferior del retrato, superando el ancho de la imagen.
+     - .hero-subtitle-block viene después en flujo normal.
+   ========================================================================= */
+.hero-section.home-hero-section {
+  --hero-base-em: clamp(10px, 0.83vw, 15px);
+  --hero-pad-top: clamp(5.5rem, 8vh, 7.5rem);
+  font-size: var(--hero-base-em);
+  position: relative;
+  width: 100%;
+  background-color: var(--color-bg);
+  border-inline: var(--rule-hairline);
+  padding-top: var(--hero-pad-top);
+  padding-bottom: 3em; /* el resto del espacio ahora lo ocupa .hero-flow-animation, no relleno vacío */
+  min-height: 170vh; /* Recorrido de scroll suficiente para el efecto sticky de la imagen */
+}
+
+/* Contenedor ancho de referencia (116.25em = 1860px) */
+.site-container {
+  width: 100%;
+  max-width: 1860px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Bloque central en flujo de columna */
+.hero-centered-block {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+}
+
+/* 1. Imagen fotográfica que queda sticky en el viewport */
+.hero-image-sticky-wrap {
+  position: sticky;
+  top: calc(var(--nav-height) + var(--hero-pad-top));
+  z-index: 30;
+  margin-bottom: 0;
+}
+
+.hero-image,
+.hero-portrait {
+  width: 25em;
+  height: 35em;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-sm, 4px);
+  box-shadow: 0 20px 48px -12px rgba(6, 6, 64, 0.12);
+  display: block;
+}
+
+.hero-portrait {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm, 4px);
+  box-shadow: 0 20px 48px -12px rgba(6, 6, 64, 0.12);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-bg-subtle),
+    var(--color-bg-subtle) 0.5rem,
+    var(--color-bg) 0.5rem,
+    var(--color-bg) 1rem
+  );
+}
+
+.hero-portrait-caption {
+  padding: 0.6em 1.2em;
+  background-color: var(--color-bg);
+  border: var(--rule-hairline);
+  font-size: 1.1em;
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+}
+
+/* Tipografía base H1 del sistema.
+   font-size en clamp() fijo (rem+vw), a propósito INDEPENDIENTE de
+   --hero-base-em: ese custom property se recalcula en cada breakpoint
+   y encadenarle el tamaño del titular es frágil (un desajuste ahí deja
+   el font-size en su valor de escritorio sobre un viewport angosto,
+   desbordando muchísimo). clamp() se autolimita sin importar el ancho. */
+.h1 {
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 1.3rem + 5vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1;
+  margin: 0;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  /* Degradado navy → celeste: más contraste que el celeste plano de antes.
+     color sólido de respaldo por si el navegador no soporta background-clip:text. */
+  color: var(--blue-500);
+  background: linear-gradient(135deg, var(--navy-900), var(--blue-500) 65%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 2. Titular inicial: flujo normal justo debajo de la imagen */
+.h1.hero-first {
+  margin-top: .15em;
+  z-index: 10;
+  will-change: filter, opacity;
+  transition: opacity 0.12s ease-out, filter 0.12s ease-out;
+}
+
+/* 3. Titulares accent: flujo normal con z-index: 50 que suben sobre la imagen */
+.h1.accent {
+  letter-spacing: -.03em;
+  font-size: clamp(2.25rem, 1.4rem + 6.5vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+}
+
+.h1.accent.z-50 {
+  z-index: 50;
+  position: relative;
+}
+
+.h1.accent.accent-second {
+  margin-top: -.06em;
+}
+
+/* 4. Subtítulo y CTA en flujo normal */
+.centered-content-block.hero-subtitle-block {
+  z-index: 60;
+  position: relative;
+  text-align: center;
+  max-width: 36em;
+  margin-top: 3.5em;
+  margin-inline: auto;
+}
+
+.text-18.hero-lead {
+  font-size: 1.15em;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  text-wrap: balance;
+  margin: 0;
+}
+
+.hero-actions {
+  margin-top: 1.5em;
+}
+
+/* 5. Animación de flujo China → Latam: ocupa el tramo que antes quedaba vacío */
+.hero-flow-animation {
+  position: relative;
+  z-index: 20;
+  max-width: 90em;
+  margin: 6em auto 0;
+  padding-inline: var(--gutter);
+}
+
+.hero-flow-animation svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px) {
+  .hero-section.home-hero-section {
+    min-height: auto;
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-3xl);
+  }
+
+  .hero-centered-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 44rem;
+    margin-inline: auto;
+    gap: var(--space-xs);
+  }
+
+  .hero-image-sticky-wrap {
+    order: 3;
+    position: static;
+    top: auto;
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-image,
+  .hero-portrait {
+    width: min(20rem, 70vw);
+    height: auto;
+    aspect-ratio: 4 / 5.2;
+    object-fit: cover;
+    border-radius: var(--radius-sm, 4px);
+    box-shadow: 0 16px 40px -10px rgba(6, 6, 64, 0.16);
+  }
+
+  /* 2. Eyebrow titular inicial: arriba como etiqueta de marca */
+  .h1.hero-first {
+    order: 1;
+    opacity: 1 !important;
+    filter: none !important;
+    font-size: var(--text-sm);
+    letter-spacing: 0.12em;
+    font-weight: var(--weight-bold);
+    color: var(--blue-500);
+    background: none;
+    -webkit-text-fill-color: initial;
+    margin-top: 0;
+    margin-bottom: var(--space-2xs);
+  }
+
+  /* 3. Titular principal destacado */
+  .h1.accent {
+    order: 2;
+    font-size: clamp(2rem, 1.3rem + 3.8vw, 3.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 22ch;
+  }
+
+  .h1.accent.accent-second {
+    margin-top: 0.05em;
+  }
+
+  /* 4. Subtítulo y CTA en flujo normal directamente debajo de la foto */
+  .centered-content-block.hero-subtitle-block {
+    order: 4;
+    margin-top: var(--space-md);
+    max-width: 34rem;
+    width: 100%;
+    padding-inline: var(--space-sm);
+  }
+
+  .text-18.hero-lead {
+    font-size: clamp(0.9375rem, 0.85rem + 0.35vw, 1.125rem);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .hero-actions {
+    margin-top: var(--space-lg);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-actions .cta-btn.btn {
+    width: 100%;
+    max-width: 22rem;
+  }
+
+  /* 5. Animación de flujo hacia abajo */
+  .hero-flow-animation {
+    order: 5;
+    margin-top: var(--space-2xl);
+    width: 100%;
+    max-width: 44rem;
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero-section.home-hero-section {
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-2xl);
+  }
+
+  .hero-image,
+  .hero-portrait {
+    width: min(16.5rem, 76vw);
+  }
+
+  .h1.accent {
+    font-size: clamp(1.75rem, 1.1rem + 3.2vw, 2.25rem);
+    line-height: 1.08;
+  }
+
+  .hero-flow-animation {
+    margin-top: var(--space-xl);
+  }
+}

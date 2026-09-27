@@ -1,0 +1,68 @@
+/* =========================================================================
+   COMPONENTE · CTA BOX
+   Caja blanca con regla, texto + acción en fila. Suele ir sobre una sección
+   de color con líneas decorativas detrás ("We built a better way",
+   "Join our team"). En móvil se centra y apila.
+   ========================================================================= */
+.cta-box {
+  position: relative;
+  z-index: var(--z-content);
+  display: flex;
+  justify-content: center;
+  padding: clamp(var(--space-xl), 1.3rem + 3vw, var(--space-5xl)) clamp(var(--space-lg), 1rem + 2.5vw, var(--space-6xl));
+  background-color: var(--color-surface);
+  border: var(--rule);
+}
+
+.cta-box__inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-xl), 1rem + 5vw, var(--space-7xl));
+  width: 100%;
+  max-width: 60rem;
+}
+
+.cta-box__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cta-box__title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.cta-box__text {
+  margin-top: var(--space-xs);
+  max-width: var(--measure);
+}
+
+.cta-box__action {
+  flex: none;
+}
+
+/* Variante apilada con capas (efecto papel) */
+.cta-box--stacked {
+  box-shadow: var(--shadow-stack);
+  margin-right: calc(var(--stack-offset) * 2);
+  margin-bottom: calc(var(--stack-offset) * 2);
+}
+
+@media (max-width: 767px) {
+  .cta-box__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cta-box__text {
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 479px) {
+  .cta-box__action,
+  .cta-box__action .btn {
+    width: 100%;
+  }
+}

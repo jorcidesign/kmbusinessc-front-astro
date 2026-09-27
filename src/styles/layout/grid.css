@@ -1,0 +1,87 @@
+/* =========================================================================
+   LAYOUT · GRILLA
+   1) .grid        → grilla de 12 columnas con spans.
+   2) .grid-cols-* → grillas de N columnas iguales, responsive automático.
+   3) .grid-auto   → auto-fit por ancho mínimo (sin media queries).
+   Las grillas con líneas (estilo del sitio) están en components/ruled-grid.css.
+   ========================================================================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-row-gap, var(--grid-gap)) var(--grid-gap);
+}
+
+.grid--gap-0  { --grid-gap: 0; }
+.grid--gap-sm { --grid-gap: var(--space-md); }
+.grid--gap-lg { --grid-gap: var(--space-4xl); }
+
+/* Spans (desktop) */
+.col-1  { grid-column: span 1; }
+.col-2  { grid-column: span 2; }
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-9  { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: 1 / -1; }
+
+/* Tablet */
+@media (max-width: 991px) {
+  .col-tablet-4  { grid-column: span 4; }
+  .col-tablet-6  { grid-column: span 6; }
+  .col-tablet-8  { grid-column: span 8; }
+  .col-tablet-12 { grid-column: 1 / -1; }
+}
+
+/* Mobile: todo a una columna salvo que se indique lo contrario */
+@media (max-width: 767px) {
+  .grid > [class*="col-"] { grid-column: 1 / -1; }
+  .grid > .col-mobile-6   { grid-column: span 6; }
+}
+
+/* Columnas iguales */
+.grid-cols-2,
+.grid-cols-3,
+.grid-cols-4,
+.grid-cols-5 {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+@media (max-width: 991px) {
+  .grid-cols-3,
+  .grid-cols-4,
+  .grid-cols-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  .grid-cols-2 { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 479px) {
+  .grid-cols-3,
+  .grid-cols-4,
+  .grid-cols-5 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Auto-fit por ancho mínimo */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min, 16rem), 100%), 1fr));
+  gap: var(--grid-gap);
+}
+
+/* Alineación */
+.items-start  { align-items: start; }
+.items-center { align-items: center; }
+.items-end    { align-items: end; }
+.items-stretch{ align-items: stretch; }

@@ -1,0 +1,31 @@
+/* =========================================================================
+   TOKENS · MOVIMIENTO
+   ========================================================================= */
+:root {
+  --duration-instant: 100ms;
+  --duration-fast:    200ms;  /* hovers (valor original del sitio) */
+  --duration-base:    300ms;
+  --duration-slow:    500ms;  /* acordeones, sliders */
+  --duration-slower:  800ms;  /* reveals de entrada */
+  --duration-marquee: 40s;
+  --duration-loop:    2400ms; /* loops ambientales continuos (FeatureIcon) */
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-linear:   linear;
+
+  --reveal-distance: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-fast:    0ms;
+    --duration-base:    0ms;
+    --duration-slow:    0ms;
+    --duration-slower:  0ms;
+    --duration-loop:    0ms;
+    --reveal-distance:  0;
+  }
+}

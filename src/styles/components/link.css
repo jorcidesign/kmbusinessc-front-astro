@@ -1,0 +1,47 @@
+/* =========================================================================
+   COMPONENTE · LINKS
+   ========================================================================= */
+
+/* Link de texto con subrayado que se dibuja al hover */
+.link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% var(--border-thin);
+  padding-bottom: 0.1em;
+  transition: background-size var(--duration-base) var(--ease-out);
+}
+
+.link:hover,
+.link:focus-visible {
+  background-size: 100% var(--border-thin);
+}
+
+/* Subrayado permanente (links dentro de texto) */
+.link--underline {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: var(--border-thin);
+  background: none;
+}
+
+.link--muted {
+  color: var(--color-text-muted);
+}
+
+.link--muted:hover {
+  color: var(--color-text);
+}
+
+/* Link con icono a la izquierda (redes sociales) */
+.link-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.link-icon__icon {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+  flex: none;
+}

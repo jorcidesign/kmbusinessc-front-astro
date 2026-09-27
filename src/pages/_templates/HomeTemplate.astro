@@ -1,0 +1,174 @@
+---
+// src/pages/_templates/HomeTemplate.astro
+//
+// Template compartido de la home ES/EN. Astro ignora todo lo que
+// empieza con "_" dentro de src/pages/, así que este archivo no genera
+// ninguna ruta propia — lo renderizan src/pages/es/index.astro y
+// src/pages/en/index.astro pasándole `locale`. Markup idéntico al
+// index.astro original; el único cambio es que cada literal en
+// español ahora sale de src/content/pages/home/<locale>.json.
+import { getEntry, getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroKattya from '@organisms/HeroKattya/HeroKattya.astro';
+import SplitServicesSection from '@organisms/SplitServicesSection/SplitServicesSection.astro';
+import RuledGridSection from '@organisms/RuledGridSection/RuledGridSection.astro';
+import FAQSection from '@organisms/FAQSection/FAQSection.astro';
+import Marquee from '@organisms/Marquee/Marquee.astro';
+import ContactForm from '@molecules/ContactForm/ContactForm.astro';
+import WhatsAppButton from '@atoms/WhatsAppButton/WhatsAppButton.astro';
+
+interface Props {
+  locale: 'es' | 'en';
+}
+
+const { locale } = Astro.props;
+const withLocale = (path: string) => getRelativeLocaleUrl(locale, path);
+
+const pageEntry = await getEntry('pageHome', locale);
+if (!pageEntry) throw new Error(`Falta src/content/pages/home/${locale}.json`);
+const page = pageEntry.data;
+
+const uiEntry = await getEntry('ui', locale);
+if (!uiEntry) throw new Error(`Falta src/content/ui/${locale}.json`);
+const ui = uiEntry.data;
+
+const faqEntries = (await getCollection('faqs', (entry) => entry.id.startsWith(`${locale}/`)))
+  .sort((a, b) => a.data.orden - b.data.orden);
+const faqCategories = faqEntries.map((entry) => ({
+  title: entry.data.categoria,
+  items: entry.data.preguntas.map((p) => ({ question: p.pregunta, answer: p.respuesta })),
+}));
+
+const contactForm = ui.contactForm;
+---
+
+<BaseLayout title={page.seo.title} description={page.seo.description} locale={locale}>
+  <!-- 1. HERO CON FOTO DE KATTYA Y DOS TITULARES CORPORATIVOS -->
+  <HeroKattya
+    heading={page.hero.heading}
+    titleFade={page.hero.titleFade}
+    titleRiseLines={page.hero.titleRiseLines}
+    lead={page.hero.lead}
+    cta={{ label: page.hero.ctaLabel, href: withLocale('/contacto') }}
+    image={{
+      src: '/images/kattya-hero.jpg',
+      alt: page.hero.imageAlt,
+      width: 500,
+      height: 700,
+    }}
+  />
+
+  <!-- 2. SPLIT DE SERVICIOS CON ILUSTRACIONES VECTORIALES -->
+  <SplitServicesSection
+    cell1={{ ...page.splitServices.cell1, href: withLocale('/servicios/busqueda-proveedores') }}
+    cell2={{ ...page.splitServices.cell2, href: withLocale('/servicios/flete-maritimo') }}
+  />
+
+  <!-- 3. RULED GRID DE VALOR TÉCNICO -->
+  <RuledGridSection heading={page.ruledGrid.title} lead={page.ruledGrid.lead} items={page.ruledGrid.items} />
+
+  <!-- 4. MANIFIESTO KATTYA MEJÍA CON LÍNEAS TÉCNICAS -->
+  <section class="section section--subtle section--framed section--clip" id="manifiesto">
+    <div class="decor-field" aria-hidden="true">
+      <div class="decor-field__line-wrap" style="--x:2%; --y:8%" data-parallax-speed="0.05">
+        <span class="decor-field__line decor-field__line--1" style="--angle:-28deg; --length:32rem"></span>
+      </div>
+      <div class="decor-field__line-wrap" style="--x:26%; --y:58%" data-parallax-speed="0.1">
+        <span class="decor-field__line decor-field__line--2" style="--angle:28deg; --length:26rem"></span>
+      </div>
+      <div class="decor-field__line-wrap" style="--x:50%; --y:6%" data-parallax-speed="0.07">
+        <span class="decor-field__line decor-field__line--3" style="--angle:-28deg; --length:30rem"></span>
+      </div>
+      <div class="decor-field__line-wrap" style="--x:72%; --y:62%" data-parallax-speed="0.12">
+        <span class="decor-field__line decor-field__line--1" style="--angle:28deg; --length:24rem"></span>
+      </div>
+      <div class="decor-field__line-wrap" style="--x:90%; --y:4%" data-parallax-speed="0.08">
+        <span class="decor-field__line decor-field__line--2" style="--angle:-28deg; --length:18rem"></span>
+      </div>
+    </div>
+    <div class="container gutter">
+      <div class="cta-box">
+        <div class="cta-box__inner">
+          <div class="cta-box__body">
+            <span class="tag tag--navy mb-sm">{page.manifiesto.tag}</span>
+            <h2 class="cta-box__title">{page.manifiesto.title}</h2>
+            <p class="cta-box__text">
+              {page.manifiesto.quote}
+            </p>
+            <div class="cta-box__author mt-md">
+              <strong>{page.manifiesto.authorName}</strong> &middot; <span style="color:var(--color-text-muted)">{page.manifiesto.authorRole}</span>
+            </div>
+          </div>
+          <div class="cta-box__action">
+            <a class="btn" href={withLocale('/nosotros')}>{page.manifiesto.ctaLabel}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. STATS DESTACADAS -->
+  <section class="section section--stats-bg section--ruled-both section--framed">
+    <div class="container gutter">
+      <div class="stats">
+        {page.stats.items.map((stat) => (
+          <div>
+            <p class="stat__value">{stat.value}</p>
+            <p class="stat__label">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PREGUNTAS FRECUENTES -->
+  <FAQSection title={page.faq.title} lead={page.faq.lead} categories={faqCategories} />
+
+  <!-- 7. CONTACTO RÁPIDO CON LAYOUT SPLIT -->
+  <section class="section--subtle section--ruled" id="contacto-home">
+    <div class="container">
+      <div class="contact">
+        <div class="contact__heading">
+          <span class="tag tag--navy mb-sm">{page.contactHome.tag}</span>
+          <h2 class="contact__title">{page.contactHome.title}</h2>
+          <p class="contact__lead">
+            {page.contactHome.lead}
+          </p>
+          <div class="mt-lg">
+            <WhatsAppButton location="home_contact" message={ui.whatsapp.defaultMessage}>{page.contactHome.whatsappLabel}</WhatsAppButton>
+          </div>
+        </div>
+        <div class="contact__divider" aria-hidden="true"></div>
+        <ContactForm
+          labelNombre={contactForm.labels.nombre}
+          labelWhatsapp={contactForm.labels.whatsapp}
+          labelProducto={contactForm.labels.producto}
+          labelCantidad={contactForm.labels.cantidad}
+          labelMensaje={contactForm.labels.mensaje}
+          labelHoneypot={contactForm.labels.honeypot}
+          placeholderNombre={contactForm.placeholders.nombre}
+          placeholderWhatsapp={contactForm.placeholders.whatsapp}
+          placeholderProducto={contactForm.placeholders.producto}
+          placeholderCantidad={contactForm.placeholders.cantidad}
+          placeholderMensaje={contactForm.placeholders.mensaje}
+          submitLabel={contactForm.submitLabel}
+          sendingLabel={contactForm.sendingLabel}
+          validationError={contactForm.validationError}
+          successMessage={contactForm.successMessage}
+          errorMessage={contactForm.errorMessage}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. MARQUEE CONTINUO -->
+  <Marquee text={page.marqueeText} />
+</BaseLayout>
+
+<style>
+  .cta-box__author {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+</style>

@@ -1,0 +1,113 @@
+{
+  "skipLink": "Saltar al contenido",
+  "logoAriaLabel": "KM Business Consulting — Inicio",
+  "localeSwitcherAriaLabel": "Seleccionar idioma",
+  "nav": {
+    "items": [
+      { "href": "/", "label": "Inicio", "exact": true },
+      { "href": "/servicios", "label": "Servicios", "exact": false },
+      { "href": "/nosotros", "label": "Nosotros", "exact": false }
+    ],
+    "ctaLabel": "Pedir cotización",
+    "navAriaLabel": "Navegación principal",
+    "openMenuLabel": "Abrir menú",
+    "closeMenuLabel": "Cerrar menú"
+  },
+  "footer": {
+    "servicios": {
+      "heading": "Servicios",
+      "links": [
+        { "href": "/servicios/logistica-integral", "label": "Logística Integral" },
+        { "href": "/servicios/busqueda-proveedores", "label": "Búsqueda de Proveedores" },
+        { "href": "/servicios/inspeccion-fabricas", "label": "Inspección de Fábricas" },
+        { "href": "/servicios/flete-maritimo", "label": "Flete Marítimo FCL" }
+      ]
+    },
+    "empresa": {
+      "heading": "Empresa",
+      "links": [
+        { "href": "/nosotros", "label": "Nosotros" },
+        { "href": "/servicios", "label": "Todos los Servicios" },
+        { "href": "/contacto", "label": "Contacto" }
+      ]
+    },
+    "contacto": {
+      "heading": "Contacto",
+      "email": "kattya@kmbusinessc.pe",
+      "phone": "+51 945 832 446",
+      "phoneHref": "tel:+51945832446",
+      "whatsappHref": "https://wa.me/51945832446",
+      "whatsappLabel": "WhatsApp Directo",
+      "location": "Lima, Perú · China"
+    },
+    "redes": {
+      "heading": "Redes",
+      "linkedinHref": "https://linkedin.com",
+      "linkedinLabel": "LinkedIn",
+      "instagramHref": "https://instagram.com",
+      "instagramLabel": "Instagram"
+    },
+    "destacado": {
+      "heading": "Comercio Exterior Seguro",
+      "text": "Conectamos empresas en Latinoamérica con fabricantes en Asia con total transparencia técnica, inspección presencial y tarifas competitivas.",
+      "ctaLabel": "Solicitar asesoría",
+      "ctaHref": "/contacto"
+    },
+    "legal": {
+      "empresaLine": "KM Business Consulting SAC",
+      "rightsLine": "Todos los derechos reservados."
+    }
+  },
+  "whatsapp": {
+    "defaultMessage": "Hola Kattya, quiero cotizar un producto.",
+    "defaultLabel": "Escribir por WhatsApp",
+    "fabMessage": "Hola Kattya, vi su sitio web y me gustaría cotizar una importación desde China.",
+    "fabTooltipTitle": "¿Hablamos de tu importación?",
+    "fabTooltipSub": "Kattya Mejía · Respuesta rápida",
+    "fabAriaLabel": "Contactar a Kattya Mejía por WhatsApp (se abre en una nueva pestaña)"
+  },
+  "contactForm": {
+    "labels": {
+      "nombre": "Nombre completo",
+      "whatsapp": "WhatsApp",
+      "producto": "Producto que deseas importar o cotizar",
+      "cantidad": "Volumen o presupuesto aproximado",
+      "mensaje": "Detalles adicionales",
+      "honeypot": "No llenar este campo"
+    },
+    "placeholders": {
+      "nombre": "Nombre completo *",
+      "whatsapp": "WhatsApp (ej. +51 987 654 321) *",
+      "producto": "Producto o servicio que necesitas *",
+      "cantidad": "Volumen o cantidad (ej. 1 contenedor, 500 uds)",
+      "mensaje": "Detalles de tu proyecto o requerimientos específicos (opcional)"
+    },
+    "submitLabel": "Enviar solicitud",
+    "sendingLabel": "Enviando...",
+    "validationError": "Completa nombre, WhatsApp y producto.",
+    "successMessage": "¡Listo! Te contactaremos pronto. También puedes escribirnos directo por WhatsApp.",
+    "errorMessage": "No pudimos enviar tu mensaje. Escríbenos directo por WhatsApp, por favor."
+  },
+  "serviceDetail": {
+    "eyebrowFallbackPrefix": "SERVICIO 0",
+    "primaryActionLabel": "Cotizar este servicio",
+    "secondaryActionLabel": "Ver todos los servicios",
+    "scopeTag": "ALCANCE OPERATIVO",
+    "scopeTitle": "Qué incluye el servicio",
+    "specsTitle": "Especificaciones clave",
+    "deliverablesTitle": "Entregables y acciones concretas",
+    "benefitsTitle": "Por qué confiar esta etapa a KM",
+    "benefitsLead": "Seguridad operativa, criterios técnicos de clase mundial y cero intermediación especulativa.",
+    "stagesTag": "PASO A PASO",
+    "stagesTitle": "Fases de ejecución",
+    "stagesLead": "Así coordinamos este servicio desde la primera consulta hasta la entrega satisfactoria.",
+    "quoteTag": "COTIZACIÓN DIRECTA",
+    "quoteTitlePrefix": "Cotiza ",
+    "quoteLead": "Indícanos los detalles de tu producto, cantidades estimadas o puerto de destino y te remitiremos una propuesta económica detallada.",
+    "whatsappMessagePrefix": "Hola Kattya, me interesa cotizar el servicio de ",
+    "whatsappLabel": "Consultar por WhatsApp",
+    "prevLabel": "Servicio anterior",
+    "nextLabel": "Siguiente servicio",
+    "navAriaLabel": "Navegación entre servicios"
+  }
+}

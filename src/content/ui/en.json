@@ -1,0 +1,113 @@
+{
+  "skipLink": "Skip to content",
+  "logoAriaLabel": "KM Business Consulting — Home",
+  "localeSwitcherAriaLabel": "Select language",
+  "nav": {
+    "items": [
+      { "href": "/", "label": "Home", "exact": true },
+      { "href": "/servicios", "label": "Services", "exact": false },
+      { "href": "/nosotros", "label": "About", "exact": false }
+    ],
+    "ctaLabel": "Get a quote",
+    "navAriaLabel": "Main navigation",
+    "openMenuLabel": "Open menu",
+    "closeMenuLabel": "Close menu"
+  },
+  "footer": {
+    "servicios": {
+      "heading": "Services",
+      "links": [
+        { "href": "/servicios/logistica-integral", "label": "Integrated Logistics" },
+        { "href": "/servicios/busqueda-proveedores", "label": "Supplier Sourcing" },
+        { "href": "/servicios/inspeccion-fabricas", "label": "Factory Inspection" },
+        { "href": "/servicios/flete-maritimo", "label": "FCL Ocean Freight" }
+      ]
+    },
+    "empresa": {
+      "heading": "Company",
+      "links": [
+        { "href": "/nosotros", "label": "About" },
+        { "href": "/servicios", "label": "All Services" },
+        { "href": "/contacto", "label": "Contact" }
+      ]
+    },
+    "contacto": {
+      "heading": "Contact",
+      "email": "kattya@kmbusinessc.pe",
+      "phone": "+51 945 832 446",
+      "phoneHref": "tel:+51945832446",
+      "whatsappHref": "https://wa.me/51945832446",
+      "whatsappLabel": "Direct WhatsApp",
+      "location": "Lima, Peru · China"
+    },
+    "redes": {
+      "heading": "Social",
+      "linkedinHref": "https://linkedin.com",
+      "linkedinLabel": "LinkedIn",
+      "instagramHref": "https://instagram.com",
+      "instagramLabel": "Instagram"
+    },
+    "destacado": {
+      "heading": "Secure Foreign Trade",
+      "text": "We connect companies in Latin America with manufacturers in Asia with full technical transparency, on-site inspection, and competitive rates.",
+      "ctaLabel": "Request advice",
+      "ctaHref": "/contacto"
+    },
+    "legal": {
+      "empresaLine": "KM Business Consulting SAC",
+      "rightsLine": "All rights reserved."
+    }
+  },
+  "whatsapp": {
+    "defaultMessage": "Hi Kattya, I'd like a quote for a product.",
+    "defaultLabel": "Message us on WhatsApp",
+    "fabMessage": "Hi Kattya, I saw your website and I'd like a quote for an import from China.",
+    "fabTooltipTitle": "Let's talk about your import",
+    "fabTooltipSub": "Kattya Mejía · Fast reply",
+    "fabAriaLabel": "Contact Kattya Mejía on WhatsApp (opens in a new tab)"
+  },
+  "contactForm": {
+    "labels": {
+      "nombre": "Full name",
+      "whatsapp": "WhatsApp",
+      "producto": "Product you want to import or quote",
+      "cantidad": "Approximate volume or budget",
+      "mensaje": "Additional details",
+      "honeypot": "Do not fill this field"
+    },
+    "placeholders": {
+      "nombre": "Full name *",
+      "whatsapp": "WhatsApp (e.g. +51 987 654 321) *",
+      "producto": "Product or service you need *",
+      "cantidad": "Volume or quantity (e.g. 1 container, 500 units)",
+      "mensaje": "Details about your project or specific requirements (optional)"
+    },
+    "submitLabel": "Send request",
+    "sendingLabel": "Sending...",
+    "validationError": "Please fill in name, WhatsApp, and product.",
+    "successMessage": "All set! We'll contact you soon. You can also message us directly on WhatsApp.",
+    "errorMessage": "We couldn't send your message. Please message us directly on WhatsApp."
+  },
+  "serviceDetail": {
+    "eyebrowFallbackPrefix": "SERVICE 0",
+    "primaryActionLabel": "Request a quote",
+    "secondaryActionLabel": "View all services",
+    "scopeTag": "OPERATIONAL SCOPE",
+    "scopeTitle": "What the service includes",
+    "specsTitle": "Key specifications",
+    "deliverablesTitle": "Deliverables and concrete actions",
+    "benefitsTitle": "Why trust this stage to KM",
+    "benefitsLead": "Operational security, world-class technical criteria, and zero speculative intermediation.",
+    "stagesTag": "STEP BY STEP",
+    "stagesTitle": "Execution phases",
+    "stagesLead": "This is how we coordinate this service from the first inquiry to a successful delivery.",
+    "quoteTag": "DIRECT QUOTE",
+    "quoteTitlePrefix": "Get a quote for ",
+    "quoteLead": "Tell us the details of your product, estimated quantities, or destination port, and we'll send you a detailed cost proposal.",
+    "whatsappMessagePrefix": "Hi Kattya, I'm interested in a quote for the service ",
+    "whatsappLabel": "Ask on WhatsApp",
+    "prevLabel": "Previous service",
+    "nextLabel": "Next service",
+    "navAriaLabel": "Navigation between services"
+  }
+}

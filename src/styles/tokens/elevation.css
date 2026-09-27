@@ -1,0 +1,30 @@
+/* =========================================================================
+   TOKENS · ELEVACIÓN
+   La marca NO usa sombras difusas: la profundidad se construye con
+   "capas apiladas", copias desplazadas del borde (efecto hojas de papel).
+   ========================================================================= */
+:root {
+  --stack-offset: 1rem;
+  --stack-fill-1: var(--color-bg-subtle);
+  --stack-fill-2: var(--color-bg);
+
+  /* Card apilada de 2 capas, sin pseudo-elementos */
+  --shadow-stack:
+    var(--stack-offset) var(--stack-offset) 0 calc(var(--border-thin) * -1) var(--stack-fill-1),
+    var(--stack-offset) var(--stack-offset) 0 0 var(--color-border),
+    calc(var(--stack-offset) * 2) calc(var(--stack-offset) * 2) 0 calc(var(--border-thin) * -1) var(--stack-fill-2),
+    calc(var(--stack-offset) * 2) calc(var(--stack-offset) * 2) 0 0 var(--color-border);
+
+  /* Desplazamiento duro de una capa (cards interactivas) */
+  --shadow-offset: 0.375rem 0.375rem 0 0 var(--color-border);
+
+  /* Foco accesible */
+  --shadow-focus: 0 0 0 3px rgb(68 139 230 / 0.45);
+
+  /* Única sombra suave: menús flotantes y widgets de terceros */
+  --shadow-popover: 0 8px 24px rgb(6 6 64 / 0.12), 0 2px 6px rgb(6 6 64 / 0.08);
+}
+
+@media (max-width: 479px) {
+  :root { --stack-offset: 0.5rem; }
+}

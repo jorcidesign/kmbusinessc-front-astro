@@ -1,0 +1,80 @@
+/* =========================================================================
+   COMPONENTE · MOBILE NAV DRAWER
+   Cuerpo full-screen del menú mobile (organismo MobileNavDrawer). Junto
+   con la barra recoloreada (.navbar[data-open], ver navbar.css) pinta
+   el 100% del viewport en celeste sólido. Reacciona a [data-open] en
+   #navbar vía selector de hermano — mismo estado que ya gobierna
+   Header.astro, sin lógica propia.
+
+   <nav class="o-mobile-nav-drawer" id="mobile-nav-drawer">
+     <ul class="o-mobile-nav-drawer__list">
+       <li><a class="o-mobile-nav-drawer__link" aria-current="page">...</a></li>
+     </ul>
+     <a class="btn btn--inverse btn--block btn--lg o-mobile-nav-drawer__cta">...</a>
+   </nav>
+   ========================================================================= */
+.o-mobile-nav-drawer {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .o-mobile-nav-drawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--nav-height);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--z-overlay);
+    background-color: var(--color-action);
+    color: var(--color-action-text);
+    overflow-y: auto;
+    padding: var(--space-xl) var(--gutter) var(--space-2xl);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition:
+      opacity var(--duration-slow) var(--ease-out),
+      transform var(--duration-slow) var(--ease-out),
+      visibility 0s linear var(--duration-slow);
+  }
+
+  .navbar[data-open] ~ .o-mobile-nav-drawer {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+
+  .o-mobile-nav-drawer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .o-mobile-nav-drawer__link {
+    display: block;
+    padding: var(--space-lg) 0;
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-tight);
+    color: rgb(255 255 255 / 0.82);
+    border-bottom: 1px solid rgb(255 255 255 / 0.24);
+  }
+
+  .o-mobile-nav-drawer__link[aria-current="page"] {
+    color: var(--white);
+    font-weight: var(--weight-semibold);
+  }
+
+  .o-mobile-nav-drawer__cta {
+    margin-top: var(--space-xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .o-mobile-nav-drawer {
+    transition: none;
+  }
+}

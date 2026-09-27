@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "title": "Contact & Quote | KM Business Consulting",
+    "description": "Start your quote for an import, ocean freight, or supplier inspection in China. Reply within 24 business hours."
+  },
+  "header": {
+    "tag": "DIRECT CHANNELS",
+    "title": "Let's start your next import",
+    "lead": "Request a formal quote, book a video call, or reach us right away on WhatsApp."
+  },
+  "channels": {
+    "whatsapp": {
+      "tag": "DIRECT WHATSAPP",
+      "description": "Immediate reply during business hours for quick questions.",
+      "whatsappMessage": "Hi Kattya, I'd like information about an import.",
+      "buttonLabel": "Open WhatsApp"
+    },
+    "email": {
+      "tag": "EMAIL",
+      "description": "Send us your technical sheets, packing lists, or quote requests.",
+      "buttonLabel": "Send an email"
+    },
+    "office": {
+      "tag": "OFFICES & OPERATIONS",
+      "title": "Lima · China",
+      "description": "Commercial coordination in Lima and direct operational presence in China's industrial clusters.",
+      "hours": "Monday to Friday, 8:30 AM - 6:00 PM"
+    }
+  },
+  "form": {
+    "tag": "TECHNICAL FORM",
+    "title": "Details of your requirement",
+    "lead": "Fill in the essential information. We'll assess feasibility, check customs requirements, and send you an estimate within 24 to 48 hours.",
+    "trustPoints": [
+      "Confidential handling and protection of your business data",
+      "No hidden fees or phantom charges",
+      "Technical replies guided by Kattya Mejía"
+    ]
+  },
+  "faqHeader": {
+    "title": "What happens after I submit the form?",
+    "lead": "Here's how we process your inquiry from the first minute."
+  },
+  "faqs": [
+    {
+      "question": "1. Immediate confirmation and technical review",
+      "answer": "We review the tariff classification, specifications, and requested volume. If more technical detail is needed, Kattya will contact you directly by WhatsApp or call."
+    },
+    {
+      "question": "2. Preliminary sourcing or shipping quote",
+      "answer": "We check with our offices in China and partner carriers to get the most competitive, up-to-date market rates for the season."
+    },
+    {
+      "question": "3. Proposal and shipping plan presentation",
+      "answer": "We present a detailed quote with an open cost structure, estimated manufacturing and transit timelines, and control milestones."
+    }
+  ]
+}

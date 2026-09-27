@@ -1,0 +1,150 @@
+---
+// src/components/organisms/Header/Header.astro
+//
+// Props opcionales para soportar ES/EN (ver src/content/ui/*.json):
+// los valores por defecto son el español actual, tal cual, como red
+// de seguridad si algún día se renderiza sin props explícitos.
+import Logo from '@atoms/Logo/Logo.astro';
+import Button from '@atoms/Button/Button.astro';
+import LocaleSwitcher from '@atoms/LocaleSwitcher/LocaleSwitcher.astro';
+import MobileNavDrawer from '@organisms/MobileNavDrawer/MobileNavDrawer.astro';
+
+interface NavItem {
+  href: string;
+  label: string;
+  exact: boolean;
+}
+
+interface Props {
+  navItems?: NavItem[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  navAriaLabel?: string;
+  openMenuLabel?: string;
+  closeMenuLabel?: string;
+  logoHref?: string;
+  logoAriaLabel?: string;
+  locale?: 'es' | 'en';
+  esHref?: string;
+  enHref?: string;
+  switcherAriaLabel?: string;
+}
+
+const currentPath = Astro.url.pathname;
+
+const {
+  navItems = [
+    { href: '/', label: 'Inicio', exact: true },
+    { href: '/servicios', label: 'Servicios', exact: false },
+    { href: '/nosotros', label: 'Nosotros', exact: false },
+  ],
+  ctaLabel = 'Pedir cotización',
+  ctaHref = '/contacto',
+  navAriaLabel = 'Navegación principal',
+  openMenuLabel = 'Abrir menú',
+  closeMenuLabel = 'Cerrar menú',
+  logoHref = '/',
+  logoAriaLabel = 'KM Business Consulting — Inicio',
+  locale = 'es',
+  esHref = '/',
+  enHref = '/en/',
+  switcherAriaLabel = 'Seleccionar idioma',
+} = Astro.props;
+---
+
+<header class="navbar" id="navbar" data-open-label={openMenuLabel} data-close-label={closeMenuLabel}>
+  <div class="navbar__inner">
+    <Logo variant="color" href={logoHref} ariaLabel={logoAriaLabel} />
+
+    <nav class="navbar__menu" id="menu" aria-label={navAriaLabel}>
+      {navItems.map((item) => {
+        const isActive = item.exact ? currentPath === item.href : currentPath.startsWith(item.href);
+        return (
+          <a
+            class="navbar__link"
+            href={item.href}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+      <a class="btn navbar__menu-cta" href={ctaHref}>{ctaLabel}</a>
+    </nav>
+
+    <div class="navbar__actions">
+      <LocaleSwitcher
+        locale={locale}
+        esHref={esHref}
+        enHref={enHref}
+        ariaLabel={switcherAriaLabel}
+        class="navbar__locale"
+      />
+
+      <Button href={ctaHref} variant="outline" class="navbar__cta">
+        {ctaLabel}
+      </Button>
+
+      <button
+        class="navbar__toggle"
+        type="button"
+        aria-controls="menu"
+        aria-expanded="false"
+        aria-label={openMenuLabel}
+      >
+        <span class="navbar__toggle-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="nav-spacer"></div>
+<MobileNavDrawer navItems={navItems} ctaLabel={ctaLabel} ctaHref={ctaHref} navAriaLabel={navAriaLabel} />
+
+<script>
+  const nav = document.getElementById('navbar');
+  if (nav) {
+    const toggle = nav.querySelector<HTMLButtonElement>('.navbar__toggle');
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const main = document.getElementById('main');
+    const footer = document.querySelector<HTMLElement>('.footer');
+    const openLabel = nav.dataset.openLabel || 'Abrir menú';
+    const closeLabel = nav.dataset.closeLabel || 'Cerrar menú';
+
+    const setInert = (isOpen: boolean) => {
+      main?.toggleAttribute('inert', isOpen);
+      footer?.toggleAttribute('inert', isOpen);
+    };
+
+    const close = () => {
+      if (!toggle) return;
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', openLabel);
+      nav.removeAttribute('data-open');
+      document.documentElement.classList.remove('has-nav-open');
+      setInert(false);
+      toggle.focus();
+    };
+
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          close();
+          return;
+        }
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', closeLabel);
+        nav.setAttribute('data-open', '');
+        document.documentElement.classList.add('has-nav-open');
+        setInert(true);
+        drawer?.querySelector<HTMLElement>('.o-mobile-nav-drawer__link')?.focus();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+          close();
+        }
+      });
+    }
+  }
+</script>

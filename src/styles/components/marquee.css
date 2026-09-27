@@ -1,0 +1,82 @@
+/* =========================================================================
+   COMPONENTE · MARQUEE
+   Cinta infinita. La pista se repite completa (la copia con aria-hidden)
+   y cada una se desplaza -100% en bucle, sin saltos.
+
+   <div class="marquee">
+     <div class="marquee__track">
+       <span class="marquee__item marquee__item--outline">Marca</span>
+       <span class="marquee__item">Marca</span>
+     </div>
+     <div class="marquee__track" aria-hidden="true"> …misma copia… </div>
+   </div>
+   ========================================================================= */
+.marquee {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  padding-block: var(--marquee-pad, clamp(var(--space-3xl), 2rem + 3vw, var(--space-6xl)));
+  border-top: var(--rule-hairline);
+  user-select: none;
+}
+
+.marquee__track {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--marquee-gap, 4vw);
+  padding-right: var(--marquee-gap, 4vw);
+  min-width: 100%;
+  animation: marquee var(--duration-marquee) linear infinite;
+  animation-direction: var(--marquee-direction, normal);
+}
+
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee--reverse { --marquee-direction: reverse; }
+.marquee--fast    { --duration-marquee: 20s; }
+.marquee--no-border { border-top: 0; }
+
+.marquee__item {
+  flex: none;
+  font-size: var(--marquee-size, 4vw);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-none);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-text);
+}
+
+/* Texto de contorno: solo trazo, sin relleno */
+.marquee__item--outline {
+  color: transparent;
+  -webkit-text-stroke: var(--border-thin) var(--color-text);
+}
+
+/* Fallback si el navegador no soporta text-stroke */
+@supports not (-webkit-text-stroke: 1px black) {
+  .marquee__item--outline {
+    color: var(--color-text);
+    opacity: 0.25;
+  }
+}
+
+/* Marquee de logos (integraciones) */
+.marquee--logos {
+  --marquee-pad: var(--space-md);
+  --marquee-gap: var(--space-xl);
+  border-top: 0;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media (max-width: 767px) {
+  .marquee { --marquee-size: 8vw; --marquee-gap: 6vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+  .marquee { overflow-x: auto; }
+}

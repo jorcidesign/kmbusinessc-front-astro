@@ -1,0 +1,131 @@
+---
+// src/components/atoms/FeatureIcon/FeatureIcon.astro
+//
+// Átomo de ícono de "feature" (tarjetas de beneficios/pilares en
+// RuledGridSection, Nosotros y Beneficios de servicio) — antes cada
+// sitio traía su propio <svg slot="icon"> pegado a mano con hex sueltos.
+// Convención de dos tonos: la silueta (grupo __base) siempre es navy
+// (var(--color-border)); un único detalle (grupo __accent) usa el color
+// de acento del prop `accent`, y es lo único que respira en loop.
+export type FeatureIconName = 'tariff-tag' | 'handshake' | 'inspection' | 'care' | 'verified-check' | 'open-ledger' | 'shield';
+
+export type FeatureIconAccent = 'blue' | 'mint' | 'amber' | 'coral';
+
+interface Props {
+  name: FeatureIconName;
+  accent?: FeatureIconAccent;
+  size?: 'md' | 'lg' | 'xl';
+  chip?: 'ring' | 'none';
+  class?: string;
+}
+
+const { name, accent = 'blue', size = 'xl', chip = 'ring', class: className = '' } = Astro.props;
+---
+
+<span
+  class={`a-feature-icon a-feature-icon--${size} a-feature-icon--chip-${chip} a-feature-icon--${accent} ${className}`}
+>
+  <svg class="a-feature-icon__svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+    <g class="a-feature-icon__base" fill="none" stroke="var(--color-border)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      {name === 'tariff-tag' && (
+        <>
+          <path d="M14 20H38L50 32L38 44H14Z" />
+          <circle cx="21" cy="32" r="3" fill="var(--color-border)" stroke="none" />
+        </>
+      )}
+      {name === 'handshake' && (
+        <>
+          <path d="M8 40L24 30L30 33" />
+          <path d="M56 40L40 30L34 33" />
+        </>
+      )}
+      {name === 'inspection' && (
+        <>
+          <path d="M14 26H40V46H14Z" />
+          <path d="M14 34H40" />
+        </>
+      )}
+      {name === 'care' && <path d="M24 44c-6-4-8-10-6-16a14 14 0 0 1 28 0c2 6 0 12-6 16v6H24z" />}
+      {name === 'verified-check' && <circle cx="32" cy="32" r="22" />}
+      {name === 'open-ledger' && (
+        <>
+          <path d="M12 20c8-4 16-4 20 0v26c-4-4-12-4-20 0z" />
+          <path d="M52 20c-8-4-16-4-20 0v26c4-4 12-4 20 0z" />
+          <path d="M32 18v26" />
+        </>
+      )}
+      {name === 'shield' && <path d="M32 12L50 18V32C50 44 42 52 32 56C22 52 14 44 14 32V18Z" />}
+    </g>
+
+    <g class="a-feature-icon__accent" fill="none" stroke="var(--icon-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      {name === 'tariff-tag' && <path d="M30 33l5 5 9-10" />}
+      {name === 'handshake' && <path d="M28 33l4 4 4-4" />}
+      {name === 'inspection' && (
+        <>
+          <circle cx="42" cy="24" r="7" />
+          <path d="M47 29l6 6" />
+        </>
+      )}
+      {name === 'care' && <path d="M20 33h6l3-5 4 9 3-4h8" />}
+      {name === 'verified-check' && <path d="M22 32l7 7 14-14" />}
+      {name === 'open-ledger' && <path d="M40 26h8M40 32h8" />}
+      {name === 'shield' && <path d="M23 32l6 6 12-14" />}
+    </g>
+  </svg>
+</span>
+
+<style>
+  .a-feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    box-sizing: border-box;
+  }
+
+  .a-feature-icon--md { width: var(--icon-md); height: var(--icon-md); }
+  .a-feature-icon--lg { width: var(--icon-lg); height: var(--icon-lg); }
+  .a-feature-icon--xl { width: var(--icon-xl); height: var(--icon-xl); }
+
+  .a-feature-icon__svg {
+    width: 58%;
+    height: 58%;
+    display: block;
+  }
+
+  .a-feature-icon--chip-ring {
+    border-radius: var(--radius-full);
+    border: var(--rule);
+    background: var(--color-bg);
+  }
+
+  :global(.section--subtle) .a-feature-icon--chip-ring {
+    background: var(--color-bg-subtle);
+  }
+
+  .a-feature-icon--chip-none .a-feature-icon__svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Acento semántico por token — nunca hex crudo */
+  .a-feature-icon--blue  { --icon-accent: var(--color-action); }
+  .a-feature-icon--mint  { --icon-accent: var(--color-decor-1); }
+  .a-feature-icon--amber { --icon-accent: var(--color-decor-2); }
+  .a-feature-icon--coral { --icon-accent: var(--color-decor-3); }
+
+  /* Loop ambiental: solo el detalle de acento respira, la silueta navy
+     queda quieta como estructura. */
+  .a-feature-icon__accent {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: feature-icon-pulse var(--duration-loop) var(--ease-in-out) infinite;
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .a-feature-icon__accent {
+      animation: none;
+    }
+  }
+</style>

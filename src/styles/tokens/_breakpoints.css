@@ -1,0 +1,18 @@
+/* ============================================================
+   TOKENS — BREAKPOINTS
+   CSS puro no permite variables dentro de @media, así que estos
+   valores son de referencia para usarlos directamente en em.
+   ============================================================ */
+
+:root {
+    --bp-tablet-value: 768;
+    --bp-desktop-value: 1024;
+    --bp-desktop-lg-value: 1280;
+}
+
+/*
+  USO en media queries (siempre en em):
+  tablet     -> @media (min-width: 48em)  -- 768px
+  desktop    -> @media (min-width: 64em)  -- 1024px
+  desktop-lg -> @media (min-width: 80em)  -- 1280px
+*/

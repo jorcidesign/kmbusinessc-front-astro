@@ -1,0 +1,53 @@
+{
+  "seo": {
+    "title": "Import & International Logistics Services",
+    "description": "Full foreign trade solutions between Asia and Latin America: supplier sourcing, factory audits, FCL ocean freight, and integrated logistics."
+  },
+  "hero": {
+    "eyebrow": "TECHNICAL SOLUTIONS",
+    "title": "Our Sourcing & Import Services",
+    "lead": "We control every critical link of your supply chain at origin so your cargo arrives at the agreed quality with no surprise costs.",
+    "primaryActionLabel": "Request a quote",
+    "secondaryActionLabel": "See our process",
+    "imageAlt": "Container ship on a sea route from China to Latin America"
+  },
+  "catalog": {
+    "title": "Four solutions built for demanding importers",
+    "lead": "Hire the full turnkey service or activate only the modules your current operation needs.",
+    "specsCtaLabel": "View full specifications",
+    "moduleFallbackPrefix": "Module 0"
+  },
+  "process": {
+    "tag": "THE KM METHOD",
+    "title": "How we work from start to finish",
+    "lead": "A standardized flow with formal approvals at every stage so nothing is left to chance.",
+    "ctaLabel": "Start an assessment",
+    "steps": [
+      {
+        "label": "1. Technical scoping and source search",
+        "description": "We receive your requirements, technical sheets, or samples to identify qualified manufacturers."
+      },
+      {
+        "label": "2. Sample shipping and testing",
+        "description": "Physical review of finish, tolerances, and packaging before committing production funds."
+      },
+      {
+        "label": "3. On-site factory audit",
+        "description": "Inspection of machinery, installed capacity, and the manufacturer's legal background."
+      },
+      {
+        "label": "4. Pre-shipment AQL quality control",
+        "description": "Rigorous sampling before releasing the final payment to the Asian supplier."
+      },
+      {
+        "label": "5. Ocean freight and customs clearance",
+        "description": "Carrier booking, port coordination, customs settlement, and delivery to your warehouse."
+      }
+    ]
+  },
+  "closingCta": {
+    "title": "Have a container in mind, or want to audit a factory?",
+    "lead": "Book a technical call with Kattya Mejía or request a formal quote.",
+    "ctaLabel": "Request a quote now"
+  }
+}

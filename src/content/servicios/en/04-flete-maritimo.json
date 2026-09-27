@@ -1,0 +1,58 @@
+{
+  "orden": 4,
+  "titulo": "FCL Ocean Freight",
+  "subtitulo": "Full container load international ocean transport from key Asian ports.",
+  "badge": "FCL & Consolidation",
+  "descripcion": "We manage full container load ocean transport from Asia to Latin America.",
+  "queHacemos": [
+    "Space booking and competitive rates with major global carriers",
+    "Coordinating empty container pickup and positioning at the factory",
+    "Bill of Lading (B/L) processing and export documentation at origin",
+    "Satellite tracking and itinerary monitoring to destination ports",
+    "Customs clearance and direct coordination with temporary warehouses in Callao and the region"
+  ],
+  "beneficios": [
+    {
+      "titulo": "Guaranteed space",
+      "descripcion": "Direct contracts with carriers to secure space even in peak seasons."
+    },
+    {
+      "titulo": "Transparent all-in rates",
+      "descripcion": "No hidden local charges or surprises at the port of arrival."
+    },
+    {
+      "titulo": "Optimized timing",
+      "descripcion": "Direct routes and early coordination to avoid demurrage days."
+    },
+    {
+      "titulo": "Expert customs advice",
+      "descripcion": "Tariff alignment to take advantage of trade agreement benefits (Peru-China FTA)."
+    }
+  ],
+  "etapas": [
+    {
+      "paso": "1. Carrier booking",
+      "detalle": "Equipment assignment and departure confirmation from origin ports."
+    },
+    {
+      "paso": "2. Consolidation and loading",
+      "detalle": "Port entry, export customs inspection, and stowage."
+    },
+    {
+      "paso": "3. Ocean transit",
+      "detalle": "Monitoring the voyage across the Pacific."
+    },
+    {
+      "paso": "4. Arrival and customs clearance",
+      "detalle": "Tally, deconsolidation, or full container pickup for delivery."
+    }
+  ],
+  "specs": {
+    "Puertos de salida": "Shanghai, Ningbo, Shenzhen, Guangzhou, Qingdao, Yantian",
+    "Puertos de destino": "Callao, Paita (Peru), Guayaquil, San Antonio, Buenaventura",
+    "Tiempos de tránsito": "Approx. 28 to 35 days depending on direct or transshipment service",
+    "Tipos de contenedor": "20' Standard, 40' High Cube, Reefer, Open Top"
+  },
+  "pendiente": "CONFIRM WITH KATTYA: consolidated/LCL cargo and specific timelines.",
+  "icono": "ship"
+}

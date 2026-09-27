@@ -1,0 +1,23 @@
+---
+// src/components/molecules/RuledFeature/RuledFeature.astro
+import FeatureIcon, { type FeatureIconName, type FeatureIconAccent } from '@atoms/FeatureIcon/FeatureIcon.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  icon: FeatureIconName;
+  accent?: FeatureIconAccent;
+  iconSize?: 'md' | 'lg' | 'xl';
+  class?: string;
+}
+
+const { title, description, icon, accent = 'blue', iconSize = 'xl', class: className = '' } = Astro.props;
+---
+
+<article class={`feature ${className}`}>
+  <div class="feature__icon-wrapper">
+    <FeatureIcon name={icon} accent={accent} size={iconSize} />
+  </div>
+  <h3 class="feature__title">{title}</h3>
+  {description && <p class="feature__text">{description}</p>}
+</article>

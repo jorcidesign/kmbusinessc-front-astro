@@ -1,0 +1,27 @@
+/* =========================================================================
+   LAYOUT · CONTENEDORES
+   .container centra y limita el ancho; .gutter aplica el padding lateral
+   fluido de página. Se combinan: <div class="container gutter">.
+   ========================================================================= */
+.container {
+  width: 100%;
+  max-width: var(--container-max, var(--container-xl));
+  margin-inline: auto;
+}
+
+.container--lg { --container-max: var(--container-lg); }
+.container--md { --container-max: var(--container-md); }
+.container--sm { --container-max: var(--container-sm); }
+.container--xs { --container-max: var(--container-xs); }
+.container--full { --container-max: none; }
+
+.gutter {
+  padding-inline: var(--gutter);
+}
+
+/* Anula el gutter en móvil para piezas que van a sangre (grillas con borde) */
+@media (max-width: 767px) {
+  .gutter--flush-mobile {
+    padding-inline: 0;
+  }
+}

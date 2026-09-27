@@ -1,0 +1,157 @@
+---
+// src/components/organisms/Footer/Footer.astro
+//
+// Props opcionales para soportar ES/EN (ver src/content/ui/*.json):
+// los valores por defecto son el español actual, tal cual, como red
+// de seguridad si algún día se renderiza sin props explícitos.
+import Logo from '@atoms/Logo/Logo.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+
+interface LinkItem {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  serviciosHeading?: string;
+  serviciosLinks?: LinkItem[];
+  empresaHeading?: string;
+  empresaLinks?: LinkItem[];
+  contactoHeading?: string;
+  email?: string;
+  phone?: string;
+  phoneHref?: string;
+  whatsappHref?: string;
+  whatsappLabel?: string;
+  location?: string;
+  redesHeading?: string;
+  linkedinHref?: string;
+  linkedinLabel?: string;
+  instagramHref?: string;
+  instagramLabel?: string;
+  destacadoHeading?: string;
+  destacadoText?: string;
+  destacadoCtaLabel?: string;
+  destacadoCtaHref?: string;
+  empresaLine?: string;
+  rightsLine?: string;
+  logoHref?: string;
+  logoAriaLabel?: string;
+}
+
+const year = new Date().getFullYear();
+
+const {
+  serviciosHeading = 'Servicios',
+  serviciosLinks = [
+    { href: '/servicios/logistica-integral', label: 'Logística Integral' },
+    { href: '/servicios/busqueda-proveedores', label: 'Búsqueda de Proveedores' },
+    { href: '/servicios/inspeccion-fabricas', label: 'Inspección de Fábricas' },
+    { href: '/servicios/flete-maritimo', label: 'Flete Marítimo FCL' },
+  ],
+  empresaHeading = 'Empresa',
+  empresaLinks = [
+    { href: '/nosotros', label: 'Nosotros' },
+    { href: '/servicios', label: 'Todos los Servicios' },
+    { href: '/contacto', label: 'Contacto' },
+  ],
+  contactoHeading = 'Contacto',
+  email = 'kattya@kmbusinessc.pe',
+  phone = '+51 945 832 446',
+  phoneHref = 'tel:+51945832446',
+  whatsappHref = 'https://wa.me/51945832446',
+  whatsappLabel = 'WhatsApp Directo',
+  location = 'Lima, Perú · China',
+  redesHeading = 'Redes',
+  linkedinHref = 'https://linkedin.com',
+  linkedinLabel = 'LinkedIn',
+  instagramHref = 'https://instagram.com',
+  instagramLabel = 'Instagram',
+  destacadoHeading = 'Comercio Exterior Seguro',
+  destacadoText = 'Conectamos empresas en Latinoamérica con fabricantes en Asia con total transparencia técnica, inspección presencial y tarifas competitivas.',
+  destacadoCtaLabel = 'Solicitar asesoría',
+  destacadoCtaHref = '/contacto',
+  empresaLine = 'KM Business Consulting SAC',
+  rightsLine = 'Todos los derechos reservados.',
+  logoHref = '/',
+  logoAriaLabel = 'KM Business Consulting — Inicio',
+} = Astro.props;
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <!-- Columna 1: Servicios -->
+      <div class="footer__column">
+        <h2 class="footer__heading">{serviciosHeading}</h2>
+        <ul class="footer__links" role="list">
+          {serviciosLinks.map((link) => (
+            <li><a class="footer__link" href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Columna 2: Empresa -->
+      <div class="footer__column">
+        <h2 class="footer__heading">{empresaHeading}</h2>
+        <ul class="footer__links" role="list">
+          {empresaLinks.map((link) => (
+            <li><a class="footer__link" href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Columna 3: Contacto Directo -->
+      <div class="footer__column">
+        <h2 class="footer__heading">{contactoHeading}</h2>
+        <ul class="footer__links" role="list">
+          <li><a class="footer__link" href={`mailto:${email}`}>{email}</a></li>
+          <li><a class="footer__link" href={phoneHref}>{phone}</a></li>
+          <li><a class="footer__link" href={whatsappHref} target="_blank" rel="noopener">{whatsappLabel}</a></li>
+          <li><span class="footer__small" style="color:var(--navy-900); opacity: 0.85;">{location}</span></li>
+        </ul>
+      </div>
+
+      <!-- Columna 4: Redes -->
+      <div class="footer__column">
+        <h2 class="footer__heading">{redesHeading}</h2>
+        <ul class="footer__links" role="list">
+          <li>
+            <a class="footer__link link-icon" href={linkedinHref} target="_blank" rel="noopener">
+              <Icon name="linkedin" size="xs" class="link-icon__icon" />
+              {linkedinLabel}
+            </a>
+          </li>
+          <li>
+            <a class="footer__link link-icon" href={instagramHref} target="_blank" rel="noopener">
+              <Icon name="instagram" size="xs" class="link-icon__icon" />
+              {instagramLabel}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 5 (Doble ancho): Consulta rápida -->
+      <div class="footer__column footer__column--wide">
+        <h2 class="footer__heading">{destacadoHeading}</h2>
+        <div style="padding: var(--space-xl) var(--footer-pad); display: flex; flex-direction: column; gap: var(--space-md);">
+          <p class="footer__note" style="color: var(--navy-900); opacity: 0.88; font-size: var(--text-sm); line-height: 1.5; margin-top: 0;">
+            {destacadoText}
+          </p>
+          <a class="btn btn--outline btn--sm" href={destacadoCtaHref} style="width: fit-content;">
+            {destacadoCtaLabel}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fila legal inferior -->
+    <div class="footer__bottom">
+      <div class="footer__legal">
+        <Logo variant="inline" href={logoHref} ariaLabel={logoAriaLabel} />
+        <span class="footer__small">{empresaLine}</span>
+      </div>
+      <span class="footer__small">© {year} KM Business Consulting. {rightsLine}</span>
+    </div>
+  </div>
+</footer>

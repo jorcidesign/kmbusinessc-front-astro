@@ -1,0 +1,112 @@
+---
+// src/components/molecules/ContactForm/ContactForm.astro
+//
+// Props opcionales para soportar ES/EN (ver src/content/ui/*.json):
+// los valores por defecto son el español actual, tal cual. Las 4
+// cadenas que necesita el script cliente (ContactForm.ts) viajan como
+// data-* en el <form>, porque ese script es JS puro y no puede
+// importar astro:content.
+import Button from '@atoms/Button/Button.astro';
+
+interface Props {
+  class?: string;
+  defaultService?: string;
+  labelNombre?: string;
+  labelWhatsapp?: string;
+  labelProducto?: string;
+  labelCantidad?: string;
+  labelMensaje?: string;
+  labelHoneypot?: string;
+  placeholderNombre?: string;
+  placeholderWhatsapp?: string;
+  placeholderProducto?: string;
+  placeholderCantidad?: string;
+  placeholderMensaje?: string;
+  submitLabel?: string;
+  sendingLabel?: string;
+  validationError?: string;
+  successMessage?: string;
+  errorMessage?: string;
+}
+
+const {
+  class: className = '',
+  defaultService = '',
+  labelNombre = 'Nombre completo',
+  labelWhatsapp = 'WhatsApp',
+  labelProducto = 'Producto que deseas importar o cotizar',
+  labelCantidad = 'Volumen o presupuesto aproximado',
+  labelMensaje = 'Detalles adicionales',
+  labelHoneypot = 'No llenar este campo',
+  placeholderNombre = 'Nombre completo *',
+  placeholderWhatsapp = 'WhatsApp (ej. +51 987 654 321) *',
+  placeholderProducto = 'Producto o servicio que necesitas *',
+  placeholderCantidad = 'Volumen o cantidad (ej. 1 contenedor, 500 uds)',
+  placeholderMensaje = 'Detalles de tu proyecto o requerimientos específicos (opcional)',
+  submitLabel = 'Enviar solicitud',
+  sendingLabel = 'Enviando...',
+  validationError = 'Completa nombre, WhatsApp y producto.',
+  successMessage = '¡Listo! Te contactaremos pronto. También puedes escribirnos directo por WhatsApp.',
+  errorMessage = 'No pudimos enviar tu mensaje. Escríbenos directo por WhatsApp, por favor.',
+} = Astro.props;
+---
+
+<form
+  class={`contact__form form ${className}`}
+  id="contact-form"
+  novalidate
+  data-idle-label={submitLabel}
+  data-sending-label={sendingLabel}
+  data-validation-error={validationError}
+  data-success-message={successMessage}
+  data-error-message={errorMessage}
+>
+  <div class="field">
+    <label class="sr-only" for="nombre">{labelNombre}</label>
+    <input class="input" id="nombre" name="nombre" type="text" required autocomplete="name" placeholder={placeholderNombre} />
+  </div>
+
+  <div class="field">
+    <label class="sr-only" for="whatsapp">{labelWhatsapp}</label>
+    <input class="input" id="whatsapp" name="whatsapp" type="tel" required autocomplete="tel" placeholder={placeholderWhatsapp} />
+  </div>
+
+  <div class="field">
+    <label class="sr-only" for="producto">{labelProducto}</label>
+    <input class="input" id="producto" name="producto" type="text" required placeholder={placeholderProducto} value={defaultService} />
+  </div>
+
+  <div class="field">
+    <label class="sr-only" for="cantidad">{labelCantidad}</label>
+    <input class="input" id="cantidad" name="cantidad" type="text" placeholder={placeholderCantidad} />
+  </div>
+
+  <div class="field">
+    <label class="sr-only" for="mensaje">{labelMensaje}</label>
+    <textarea class="textarea" id="mensaje" name="mensaje" rows="3" placeholder={placeholderMensaje}></textarea>
+  </div>
+
+  {/* Honeypot anti-spam */}
+  <div class="sr-only" aria-hidden="true" style="position: absolute; left: -9999px;">
+    <label for="sitio-web">{labelHoneypot}</label>
+    <input id="sitio-web" name="sitio-web" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="form__actions">
+    <Button type="submit" size="wide">
+      <span data-submit-label>{submitLabel}</span>
+    </Button>
+  </div>
+
+  <p class="form__status mt-sm text-sm" data-form-status role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  import { initContactForm } from './ContactForm';
+  initContactForm();
+</script>
+
+<style>
+  .form__status[data-state="success"] { color: #059669; font-weight: 500; }
+  .form__status[data-state="error"] { color: #dc2626; font-weight: 500; }
+</style>

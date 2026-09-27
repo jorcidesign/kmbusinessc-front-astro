@@ -1,0 +1,45 @@
+/* =========================================================================
+   BASE · ROOT
+   Estilos globales del documento que consumen los tokens.
+   ========================================================================= */
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  /* anclas no quedan ocultas bajo la navbar fija */
+  scroll-padding-top: calc(var(--nav-height) + var(--space-md));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+::selection {
+  background-color: var(--color-selection-bg);
+  color: var(--color-selection-text);
+}
+
+/* Contenedor global de la página (reemplaza a .page-wrapper) */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+.page > main {
+  flex: 1;
+}
+
+/* Compensación de la navbar fija */
+.nav-spacer {
+  height: var(--nav-height);
+}

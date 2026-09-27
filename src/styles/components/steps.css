@@ -1,0 +1,78 @@
+/* =========================================================================
+   COMPONENTE · STEPS (checklist vertical "What we do")
+   Proceso secuencial: círculo con check unido por una línea vertical.
+   El check se dibuja con CSS; se puede reemplazar por un SVG propio en
+   .steps__marker.
+   ========================================================================= */
+.steps {
+  --step-marker: 3.5rem;
+  position: relative;
+  display: grid;
+  row-gap: var(--space-3xl);
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Línea vertical que conecta los marcadores */
+.steps::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--step-marker) / 2);
+  bottom: calc(var(--step-marker) / 2);
+  left: calc(var(--step-marker) / 2);
+  width: var(--border-medium);
+  background-color: var(--color-border);
+  transform: translateX(-50%);
+}
+
+.steps__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.steps__item + .steps__item {
+  margin-top: 0;
+}
+
+.steps__marker {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--step-marker);
+  height: var(--step-marker);
+  background-color: var(--color-bg);
+  border: var(--border-medium) solid var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+/* Check dibujado */
+.steps__marker:empty::after {
+  content: "";
+  width: 35%;
+  height: 18%;
+  border-left: var(--border-medium) solid var(--color-border);
+  border-bottom: var(--border-medium) solid var(--color-border);
+  transform: translateY(-20%) rotate(-45deg);
+}
+
+.steps__label {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+}
+
+/* Sobre fondo de color, el marcador toma ese fondo */
+.section--subtle .steps__marker {
+  background-color: var(--color-bg-subtle);
+}
+
+@media (max-width: 767px) {
+  .steps {
+    --step-marker: 2.75rem;
+    row-gap: var(--space-xl);
+  }
+
+  .steps__item { gap: var(--space-md); }
+}

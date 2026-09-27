@@ -1,0 +1,57 @@
+/* =========================================================================
+   COMPONENTE · STATS
+   Caja blanca con 3 cifras grandes, sobre imagen o sección de color.
+   ========================================================================= */
+.section--stats-bg {
+  position: relative;
+  background-image: url('/images/stats-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section--stats-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(6, 6, 64, 0.2);
+  pointer-events: none;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(var(--stats-cols, 3), minmax(0, 1fr));
+  gap: var(--space-xl);
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding: clamp(var(--space-xl), 1.5rem + 2vw, var(--space-4xl)) clamp(var(--space-xl), 1rem + 6vw, var(--space-8xl));
+  background-color: var(--color-surface, #ffffff);
+  color: var(--color-text, #060640);
+  border: var(--border-thin) solid var(--navy-900);
+  border-radius: var(--radius-sm, 4px);
+  box-shadow: var(--shadow-popover);
+}
+
+.stat__value {
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-none);
+  letter-spacing: var(--tracking-tight);
+  font-variant-numeric: tabular-nums;
+  color: var(--navy-900);
+}
+
+.stat__label {
+  margin-top: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 767px) {
+  .stats {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-2xl);
+    text-align: center;
+  }
+}

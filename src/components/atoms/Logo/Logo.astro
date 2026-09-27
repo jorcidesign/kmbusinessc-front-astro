@@ -1,0 +1,68 @@
+---
+// src/components/atoms/Logo/Logo.astro
+//
+// Logo real (entregado por el diseñador), no un placeholder. Los 4 SVG
+// son currentColor (heredan el color de texto de su contenedor — por
+// eso no hay prop de color: puesto en .footer, que ya define
+// `color: var(--color-text-inverse)`, sale en blanco solo). La
+// variante "color" es la única con un color fijo: el isotipo usa
+// --color-brand-accent sin importar dónde se use.
+import logoInline from './logo-inline.svg?raw';
+import logoVertical from './logo-vertical.svg?raw';
+import logoColorInline from './logo-color-inline.svg?raw';
+import logoMark from './logo-mark.svg?raw';
+
+interface Props {
+  variant?: 'inline' | 'vertical' | 'color' | 'mark';
+  href?: string;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  variant = 'inline',
+  href = '/',
+  ariaLabel = 'KM Business Consulting — Inicio',
+  class: className = '',
+} = Astro.props;
+
+const svgByVariant = {
+  inline: logoInline,
+  vertical: logoVertical,
+  color: logoColorInline,
+  mark: logoMark,
+};
+---
+
+<a
+  href={href}
+  class={`navbar__brand ${className}`}
+  aria-label={ariaLabel}
+>
+  <span class={`logo logo--${variant}`} set:html={svgByVariant[variant]} />
+</a>
+
+<style>
+  .logo {
+    display: block;
+    color: inherit;
+  }
+
+  .logo :global(svg) {
+    height: 2.75rem;
+    width: auto;
+    display: block;
+  }
+
+  .logo--vertical :global(svg) {
+    height: 3.75rem;
+  }
+
+  .logo--mark :global(svg) {
+    height: 2.5rem;
+  }
+
+  .navbar__brand:hover .logo {
+    opacity: 0.88;
+  }
+</style>

@@ -1,0 +1,51 @@
+/* =========================================================================
+   COMPONENTE · LOGO STRIP
+   Fila de logos (clientes / integraciones). Estático en desktop con wrap,
+   o en marquee combinando con .marquee--logos.
+   ========================================================================= */
+.logo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+.logo-strip__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 10rem;
+  height: 3rem;
+}
+
+.logo-strip__item img,
+.logo-strip__item svg {
+  max-width: 100%;
+  max-height: 2rem;
+  object-fit: contain;
+}
+
+/* Monocromo que recupera color al hover */
+.logo-strip--mono .logo-strip__item img {
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition: filter var(--duration-base) var(--ease-standard),
+              opacity var(--duration-base) var(--ease-standard);
+}
+
+.logo-strip--mono .logo-strip__item:hover img {
+  filter: none;
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .logo-strip {
+    justify-content: center;
+  }
+
+  .logo-strip__item {
+    width: 7.5rem;
+  }
+}

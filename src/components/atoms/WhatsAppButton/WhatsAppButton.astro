@@ -1,0 +1,40 @@
+---
+// src/components/atoms/WhatsAppButton/WhatsAppButton.astro
+//
+// Botón CTA de WhatsApp para flujos de conversión inline.
+// Delega en Button con variant="whatsapp" (4ª variante oficial del sistema).
+import Button from '@atoms/Button/Button.astro';
+
+interface Props {
+  message?: string;
+  variant?: 'whatsapp' | 'solid' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'wide';
+  location: string;
+  class?: string;
+}
+const {
+  message = 'Hola Kattya, quiero cotizar un producto.',
+  variant = 'whatsapp',
+  size = 'sm',
+  location,
+  class: className = '',
+} = Astro.props;
+
+const phone = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '51945832446';
+const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+const buttonVariant = (variant === 'ghost' || variant === 'outline') ? 'outline' : 'whatsapp';
+---
+
+<Button
+  href={href}
+  variant={buttonVariant}
+  size={size}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={className}
+  data-analytics-event="click_whatsapp"
+  data-analytics-location={location}
+>
+  <slot>Escribir por WhatsApp</slot>
+</Button>

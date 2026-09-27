@@ -1,0 +1,74 @@
+{
+  "seo": {
+    "title": "Import & Integrated Logistics from Asia to Latin America",
+    "description": "KM Business Consulting: supplier sourcing and verification in China, pre-shipment quality inspection, FCL ocean freight, and integrated logistics management."
+  },
+  "hero": {
+    "heading": "Kattya Mejía & KM Business Consulting: sourcing solutions in China, factory audits, and integrated logistics.",
+    "titleFade": "Sourcing in China.",
+    "titleRiseLines": ["Import directly", "with full control."],
+    "lead": "Strategic sourcing solutions in China for companies and entrepreneurs: on-site supplier verification, production quality audits, and door-to-door international logistics management.",
+    "ctaLabel": "Book your strategy session",
+    "imageAlt": "Kattya Mejía - Sourcing and China procurement specialist"
+  },
+  "manifiesto": {
+    "tag": "OUR VISION",
+    "title": "We don't look for a transaction — we build lasting relationships.",
+    "quote": "\"To me, the most important thing is being a good human being and speaking the truth. In foreign trade there are no magic solutions: there are rigorous audits, clear contracts, and a team that protects your assets as if they were their own.\"",
+    "authorName": "Kattya Mejía",
+    "authorRole": "Founder & Director of Operations · Master's in International Business (10+ years of experience)",
+    "ctaLabel": "Learn our story"
+  },
+  "splitServices": {
+    "cell1": {
+      "title": "Sourcing & Verification in China",
+      "text": "We audit factories directly in China. We verify government licenses, facilities, real production capacity, and check samples before you commit any capital.",
+      "ctaLabel": "See our verification solution"
+    },
+    "cell2": {
+      "title": "Ocean Freight & Integrated Logistics",
+      "text": "Full container load (FCL) ocean transport from major Asian ports to Callao and Latin America. Customs clearance and direct delivery with transparent rates and no hidden fees.",
+      "ctaLabel": "Explore freight & logistics"
+    }
+  },
+  "ruledGrid": {
+    "title": "You grow your business. We take care of Asia.",
+    "lead": "We remove the uncertainty and opaque middlemen from your import chain.",
+    "items": [
+      {
+        "title": "Zero surprises on costs and tariffs",
+        "description": "Transparent all-in rates from the start, clear settlement, and optimized tariff classification."
+      },
+      {
+        "title": "Direct negotiation with audited factories",
+        "description": "Our own bilingual team in China to audit physical facilities and negotiate directly with plant directors."
+      },
+      {
+        "title": "Strict pre-shipment quality control",
+        "description": "AQL inspections with photo and video reporting in under 24 hours before you pay the balance."
+      },
+      {
+        "title": "Close, personalized support",
+        "description": "Kattya Mejía personally leads your account strategy to build strong, long-term business relationships."
+      }
+    ]
+  },
+  "stats": {
+    "items": [
+      { "value": "10+", "label": "Years of experience in international trade" },
+      { "value": "100%", "label": "Factories audited on-site in China" },
+      { "value": "FCL", "label": "Full container load and integrated logistics" }
+    ]
+  },
+  "contactHome": {
+    "tag": "LET'S TALK TODAY",
+    "title": "Let's start your import",
+    "lead": "Tell us what product you need to bring in or which operational stage you want to optimize. We'll reply within 24 hours with a clear proposal.",
+    "whatsappLabel": "Message us on WhatsApp"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "lead": "Everything you need to know about how we operate between Asia and Latin America."
+  },
+  "marqueeText": "KM BUSINESS CONSULTING · CHINA TO LATIN AMERICA · SECURE IMPORTING · "
+}

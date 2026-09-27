@@ -1,0 +1,57 @@
+{
+  "orden": 2,
+  "titulo": "Reliable Supplier Sourcing & Verification",
+  "subtitulo": "On-site validation and full auditing of real factories in China.",
+  "badge": "Origin audit",
+  "descripcion": "Our team in China searches for and validates factories based on your exact needs, so you never negotiate blind with a supplier you don't know.",
+  "queHacemos": [
+    "Targeted search across specialized industrial clusters in China",
+    "Verification of business licenses and legal standing with the Chinese government",
+    "On-site audit of installed capacity and factory machinery",
+    "Direct negotiation of prices, MOQs, and payment terms",
+    "Thorough sample management and review before authorizing production orders"
+  ],
+  "beneficios": [
+    {
+      "titulo": "Avoid phantom middlemen",
+      "descripcion": "We filter out resellers and trading companies that inflate prices and offer no real guarantees."
+    },
+    {
+      "titulo": "Direct factory pricing",
+      "descripcion": "We negotiate directly with plant owners and directors to maximize your margins."
+    },
+    {
+      "titulo": "Legal and financial validation",
+      "descripcion": "We check tax history, ISO/CE certifications, and operational solvency."
+    },
+    {
+      "titulo": "Rigorous sampling",
+      "descripcion": "Physical review of finish, measurements, and packaging before any money changes hands."
+    }
+  ],
+  "etapas": [
+    {
+      "paso": "1. Product technical sheet",
+      "detalle": "Exact definition of specifications, tolerances, and required standards."
+    },
+    {
+      "paso": "2. Candidate factory screening",
+      "detalle": "A shortlist of 3 to 5 suitable plants verified against official records."
+    },
+    {
+      "paso": "3. Samples and lab testing",
+      "detalle": "Shipping and physical validation of prototypes or production samples."
+    },
+    {
+      "paso": "4. Final selection and contract",
+      "detalle": "Bilingual manufacturing agreement with penalties for delays or defects."
+    }
+  ],
+  "specs": {
+    "Plazo de reporte": "5 to 10 business days for a full shortlist",
+    "Entregable": "Dossier with photos, licenses, plant capacity, and a comparative cost matrix",
+    "Sectores": "Machinery, packaging, textiles, hardware, plastics, appliances, and technology"
+  },
+  "pendiente": "Confirm with Kattya 2 or 3 real product categories where she has the most experience, to give a concrete example.",
+  "icono": "search"
+}

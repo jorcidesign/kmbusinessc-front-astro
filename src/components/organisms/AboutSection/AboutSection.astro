@@ -1,0 +1,52 @@
+---
+// src/components/organisms/AboutSection/AboutSection.astro
+// "¿Quiénes somos?" — el sitio actual sí tenía esta sección con
+// contenido razonable; el Hallazgo 3 de la auditoría es que nunca
+// menciona China ni da ejemplos concretos. El texto de abajo ya está
+// fundamentado en el brief de marca del 23 de septiembre: público =
+// "importadores frecuentes" en Latinoamérica (no solo Perú, y no
+// principiantes), servicios reales (logística integral, búsqueda y
+// verificación de proveedores, inspección de fábrica), sin comprometerse
+// a FCL/LCL porque esa discrepancia sigue sin resolver — ver
+// PROJECT_CONTEXT.md. Sigue pendiente el paso de keywords de Renzo.
+---
+
+<section id="quienes-somos" class="o-about">
+  <div class="o-about__inner">
+    <h2 class="o-about__title" data-reveal>¿Quiénes somos?</h2>
+    <p class="o-about__text" data-reveal>
+      {/* BORRADOR, fundamentado en el brief — falta el paso de
+          keywords de Renzo */}
+      En KM trabajamos con importadores que ya operan con
+      <strong>China</strong> y buscan un socio más confiable y cercano:
+      búsqueda y verificación de proveedores, inspección en fábrica y
+      logística internacional, coordinados por un mismo equipo de
+      principio a fin. No buscamos concretar una operación puntual,
+      sino construir una relación de confianza que te acompañe en cada
+      importación que hagas.
+    </p>
+  </div>
+</section>
+
+<style>
+  .o-about__inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: var(--section-y-mobile) var(--gutter-mobile);
+  }
+  .o-about__title {
+    font-size: var(--text-h2);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-5);
+  }
+  .o-about__text {
+    font-size: var(--text-body-lg);
+    color: var(--c-text-soft);
+    line-height: var(--lh-relaxed);
+    max-width: 65ch;
+  }
+
+  @media (min-width: 64em) {
+    .o-about__inner { padding: var(--section-y-desktop) var(--gutter-desktop); }
+  }
+</style>

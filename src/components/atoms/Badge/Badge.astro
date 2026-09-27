@@ -1,0 +1,35 @@
+---
+// src/components/atoms/Badge/Badge.astro
+//
+// Para las credenciales de Kattya (años de experiencia, formación,
+// clientes). Ver PROJECT_CONTEXT.md: la cifra de clientes debe
+// mostrarse solo si ella puede sustentarla (Hallazgo 2 de la auditoría
+// — no repetir el problema de los testimonios de plantilla con la
+// credencial de "150+ clientes").
+import Icon from '@atoms/Icon/Icon.astro';
+
+interface Props {
+  icon?: 'briefcase' | 'graduation-cap' | 'users';
+  class?: string;
+}
+const { icon, class: className = '' } = Astro.props;
+---
+
+<span class={`a-badge ${className}`}>
+  {icon && <Icon name={icon} size="xs" class="a-badge__icon" />}
+  <span class="a-badge__label"><slot /></span>
+</span>
+
+<style>
+  .a-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-full);
+    background: var(--color-action);
+    color: var(--color-action-text);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+  }
+</style>

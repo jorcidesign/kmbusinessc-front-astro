@@ -1,0 +1,253 @@
+---
+// src/components/atoms/WhatsAppFab/WhatsAppFab.astro
+//
+// Átomo flotante fijo (FAB) interactivo para contacto directo por WhatsApp.
+// Respeta el sistema de diseño:
+//   - Borde hairline técnico y elevación suave con --shadow-popover.
+//   - Indicador de estado activo "En línea" con microanimación de pulso.
+//   - Tooltip editorial en desktop con tipografía Noi Grotesk.
+//   - Respeto a márgenes seguros en móvil (safe-area-inset-bottom).
+//   - Totalmente accesible (aria-label, focus-visible con --shadow-focus).
+interface Props {
+  phone?: string;
+  message?: string;
+  location?: string;
+  tooltipTitle?: string;
+  tooltipSub?: string;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  phone = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '51945832446',
+  message = 'Hola Kattya, vi su sitio web y me gustaría cotizar una importación desde China.',
+  location = 'fab_global',
+  tooltipTitle = '¿Hablamos de tu importación?',
+  tooltipSub = 'Kattya Mejía · Respuesta rápida',
+  ariaLabel = 'Contactar a Kattya Mejía por WhatsApp (se abre en una nueva pestaña)',
+  class: className = '',
+} = Astro.props;
+
+const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+---
+
+<div class={`whatsapp-fab-container ${className}`}>
+  <!-- Tooltip editorial para desktop -->
+  <div class="whatsapp-fab-tooltip" role="tooltip" id="whatsapp-fab-tooltip">
+    <span class="whatsapp-fab-tooltip__title">{tooltipTitle}</span>
+    <span class="whatsapp-fab-tooltip__sub">{tooltipSub}</span>
+  </div>
+
+  <!-- Botón flotante interactivo -->
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-fab-btn"
+    aria-label={ariaLabel}
+    aria-describedby="whatsapp-fab-tooltip"
+    data-analytics-event="click_whatsapp"
+    data-analytics-location={location}
+  >
+    <!-- Indicador de pulso "En línea" -->
+    <span class="whatsapp-fab-badge" aria-hidden="true">
+      <span class="whatsapp-fab-badge__ping"></span>
+      <span class="whatsapp-fab-badge__dot"></span>
+    </span>
+
+    <!-- Isotipo vectorial oficial de WhatsApp -->
+    <svg
+      class="whatsapp-fab-icon"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      width="30"
+      height="30"
+    >
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08.99-2.36c.26-.28.56-.35.75-.35h.54c.17 0 .4-.07.63.48.24.56.8 1.95.87 2.09.07.14.11.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.29.28-.12.55.17.28.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.32 1.44.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.23.63-.14.26.09 1.65.78 1.93.92.28.14.47.21.54.33.07.12.07.68-.17 1.36Z"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .whatsapp-fab-container {
+    position: fixed;
+    right: clamp(1rem, 2.2vw, 1.75rem);
+    bottom: max(1.25rem, calc(1rem + env(safe-area-inset-bottom, 0px)));
+    z-index: var(--z-nav, 1000);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm, 0.75rem);
+    pointer-events: none; /* Permite clickthrough alrededor de los elementos */
+  }
+
+  /* Tooltip editorial elegante (desktop) */
+  .whatsapp-fab-tooltip {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+    padding: 0.625rem 0.875rem;
+    background-color: var(--color-bg, #ffffff);
+    border: var(--rule-hairline, 1px solid rgba(6, 6, 64, 0.15));
+    border-radius: var(--radius-sm, 4px);
+    box-shadow: var(--shadow-popover, 0 8px 24px rgba(6, 6, 64, 0.12));
+    opacity: 0;
+    transform: translateX(8px);
+    transition:
+      opacity var(--duration-fast, 180ms) var(--ease-standard, cubic-bezier(0.2, 0.8, 0.2, 1)),
+      transform var(--duration-fast, 180ms) var(--ease-standard, cubic-bezier(0.2, 0.8, 0.2, 1));
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: auto;
+  }
+
+  @media (min-width: 768px) {
+    .whatsapp-fab-tooltip {
+      display: flex;
+    }
+
+    .whatsapp-fab-container:hover .whatsapp-fab-tooltip,
+    .whatsapp-fab-container:focus-within .whatsapp-fab-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .whatsapp-fab-tooltip__title {
+    font-size: var(--text-xs, 0.8125rem);
+    font-weight: var(--weight-semibold, 600);
+    color: var(--color-text, #060640);
+    line-height: var(--leading-tight, 1.2);
+  }
+
+  .whatsapp-fab-tooltip__sub {
+    font-size: 0.75rem;
+    color: var(--color-text-muted, rgba(6, 6, 64, 0.72));
+    line-height: var(--leading-none, 1);
+  }
+
+  /* Botón interactivo principal */
+  .whatsapp-fab-btn {
+    pointer-events: auto;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.875rem;
+    height: 3.875rem;
+    border-radius: var(--radius-full, 9999px);
+    background-color: #25d366;
+    color: #ffffff;
+    border: 1px solid rgba(6, 6, 64, 0.18);
+    box-shadow: var(--shadow-popover, 0 8px 24px rgba(6, 6, 64, 0.12));
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      transform var(--duration-fast, 180ms) var(--ease-standard, cubic-bezier(0.2, 0.8, 0.2, 1)),
+      box-shadow var(--duration-fast, 180ms) var(--ease-standard, cubic-bezier(0.2, 0.8, 0.2, 1)),
+      filter var(--duration-fast, 180ms) var(--ease-standard, cubic-bezier(0.2, 0.8, 0.2, 1));
+  }
+
+  .whatsapp-fab-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 28px rgba(6, 6, 64, 0.18), 0 3px 8px rgba(6, 6, 64, 0.1);
+    filter: brightness(1.03);
+  }
+
+  .whatsapp-fab-btn:active {
+    transform: translateY(0) scale(0.96);
+    box-shadow: 0 4px 12px rgba(6, 6, 64, 0.14);
+  }
+
+  .whatsapp-fab-btn:focus-visible {
+    box-shadow:
+      0 0 0 3px var(--color-bg, #ffffff),
+      0 0 0 5px #25d366,
+      var(--shadow-popover, 0 8px 24px rgba(6, 6, 64, 0.12));
+  }
+
+  .whatsapp-fab-icon {
+    width: 2.125rem;
+    height: 2.125rem;
+    flex-shrink: 0;
+    transition: transform var(--duration-fast, 180ms) var(--ease-standard, cubic-bezier(0.2, 0.8, 0.2, 1));
+  }
+
+  .whatsapp-fab-btn:hover .whatsapp-fab-icon {
+    transform: scale(1.06);
+  }
+
+  /* Badge de disponibilidad "En línea" */
+  .whatsapp-fab-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 0.875rem;
+    height: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .whatsapp-fab-badge__dot {
+    position: relative;
+    width: 0.625rem;
+    height: 0.625rem;
+    background-color: #1fe0a0; /* mint-400 del sistema de diseño */
+    border: 2px solid #ffffff;
+    border-radius: var(--radius-full, 9999px);
+  }
+
+  .whatsapp-fab-badge__ping {
+    position: absolute;
+    width: 0.875rem;
+    height: 0.875rem;
+    background-color: #1fe0a0;
+    border-radius: var(--radius-full, 9999px);
+    opacity: 0.75;
+    animation: whatsapp-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes whatsapp-ping {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.85;
+    }
+    75%, 100% {
+      transform: scale(2.2);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .whatsapp-fab-badge__ping {
+      animation: none;
+      display: none;
+    }
+    .whatsapp-fab-btn {
+      transition: none;
+    }
+  }
+
+  /* Ajuste en pantallas táctiles y celulares */
+  @media (max-width: 767px) {
+    .whatsapp-fab-container {
+      right: 1rem;
+      bottom: max(1rem, calc(0.75rem + env(safe-area-inset-bottom, 0px)));
+    }
+
+    .whatsapp-fab-btn {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    .whatsapp-fab-icon {
+      width: 1.875rem;
+      height: 1.875rem;
+    }
+  }
+</style>

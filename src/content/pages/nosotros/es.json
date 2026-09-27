@@ -1,0 +1,63 @@
+{
+  "seo": {
+    "title": "Sobre Nosotros | Kattya Mejía y KM Business Consulting",
+    "description": "Conoce la historia, valores y trayectoria de Kattya Mejía y KM Business Consulting: más de una década conectando empresas con Asia con integridad, transparencia y rigor técnico."
+  },
+  "hero": {
+    "eyebrow": "NUESTRA HISTORIA & VALORES",
+    "title": "Comercio exterior basado en confianza e integridad.",
+    "lead": "Detrás de cada contenedor que llega al puerto hay un compromiso humano inquebrantable. Ayudamos a empresas a crecer protegiendo su patrimonio en cada etapa de la importación.",
+    "primaryActionLabel": "Conversar con Kattya",
+    "secondaryActionLabel": "Nuestros servicios"
+  },
+  "profileCard": {
+    "badge": "10+ AÑOS DE EXPERIENCIA",
+    "name": "Kattya Mejía",
+    "role": "Fundadora & Directora de Operaciones",
+    "imagePlaceholder": "Aquí va imagen",
+    "imageAlt": "Foto de Kattya Mejía — pendiente",
+    "creds": [
+      "Magíster en Negocios Internacionales",
+      "Especialista en Sourcing & Negociación en China",
+      "Asesora de importadores en Perú y Latinoamérica"
+    ]
+  },
+  "manifiesto": {
+    "tag": "MANIFIESTO DE MARCA",
+    "title": "\"Para mí, lo más importante es ser un buen ser humano y hablar con la verdad.\"",
+    "paragraphs": [
+      "Comencé en el comercio exterior hace más de diez años viendo la frustración constante de empresarios que perdían capital por intermediarios sin escrúpulos: muestras que no coincidían con la producción masiva, recargos inventados en aduanas y fábricas fantasmas que desaparecían tras el anticipo.",
+      "En KM Business Consulting fundamos nuestra práctica sobre una premisa radical: trabajar con transparencia absoluta. Si un proveedor no cumple los estándares de calidad o una ruta no es conveniente para tu presupuesto, te lo decimos de frente. No buscamos cerrar una operación apresurada, sino construir una alianza de largo plazo que proteja tu tranquilidad."
+    ],
+    "whatsappMessage": "Hola Kattya, leí tu manifiesto en la web y me gustaría conversar sobre una importación.",
+    "whatsappLabel": "Escribir a Kattya"
+  },
+  "principios": {
+    "title": "Nuestros cuatro principios innegociables",
+    "lead": "La base de cómo operamos y gestionamos el dinero y las mercancías de nuestros clientes.",
+    "items": [
+      {
+        "title": "1. Integridad y verdad técnica",
+        "description": "Sin falsas promesas de plazos imposibles ni cotizaciones engañosas. Información veraz y contratos formales desde el día uno."
+      },
+      {
+        "title": "2. Control directo en origen",
+        "description": "No triangulamos con terceros desconocidos. Tenemos inspectores propios en China que pisan las plantas y validan los empaques."
+      },
+      {
+        "title": "3. Eficiencia en costos",
+        "description": "Estructuras de costos abiertas (Open-Book) donde conoces con exactitud el valor de fábrica, flete y aranceles."
+      },
+      {
+        "title": "4. Relaciones de por vida",
+        "description": "Nos enorgullece que nuestros clientes crezcan y continúen importando con nosotros año tras año, como socios de negocio."
+      }
+    ]
+  },
+  "contactSection": {
+    "tag": "CONVERSEMOS",
+    "title": "Hablemos de tu próximo contenedor",
+    "lead": "Agenda una sesión de asesoría inicial sin costo para revisar tus objetivos de importación o evaluar la confiabilidad de tus proveedores en Asia.",
+    "whatsappLabel": "Hablar por WhatsApp con Kattya"
+  }
+}

@@ -1,0 +1,174 @@
+/* =========================================================================
+   COMPONENTE · BOTÓN
+   Variantes por custom properties: cada modificador solo cambia variables,
+   nunca reescribe reglas, así no hay choques de especificidad.
+
+   <a class="btn">Get a quote</a>                    primario (relleno celeste, hover celeste oscuro)
+   <a class="btn btn--outline">Get a quote</a>       contorno (navbar, fondos claros): hover solo cambia el fondo
+   <a class="btn btn--inverse">...</a>               sólido blanco, para usar sobre fondo navy
+   <a class="btn btn--outline-inverse">...</a>       contorno blanco sobre fondo navy (footer): hover se invierte a blanco
+   <button class="btn btn--round">…</button>        flecha de slider
+   ========================================================================= */
+.btn {
+  --btn-bg: var(--color-action);
+  --btn-bg-hover: var(--color-action-hover); /* celeste más oscuro, no invertido */
+  --btn-color: var(--color-action-text);
+  --btn-color-hover: var(--btn-color); /* el texto se queda igual */
+  --btn-border: var(--color-action);
+  --btn-border-hover: var(--color-action-hover);
+  --btn-height: 3rem;
+  --btn-pad-x: var(--space-2xl);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: var(--btn-height);
+  padding: var(--space-sm) var(--btn-pad-x);
+  border: var(--border-thin) solid var(--btn-border);
+  border-radius: var(--radius-md);
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-instant) var(--ease-standard);
+}
+
+.btn:hover {
+  background-color: var(--btn-bg-hover);
+  border-color: var(--btn-border-hover);
+  color: var(--btn-color-hover);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ---------- Variantes ---------- */
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-bg-hover: var(--color-bg-hover); /* hover: solo cambia el fondo */
+  --btn-color: var(--color-text);
+  --btn-color-hover: var(--btn-color); /* el texto se queda del mismo color oscuro */
+  --btn-border: var(--color-border);
+  --btn-border-hover: var(--color-border);
+}
+
+.btn--inverse {
+  --btn-bg: var(--white);
+  --btn-bg-hover: var(--blue-50);
+  --btn-color: var(--navy-900);
+  --btn-border: var(--white);
+  --btn-border-hover: var(--blue-50);
+}
+
+.btn--outline-inverse {
+  --btn-bg: transparent;
+  --btn-bg-hover: var(--white); /* hover invertido: fondo blanco... */
+  --btn-color: var(--white);
+  --btn-color-hover: var(--color-text); /* ...y texto oscuro */
+  --btn-border: var(--white);
+  --btn-border-hover: var(--white);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-bg-hover: var(--color-bg-hover);
+  --btn-color: var(--color-text);
+  --btn-border: transparent;
+  --btn-border-hover: transparent;
+}
+
+.btn--whatsapp {
+  --btn-bg: #25d366;
+  --btn-bg-hover: #1ebd5a;
+  --btn-color: var(--white);
+  --btn-color-hover: var(--white);
+  --btn-border: #25d366;
+  --btn-border-hover: #1ebd5a;
+}
+
+/* ---------- Tamaños ---------- */
+.btn--sm {
+  --btn-height: 2.5rem;
+  --btn-pad-x: var(--space-lg);
+  font-size: var(--text-sm);
+}
+
+.btn--lg {
+  --btn-height: 3.5rem;
+  --btn-pad-x: var(--space-3xl);
+}
+
+/* Ancho fijo del hero (17rem en el original) */
+.btn--wide {
+  min-width: min(17rem, 100%);
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+@media (max-width: 479px) {
+  .btn--block-mobile {
+    display: flex;
+    width: 100%;
+  }
+}
+
+/* ---------- Botones de icono ---------- */
+.btn--round,
+.btn--square {
+  --btn-pad-x: 0;
+  width: var(--btn-size, 3.5rem);
+  min-height: 0;
+  height: var(--btn-size, 3.5rem);
+  padding: 0;
+  flex: none;
+}
+
+.btn--round  { border-radius: var(--radius-full); }
+.btn--square { border-radius: var(--radius-md); --btn-size: 3rem; }
+
+/* Botón de flecha estilo "slider" con borde (live stores) */
+.btn--arrow {
+  --btn-bg: var(--color-bg);
+  --btn-bg-hover: var(--color-bg-hover);
+  --btn-color: var(--color-text);
+  --btn-border: var(--color-border);
+  --btn-border-hover: var(--color-border);
+  --btn-size: 3rem;
+  border-radius: var(--radius-none);
+}
+
+.btn__icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+}
+
+@media (max-width: 991px) {
+  .btn { --btn-pad-x: var(--space-xl); }
+}
+
+@media (max-width: 479px) {
+  .btn--round { --btn-size: 2.75rem; }
+}

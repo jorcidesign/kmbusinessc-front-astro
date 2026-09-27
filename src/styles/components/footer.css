@@ -1,0 +1,153 @@
+/* =========================================================================
+   COMPONENTE · FOOTER
+   Navy. Grilla de celdas con reglas slate: 4 columnas de links + 1 doble
+   para newsletter. Fila legal abajo.
+   ========================================================================= */
+.footer {
+  --footer-pad: clamp(1.25rem, 0.6rem + 1.4vw, 2rem);
+  --color-border: var(--navy-900);
+  --rule-hairline: var(--border-hairline) solid var(--navy-900);
+  background-color: var(--blue-500);
+  color: var(--navy-900);
+}
+
+.footer__inner {
+  max-width: var(--container-xl);
+  margin-inline: auto;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 2fr);
+}
+
+.footer__column {
+  display: flex;
+  flex-direction: column;
+  border-left: var(--rule-hairline);
+}
+
+.footer__column:last-child {
+  border-right: var(--rule-hairline);
+}
+
+.footer__heading {
+  padding: var(--space-lg) var(--footer-pad);
+  border-bottom: var(--rule-hairline);
+  font-size: clamp(1.5rem, 1rem + 1.1vw, 2rem);
+  overflow-wrap: normal;
+  font-weight: var(--weight-semibold);
+  line-height: 1.5;
+}
+
+.footer__links {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  row-gap: var(--space-lg);
+  flex: 1;
+  padding: var(--space-3xl) var(--footer-pad);
+  border-bottom: var(--rule-hairline);
+  list-style: none;
+}
+
+.footer__links li + li {
+  margin-top: 0;
+}
+
+.footer__link {
+  color: var(--navy-900);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  opacity: 0.92;
+  overflow-wrap: anywhere; /* el correo (kattya@kmbusinessc.pe) no tiene espacios para partir solo */
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.footer__link:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.footer__newsletter {
+  flex: 1;
+  padding: var(--space-3xl) var(--footer-pad);
+  border-bottom: var(--rule-hairline);
+}
+
+.footer__note {
+  margin-top: var(--space-lg);
+  max-width: 16rem;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--footer-pad);
+  border-inline: var(--rule-hairline);
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2xs) var(--space-xl);
+}
+
+.footer__brand {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.footer__small {
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px) {
+  .footer__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer__column:nth-child(3) { border-right: var(--rule-hairline); }
+
+  /* newsletter ocupa 2 columnas y cierra la grilla */
+  .footer__column--wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__legal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 479px) {
+  .footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer__column:nth-child(3) { border-right: 0; }
+  .footer__column:nth-child(2n) { border-right: var(--rule-hairline); }
+
+  .footer__column--wide {
+    grid-column: 1 / -1;
+  }
+
+  .footer__heading { font-size: var(--text-xl); }
+}

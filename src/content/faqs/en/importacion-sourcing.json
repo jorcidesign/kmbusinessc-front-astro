@@ -1,0 +1,18 @@
+{
+  "orden": 1,
+  "categoria": "Import & Sourcing",
+  "preguntas": [
+    {
+      "pregunta": "How do you make sure the factory in China is real and reliable?",
+      "respuesta": "We carry out a legal, tax, and on-site verification in China. We send our own team to audit production lines, government licenses, machinery, and operating conditions before you make any payment."
+    },
+    {
+      "pregunta": "What kind of products can you handle, and what volumes do you work with?",
+      "respuesta": "We handle everything from industrial machinery, spare parts, equipment, and packaging to textiles and mass consumer goods. We mainly work under FCL (full container load) and scheduled sourcing projects."
+    },
+    {
+      "pregunta": "Can I request physical samples before mass production?",
+      "respuesta": "Yes. We coordinate manufacturing, technical review, and express shipping of samples to your office. We evaluate them together before authorizing mass production."
+    }
+  ]
+}

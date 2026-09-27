@@ -1,0 +1,75 @@
+/* =========================================================================
+   ANIMACIONES · MOVIMIENTO ORQUESTADO
+   Principio: un solo momento coreografiado por página (la entrada del
+   hero) y respuestas a acciones del usuario. Nada de animar cada sección.
+
+   1) Entrada del hero (al cargar):
+      <h1 class="hero__title intro" style="--i:0">
+      <p  class="hero__lead  intro" style="--i:1">
+      <div class="hero__actions intro" style="--i:2">
+
+   2) Reveal por scroll (opcional, usar con moderación):
+      <div data-reveal>…</div>
+      Usa scroll-driven animations nativas. Donde no hay soporte, el
+      contenido simplemente se muestra (sin JS obligatorio).
+   ========================================================================= */
+
+/* ---------- 1. Intro del hero ---------- */
+.intro {
+  animation: fade-up var(--duration-slower) var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 120ms + 100ms);
+}
+
+/* Titular con máscara: el texto sube dentro de su caja */
+.intro-clip {
+  display: block;
+  overflow: hidden;
+}
+
+.intro-clip > span {
+  display: inline-block;
+  animation: rise-clip var(--duration-slower) var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 120ms + 100ms);
+}
+
+/* Líneas decorativas que se dibujan una sola vez */
+.decor-line--draw {
+  animation: draw-x 1.2s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 150ms + 300ms);
+}
+
+/* ---------- 2. Reveal por scroll ---------- */
+@supports (animation-timeline: view()) {
+  [data-reveal] {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  [data-reveal="fade"] {
+    animation-name: fade-in;
+  }
+}
+
+/* ---------- 3. Transiciones utilitarias ---------- */
+.transition-colors {
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-standard);
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--ease-out);
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .intro-clip > span,
+  .decor-line--draw,
+  [data-reveal] {
+    animation: none !important;
+  }
+}

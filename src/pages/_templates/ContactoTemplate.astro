@@ -1,0 +1,188 @@
+---
+// src/pages/_templates/ContactoTemplate.astro
+// Ver HomeTemplate.astro para la explicación del patrón _templates/.
+import { getEntry } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ContactForm from '@molecules/ContactForm/ContactForm.astro';
+import WhatsAppButton from '@atoms/WhatsAppButton/WhatsAppButton.astro';
+import Accordion from '@molecules/Accordion/Accordion.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+
+interface Props {
+  locale: 'es' | 'en';
+}
+
+const { locale } = Astro.props;
+
+const pageEntry = await getEntry('pageContacto', locale);
+if (!pageEntry) throw new Error(`Falta src/content/pages/contacto/${locale}.json`);
+const page = pageEntry.data;
+
+const uiEntry = await getEntry('ui', locale);
+if (!uiEntry) throw new Error(`Falta src/content/ui/${locale}.json`);
+const ui = uiEntry.data;
+const contactForm = ui.contactForm;
+
+const email = 'kattya@kmbusinessc.pe';
+const phone = '+51 945 832 446';
+const phoneHref = 'tel:+51945832446';
+---
+
+<BaseLayout title={page.seo.title} description={page.seo.description} locale={locale}>
+  <!-- CANALES DIRECTOS EN CABECERA -->
+  <section class="section section--ruled section--framed section--sm">
+    <div class="container gutter">
+      <div class="section-header">
+        <span class="tag tag--navy mb-sm">{page.header.tag}</span>
+        <h1 class="section-header__title">{page.header.title}</h1>
+        <p class="section-header__lead">
+          {page.header.lead}
+        </p>
+      </div>
+
+      <div class="ruled-grid ruled-grid--3 mt-2xl">
+        <div class="contact-channel">
+          <span class="channel-tag">{page.channels.whatsapp.tag}</span>
+          <a href={phoneHref} class="channel-title" style="text-decoration:none; display:block;">{phone}</a>
+          <p class="channel-desc">{page.channels.whatsapp.description}</p>
+          <div class="mt-md">
+            <WhatsAppButton location="contact_page_top" message={page.channels.whatsapp.whatsappMessage}>
+              {page.channels.whatsapp.buttonLabel}
+            </WhatsAppButton>
+          </div>
+        </div>
+
+        <div class="contact-channel">
+          <span class="channel-tag">{page.channels.email.tag}</span>
+          <h3 class="channel-title">{email}</h3>
+          <p class="channel-desc">{page.channels.email.description}</p>
+          <div class="mt-md">
+            <a class="btn btn--outline btn--sm" href={`mailto:${email}`}>{page.channels.email.buttonLabel}</a>
+          </div>
+        </div>
+
+        <div class="contact-channel">
+          <span class="channel-tag">{page.channels.office.tag}</span>
+          <h3 class="channel-title">{page.channels.office.title}</h3>
+          <p class="channel-desc">{page.channels.office.description}</p>
+          <div class="mt-md">
+            <span class="text-xs text-color-muted">{page.channels.office.hours}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO PRINCIPAL DE COTIZACIÓN -->
+  <section class="section--subtle section--ruled" id="formulario">
+    <div class="container">
+      <div class="contact">
+        <div class="contact__heading">
+          <span class="tag tag--navy mb-sm">{page.form.tag}</span>
+          <h2 class="contact__title">{page.form.title}</h2>
+          <p class="contact__lead">
+            {page.form.lead}
+          </p>
+          <div class="contact__trust-points mt-2xl">
+            {page.form.trustPoints.map((point) => (
+              <div class="trust-point">
+                <Icon name="check" size="xs" class="trust-icon" />
+                <span>{point}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="contact__divider" aria-hidden="true"></div>
+
+        <ContactForm
+          labelNombre={contactForm.labels.nombre}
+          labelWhatsapp={contactForm.labels.whatsapp}
+          labelProducto={contactForm.labels.producto}
+          labelCantidad={contactForm.labels.cantidad}
+          labelMensaje={contactForm.labels.mensaje}
+          labelHoneypot={contactForm.labels.honeypot}
+          placeholderNombre={contactForm.placeholders.nombre}
+          placeholderWhatsapp={contactForm.placeholders.whatsapp}
+          placeholderProducto={contactForm.placeholders.producto}
+          placeholderCantidad={contactForm.placeholders.cantidad}
+          placeholderMensaje={contactForm.placeholders.mensaje}
+          submitLabel={contactForm.submitLabel}
+          sendingLabel={contactForm.sendingLabel}
+          validationError={contactForm.validationError}
+          successMessage={contactForm.successMessage}
+          errorMessage={contactForm.errorMessage}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS DE CONTACTO -->
+  <section class="section section--ruled section--framed">
+    <div class="container gutter">
+      <div class="section-header section-header--spaced">
+        <h2 class="section-header__title">{page.faqHeader.title}</h2>
+        <p class="section-header__lead">
+          {page.faqHeader.lead}
+        </p>
+      </div>
+
+      <div class="max-w-prose mt-xl" style="margin-inline: auto;">
+        {page.faqs.map((faq, idx) => (
+          <Accordion title={faq.question} open={idx === 0}>
+            <p>
+              {faq.answer}
+            </p>
+          </Accordion>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-channel {
+    display: flex;
+    flex-direction: column;
+    padding: var(--cell-pad);
+    background-color: var(--color-surface);
+  }
+  .channel-tag {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-xs);
+  }
+  .channel-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+  }
+  .channel-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+  .contact__trust-points {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: left;
+    max-width: 24rem;
+    margin-inline: auto;
+  }
+  .trust-point {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+  .trust-icon {
+    color: var(--color-decor-1);
+    flex-shrink: 0;
+  }
+</style>

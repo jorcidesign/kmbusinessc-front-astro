@@ -1,0 +1,44 @@
+---
+// src/components/molecules/ProcessStep/ProcessStep.astro
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  paso: CollectionEntry<'proceso'>['data'];
+  index: number;
+}
+const { paso, index } = Astro.props;
+---
+
+<div class="m-process-step" data-reveal>
+  <span class="m-process-step__number">{index + 1}</span>
+  <p class="m-process-step__label">{paso.paso}</p>
+</div>
+
+<style>
+  .m-process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: var(--border-thin);
+  }
+  .m-process-step__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--c-accent);
+    color: var(--c-white);
+    font-weight: var(--fw-bold);
+  }
+  .m-process-step__label {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--c-text-soft);
+  }
+</style>

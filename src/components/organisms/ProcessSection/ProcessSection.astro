@@ -1,0 +1,51 @@
+---
+// src/components/organisms/ProcessSection/ProcessSection.astro
+import { getCollection } from 'astro:content';
+import ProcessStep from '@molecules/ProcessStep/ProcessStep.astro';
+
+const proceso = (await getCollection('proceso')).sort(
+  (a, b) => a.data.orden - b.data.orden
+);
+---
+
+<section id="proceso" class="o-process">
+  <div class="o-process__inner">
+    <h2 class="o-process__title" data-reveal>
+      Proceso simple. <span class="o-process__title-accent">Resultados sólidos.</span>
+    </h2>
+    <div class="o-process__grid">
+      {proceso.map((entry, i) => (
+        <ProcessStep paso={entry.data} index={i} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .o-process__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--section-y-mobile) var(--gutter-mobile);
+    text-align: center;
+  }
+  .o-process__title {
+    font-size: var(--text-h2);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-10);
+  }
+  .o-process__title-accent { color: var(--c-accent); }
+  .o-process__grid {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  @media (min-width: 48em) {
+    .o-process__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 64em) {
+    .o-process__inner { padding: var(--section-y-desktop) var(--gutter-desktop); }
+    .o-process__grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>

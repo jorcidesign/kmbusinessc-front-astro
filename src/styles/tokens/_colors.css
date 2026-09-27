@@ -1,0 +1,41 @@
+/* ============================================================
+   TOKENS — COLORS
+   ⚠️ PLACEHOLDER — estos valores son puente, no la paleta final.
+   Vienen del azul que ya usaba kmbusinessc.pe en Wix (#189cdc),
+   para no bloquear el desarrollo mientras el diseñador entrega
+   la identidad definitiva (ver PROJECT_CONTEXT.md).
+   Cuando llegue la paleta real: se edita SOLO este archivo.
+   Ningún componente debe tener un color hardcodeado fuera de aquí.
+   ============================================================ */
+
+:root {
+    /* ── Fondos ──────────────────────────────────────────────── */
+    --c-bg: #ffffff;
+    --c-bg-raised: #f8f9fa;       /* tarjetas, paneles */
+    --c-bg-subtle: #e9ecef;       /* bordes, separadores */
+
+    /* ── Texto ───────────────────────────────────────────────── */
+    --c-text: #1a1a1a;
+    --c-text-soft: #383838;
+    --c-text-muted: #5b6770;
+
+    /* ── Acento (azul heredado del sitio actual) ────────────── */
+    --c-accent: #189cdc;
+    --c-accent-light: #4db4e6;
+    --c-accent-dark: #0f6f9e;
+
+    /* ── Utilidades ──────────────────────────────────────────── */
+    --c-success: #1f6b3a;
+    --c-error: #a61e2e;
+    --c-white: #ffffff;
+    --c-black: #000000;
+
+    /* ── Bordes ──────────────────────────────────────────────── */
+    --border-thin: 1px solid var(--c-bg-subtle);
+    --border-light: 1px solid rgba(0, 0, 0, 0.08);
+
+    /* ── Sombras (discretas: esto es B2B, no editorial) ───────── */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.10);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.14);
+}

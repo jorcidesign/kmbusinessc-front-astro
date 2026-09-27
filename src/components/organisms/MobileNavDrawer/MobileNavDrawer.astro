@@ -1,0 +1,48 @@
+---
+// src/components/organisms/MobileNavDrawer/MobileNavDrawer.astro
+//
+// Cuerpo full-screen del menú mobile. Header.astro sigue dueño del
+// logo/LocaleSwitcher/botón toggle (la fila superior ya existente se
+// recolorea a celeste vía navbar.css) — este organismo solo pinta el
+// resto de la pantalla con los links grandes + el CTA. Visibilidad
+// 100% CSS: reacciona a [data-open] en #navbar (mismo estado que ya
+// gobierna Header.astro), sin script propio.
+interface NavItem {
+  href: string;
+  label: string;
+  exact: boolean;
+}
+
+interface Props {
+  navItems: NavItem[];
+  ctaLabel: string;
+  ctaHref: string;
+  navAriaLabel: string;
+}
+
+const { navItems, ctaLabel, ctaHref, navAriaLabel } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="o-mobile-nav-drawer" id="mobile-nav-drawer" aria-label={navAriaLabel}>
+  <ul class="o-mobile-nav-drawer__list">
+    {navItems.map((item) => {
+      const isActive = item.exact ? currentPath === item.href : currentPath.startsWith(item.href);
+      return (
+        <li>
+          <a
+            class="o-mobile-nav-drawer__link"
+            href={item.href}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+  <a class="btn btn--inverse btn--block btn--lg o-mobile-nav-drawer__cta" href={ctaHref}>
+    {ctaLabel}
+  </a>
+</nav>

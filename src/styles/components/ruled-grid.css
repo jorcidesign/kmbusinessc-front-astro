@@ -1,0 +1,115 @@
+/* =========================================================================
+   COMPONENTE · RULED GRID + FEATURE
+   La pieza más reconocible del sitio: celdas separadas por reglas finas,
+   sin gap. Funciona con cualquier cantidad de columnas y envuelve bien
+   porque cada celda dibuja solo sus bordes derecho e inferior.
+
+   <div class="ruled-grid ruled-grid--4">
+     <article class="feature">…</article>
+   </div>
+   ========================================================================= */
+.ruled-grid {
+  --ruled-cols: 4;
+  display: grid;
+  grid-template-columns: repeat(var(--ruled-cols), minmax(0, 1fr));
+  border-top: var(--rule-hairline);
+  border-left: var(--rule-hairline);
+}
+
+.ruled-grid > * {
+  border-right: var(--rule-hairline);
+  border-bottom: var(--rule-hairline);
+  padding: var(--cell-pad);
+}
+
+.ruled-grid--2 { --ruled-cols: 2; }
+.ruled-grid--3 { --ruled-cols: 3; }
+.ruled-grid--4 { --ruled-cols: 4; }
+.ruled-grid--5 { --ruled-cols: 5; }
+
+.ruled-grid--no-top  { border-top: 0; }
+.ruled-grid--no-left { border-left: 0; }
+
+/* Celdas blancas sobre sección de color */
+.ruled-grid--surface > * {
+  background-color: var(--color-surface);
+}
+
+@media (max-width: 991px) {
+  .ruled-grid--3,
+  .ruled-grid--4,
+  .ruled-grid--5 { --ruled-cols: 2; }
+}
+
+@media (max-width: 479px) {
+  .ruled-grid--2,
+  .ruled-grid--3,
+  .ruled-grid--4,
+  .ruled-grid--5 { --ruled-cols: 1; }
+}
+
+/* ---------- Feature (contenido de celda) ---------- */
+.feature {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--feature-min-height, 20rem);
+}
+
+.feature__icon-wrapper {
+  display: inline-flex;
+}
+
+.feature__title {
+  margin-top: clamp(var(--space-xl), 1.5rem + 2vw, var(--space-4xl));
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  max-width: var(--measure-narrow);
+}
+
+.feature__text {
+  margin-top: var(--space-xs);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+  max-width: var(--measure-narrow);
+}
+
+/* Título en negrita (No hassles / merch smarter) */
+.feature--strong .feature__title {
+  font-weight: var(--weight-semibold);
+}
+
+/* Compacto: icono chico, menos altura */
+.feature--compact {
+  --feature-min-height: 12rem;
+}
+
+.feature--compact .feature__title {
+  margin-top: auto;
+  padding-top: var(--space-xl);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+/* Centrado: ilustración grande arriba, etiqueta abajo */
+.feature--center {
+  align-items: center;
+  text-align: center;
+}
+
+.feature--center .feature__title {
+  margin-top: auto;
+  font-weight: var(--weight-semibold);
+}
+
+@media (max-width: 767px) {
+  .feature { --feature-min-height: 15rem; }
+}
+
+/* Stagger del loop de FeatureIcon para que las tarjetas de una misma
+   grilla no respiren en sincronía mecánica. */
+.ruled-grid > *:nth-child(4n+1) .a-feature-icon__accent { animation-delay: 0ms; }
+.ruled-grid > *:nth-child(4n+2) .a-feature-icon__accent { animation-delay: 150ms; }
+.ruled-grid > *:nth-child(4n+3) .a-feature-icon__accent { animation-delay: 300ms; }
+.ruled-grid > *:nth-child(4n+4) .a-feature-icon__accent { animation-delay: 450ms; }

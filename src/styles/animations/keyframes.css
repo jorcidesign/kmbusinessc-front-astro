@@ -1,0 +1,44 @@
+/* =========================================================================
+   ANIMACIONES · KEYFRAMES
+   ========================================================================= */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(var(--reveal-distance)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Titular que emerge desde su propia línea base (como el original) */
+@keyframes rise-clip {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Línea decorativa que se dibuja */
+@keyframes draw-x {
+  from { transform: rotate(var(--angle, -35deg)) scaleX(0); }
+  to   { transform: rotate(var(--angle, -35deg)) scaleX(1); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Respiración ambiental del detalle de acento en FeatureIcon */
+@keyframes feature-icon-pulse {
+  0%, 100% { transform: scale(1);    opacity: 1;    }
+  50%      { transform: scale(1.06); opacity: 0.85; }
+}

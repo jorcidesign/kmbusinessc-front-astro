@@ -1,0 +1,109 @@
+/* =========================================================================
+   TOKENS · COLOR
+   Dos niveles:
+   1) Primitivos  → la paleta cruda (no usar directo en componentes).
+   2) Semánticos  → el rol de cada color. Los componentes SOLO usan estos.
+
+   Navy profundo + celeste de marca (el celeste es la tonalidad exacta
+   que eligió Kattya, `#3fb3e4`; el resto de la paleta —navy, grises,
+   acentos decorativos— es la identidad original del sitio). El celeste
+   reemplaza al azul placeholder anterior en toda la familia --blue-*
+   vía color-mix(), pero el navy/gris de siempre se queda igual: es lo
+   que le da profundidad, no negro ni gris plano.
+   ========================================================================= */
+:root {
+  /* ---------- Primitivos: Navy (marca) ---------- */
+  --navy-950: #03032b;
+  --navy-900: #060640;   /* color de marca: texto, bordes, botones, footer */
+  --navy-800: #10106a;
+  --navy-700: #1a1a7f;   /* hover de acciones */
+  --navy-500: #3d3daa;
+
+  /* ---------- Primitivos: Celeste de marca (Kattya) + su rango de tono ---------- */
+  --blue-700: color-mix(in srgb, #3fb3e4 65%, black);
+  --blue-600: color-mix(in srgb, #3fb3e4 85%, black);
+  --blue-500: #3fb3e4;
+  --blue-300: color-mix(in srgb, #3fb3e4 45%, white);
+  --blue-100: color-mix(in srgb, #3fb3e4 20%, white);
+  --blue-50:  color-mix(in srgb, #3fb3e4 6%, white);   /* "alice blue": fondo de secciones alternas */
+
+  /* ---------- Primitivos: Neutros ---------- */
+  --white:     #ffffff;
+  --gray-50:   #f9f9f9;
+  --gray-100:  #f5f5f5;
+  --gray-300:  #d3d3d3;
+  --gray-500:  #8a8a8a;   /* placeholders */
+  --slate-500: #82829f;   /* bordes sobre fondo oscuro */
+  --slate-300: #b9b9cf;
+  --lavender-100: #e6e6ff;
+  --black:     #000000;
+
+  /* ---------- Primitivos: Acentos (iconos y líneas decorativas) ---------- */
+  --magenta-700: #970a52; /* cajas destacadas en ilustraciones */
+  --coral-500:   #ff4747; /* línea decorativa roja */
+  --mint-400:    #1fe0a0; /* línea decorativa verde */
+  --amber-300:   #fcc865; /* línea decorativa amarilla */
+  --sky-400:     #5a9df5; /* iconografía */
+
+  /* ---------- Semánticos: Texto ---------- */
+  --color-text:             var(--navy-900);
+  --color-text-muted:       rgb(from var(--navy-900) r g b / 0.72);
+  --color-text-subtle:      var(--slate-500);
+  --color-text-placeholder: var(--gray-500);
+  --color-text-inverse:     var(--blue-50);
+  --color-text-on-action:   var(--white);
+
+  /* ---------- Semánticos: Superficies ---------- */
+  --color-bg:          var(--white);
+  --color-bg-subtle:   var(--blue-50);
+  --color-bg-inverse:  var(--navy-900);
+  --color-bg-hover:    var(--blue-50);
+  --color-surface:     var(--white);
+  --color-overlay:     rgb(255 255 255 / 0.85);
+  --color-scrim:       rgb(from var(--navy-950) r g b / 0.55);
+
+  /* ---------- Semánticos: Bordes ---------- */
+  --color-border:          var(--navy-900);
+  --color-border-inverse:  var(--slate-500);
+  --color-border-subtle:   rgb(from var(--navy-900) r g b / 0.15);
+
+  /* ---------- Semánticos: Acciones ---------- */
+  --color-action:        var(--blue-500);
+  --color-action-hover:  var(--blue-600);
+  --color-action-active: var(--blue-700);
+  --color-action-text:   var(--color-text-on-action);
+
+  /* ---------- Semánticos: Estados ---------- */
+  --color-focus:        var(--blue-500);
+  --color-danger:       #d93025;
+  --color-danger-bg:    #ffdede;
+  --color-success:      #0f9d6e;
+  --color-success-bg:   #dff8ef;
+  --color-warning:      #f2cd75;
+
+  /* ---------- Semánticos: Decoración ---------- */
+  --color-decor-1: var(--mint-400);
+  --color-decor-2: var(--amber-300);
+  --color-decor-3: var(--coral-500);
+  --color-decor-4: var(--sky-400);
+
+  /* ---------- Semánticos: Marca (usos fijos, no siguen a --color-action) ---------- */
+  --color-brand-accent: var(--blue-500); /* isotipo del logo, variante "color" */
+
+  /* ---------- Semánticos: Ilustraciones (paleta de las isométricas) ---------- */
+  --illu-ink:    var(--blue-700);
+  --illu-mid:    var(--blue-600);
+  --illu-accent: var(--blue-500);
+  --illu-tint:   var(--blue-300);
+  --illu-pale:   var(--blue-50);
+  --illu-paper:  var(--white);
+  --illu-danger:      var(--color-danger);
+  --illu-danger-soft: color-mix(in srgb, var(--color-danger) 45%, white);
+  --illu-success:      var(--color-success);
+  --illu-success-soft: color-mix(in srgb, var(--color-success) 45%, white);
+  --illu-warning: var(--color-warning);
+
+  /* Selección de texto */
+  --color-selection-bg:   var(--navy-900);
+  --color-selection-text: var(--blue-50);
+}

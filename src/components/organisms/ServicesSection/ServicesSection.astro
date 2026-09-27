@@ -1,0 +1,62 @@
+---
+// src/components/organisms/ServicesSection/ServicesSection.astro
+import { getCollection } from 'astro:content';
+import ServiceCard from '@molecules/ServiceCard/ServiceCard.astro';
+
+const servicios = (await getCollection('servicios')).sort(
+  (a, b) => a.data.orden - b.data.orden
+);
+---
+
+<section id="servicios" class="o-services">
+  <div class="o-services__inner">
+    <h2 class="o-services__title" data-reveal>
+      Más que proveedores, <span class="o-services__title-accent">somos aliados estratégicos</span>
+    </h2>
+    {/* Cita real del brief de marca (23 sep) — no es copy inventado */}
+    <p class="o-services__subtitle" data-reveal>
+      No buscamos concretar una operación, sino construir relaciones
+      de confianza a largo plazo.
+    </p>
+    <div class="o-services__grid">
+      {servicios.map((entry, i) => (
+        <ServiceCard servicio={entry.data} index={i} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .o-services__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--section-y-mobile) var(--gutter-mobile);
+  }
+  .o-services__title {
+    font-size: var(--text-h2);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-10);
+    max-width: 30ch;
+  }
+  .o-services__title-accent { color: var(--c-accent); }
+  .o-services__subtitle {
+    font-size: var(--text-body-lg);
+    color: var(--c-text-muted);
+    max-width: 48ch;
+    margin-top: calc(var(--space-10) * -0.6);
+    margin-bottom: var(--space-8);
+  }
+  .o-services__grid {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: 1fr;
+  }
+
+  /* 4 tarjetas: 2x2 se lee mejor que 3+1 suelta */
+  @media (min-width: 48em) {
+    .o-services__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 64em) {
+    .o-services__inner { padding: var(--section-y-desktop) var(--gutter-desktop); }
+  }
+</style>

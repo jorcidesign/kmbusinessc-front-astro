@@ -1,0 +1,94 @@
+/* =========================================================================
+   COMPONENTE · DECORACIÓN
+   Líneas diagonales gruesas de color (verde, ámbar, coral) que cruzan las
+   secciones por detrás del contenido, como rutas de un mapa logístico.
+   Se posicionan con custom properties por instancia:
+
+   <span class="decor-line decor-line--mint"
+         style="--x: 30%; --y: 0%; --angle: -35deg; --length: 40rem"></span>
+   ========================================================================= */
+.decor {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.decor-line {
+  position: absolute;
+  top: var(--y, 0);
+  left: var(--x, 0);
+  width: var(--length, 40rem);
+  height: var(--thickness, 1.25rem);
+  background-color: var(--line-color, var(--color-decor-1));
+  border-radius: var(--radius-full);
+  transform: rotate(var(--angle, -35deg));
+  transform-origin: left center;
+}
+
+.decor-line--mint  { --line-color: var(--color-decor-1); }
+.decor-line--amber { --line-color: var(--color-decor-2); }
+.decor-line--coral { --line-color: var(--color-decor-3); }
+.decor-line--sky   { --line-color: var(--color-decor-4); }
+
+@media (max-width: 767px) {
+  .decor-line { --thickness: 0.875rem; }
+}
+
+/* ---------- Campo de líneas en zigzag (tonos celeste) ----------
+   Reemplaza el patrón de 3 líneas sueltas en secciones "manifiesto"
+   (home + nosotros): hasta 5 líneas gruesas (mismo grosor que
+   .decor-line, 1.25rem), en tonos celeste, repartidas por TODO el
+   ancho de la sección con ángulo alterno (+/-) para el efecto zigzag.
+   Cada línea vive en su propio .decor-field__line-wrap (posicionado
+   con --x/--y) para que src/lib/decorParallax.ts pueda animarle un
+   translateY sin pisar el rotate() de la línea interna. */
+.decor-field {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.decor-field__line-wrap {
+  position: absolute;
+  top: var(--y, 0);
+  left: var(--x, 0);
+  will-change: transform;
+}
+
+.decor-field__line {
+  display: block;
+  width: var(--length, 30rem);
+  height: var(--thickness, 1.25rem);
+  border-radius: var(--radius-full);
+  transform: rotate(var(--angle, -28deg));
+  transform-origin: left center;
+}
+
+.decor-field__line--1 { background-color: var(--blue-500); }
+.decor-field__line--2 { background-color: var(--sky-400); }
+.decor-field__line--3 { background-color: var(--blue-300); }
+
+@media (max-width: 767px) {
+  .decor-field__line { --thickness: 0.875rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decor-field__line-wrap {
+    will-change: auto;
+  }
+}
+
+/* Imagen o SVG decorativo a sangre de fondo */
+.decor-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: var(--z-base);
+}

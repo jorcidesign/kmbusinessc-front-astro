@@ -1,0 +1,33 @@
+---
+// src/components/organisms/Marquee/Marquee.astro
+interface Props {
+  text?: string;
+  items?: string[];
+  class?: string;
+}
+
+const {
+  text = 'KM BUSINESS CONSULTING',
+  items,
+  class: className = '',
+} = Astro.props;
+
+const list = items || [text, text, text, text];
+---
+
+<div class={`marquee ${className}`} aria-label={text}>
+  <div class="marquee__track">
+    {list.map((item, index) => (
+      <span class={`marquee__item ${index % 2 === 0 ? 'marquee__item--outline' : ''}`}>
+        {item}
+      </span>
+    ))}
+  </div>
+  <div class="marquee__track" aria-hidden="true">
+    {list.map((item, index) => (
+      <span class={`marquee__item ${index % 2 === 0 ? 'marquee__item--outline' : ''}`}>
+        {item}
+      </span>
+    ))}
+  </div>
+</div>

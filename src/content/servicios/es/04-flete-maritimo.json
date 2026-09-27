@@ -1,0 +1,58 @@
+{
+  "orden": 4,
+  "titulo": "Flete marítimo FCL",
+  "subtitulo": "Transporte marítimo internacional por contenedor completo desde puertos clave de Asia.",
+  "badge": "FCL & Consolidación",
+  "descripcion": "Gestionamos el transporte marítimo por contenedor completo desde Asia hacia Latinoamérica.",
+  "queHacemos": [
+    "Reserva de espacio y tarifas competitivas con las principales navieras globales",
+    "Coordinación de retiro de contenedor vacío y posicionamiento en fábrica",
+    "Tramitación de Bill of Lading (B/L) y documentación de exportación en origen",
+    "Seguimiento satelital y monitoreo de itinerario de buques hacia puertos de destino",
+    "Despacho aduanero y enlace directo con depósitos temporales en Callao y la región"
+  ],
+  "beneficios": [
+    {
+      "titulo": "Espacios garantizados",
+      "descripcion": "Contratos directos con navieras para asegurar cupo incluso en temporadas altas."
+    },
+    {
+      "titulo": "Tarifas All-In transparentes",
+      "descripcion": "Sin cobros ocultos de gastos locales ni sorpresas en puerto de llegada."
+    },
+    {
+      "titulo": "Optimización de tiempos",
+      "descripcion": "Rutas directas y coordinación anticipada para evitar días de sobrestadía."
+    },
+    {
+      "titulo": "Asesoría aduanera experta",
+      "descripcion": "Alineación arancelaria para aprovechar los beneficios de tratados comerciales (TLC Perú-China)."
+    }
+  ],
+  "etapas": [
+    {
+      "paso": "1. Booking naviero",
+      "detalle": "Asignación de equipo y confirmación de zarpe desde puertos de origen."
+    },
+    {
+      "paso": "2. Consolidación y carga",
+      "detalle": "Ingreso a puerto, inspección aduanera de exportación y estiba."
+    },
+    {
+      "paso": "3. Navegación en tránsito",
+      "detalle": "Monitoreo de travesía marítima por el Pacífico."
+    },
+    {
+      "paso": "4. Arribo y desaduanaje",
+      "detalle": "Tarja, desconsolidación o retiro de contenedor lleno para entrega."
+    }
+  ],
+  "specs": {
+    "Puertos de salida": "Shanghai, Ningbo, Shenzhen, Guangzhou, Qingdao, Yantian",
+    "Puertos de destino": "Callao, Paita (Perú), Guayaquil, San Antonio, Buenaventura",
+    "Tiempos de tránsito": "Aprox. 28 a 35 días según servicio naviero directo o transbordo",
+    "Tipos de contenedor": "20' Standard, 40' High Cube, Reefer, Open Top"
+  },
+  "pendiente": "CONFIRMAR CON KATTYA: carga consolidada/LCL y plazos específicos.",
+  "icono": "ship"
+}

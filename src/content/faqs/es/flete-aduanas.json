@@ -1,0 +1,18 @@
+{
+  "orden": 2,
+  "categoria": "Flete & Aduanas",
+  "preguntas": [
+    {
+      "pregunta": "¿Se encargan del desaduanamiento y los impuestos en destino?",
+      "respuesta": "Sí. Ofrecemos gestión integral coordinando con agentes aduaneros en destino (Callao y Latinoamérica), asegurando la correcta clasificación arancelaria para aprovechar los beneficios del TLC Perú-China y evitar multas o sobrecostos."
+    },
+    {
+      "pregunta": "¿Cómo se manejan los tiempos y el seguimiento de la carga?",
+      "respuesta": "Desde el zarpe en el puerto de origen (Shanghai, Ningbo, Shenzhen) hasta el arribo en destino (habitualmente entre 28 y 35 días de tránsito marítimo), te brindamos reportes periódicos de posición y estado documental."
+    },
+    {
+      "pregunta": "¿Cómo empezamos a trabajar?",
+      "respuesta": "Solo completa el formulario de contacto o escríbenos directamente por WhatsApp. Revisamos las especificaciones de tu producto y en 48 horas te presentamos una propuesta de trabajo clara y sin compromisos."
+    }
+  ]
+}

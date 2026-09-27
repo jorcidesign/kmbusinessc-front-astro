@@ -1,0 +1,54 @@
+---
+// src/components/organisms/Hero/Hero.astro
+import Button from '@atoms/Button/Button.astro';
+
+interface Props {
+  variant?: 'center' | 'split';
+  title: string;
+  lead?: string;
+  eyebrow?: string;
+  primaryAction?: { label: string; href: string };
+  secondaryAction?: { label: string; href: string };
+  class?: string;
+}
+
+const {
+  variant = 'center',
+  title,
+  lead,
+  eyebrow,
+  primaryAction,
+  secondaryAction,
+  class: className = '',
+} = Astro.props;
+
+const isCenter = variant === 'center';
+---
+
+<section class={`hero hero--${variant} ${className}`}>
+  <div class="hero__content">
+    {eyebrow && <span class="tag tag--navy mb-md intro" style="--i:0">{eyebrow}</span>}
+    <h1 class="hero__title intro" style="--i:1">{title}</h1>
+    {lead && <p class="hero__lead intro" style="--i:2">{lead}</p>}
+    
+    {(primaryAction || secondaryAction) && (
+      <div class="hero__actions intro" style="--i:3">
+        {primaryAction && (
+          <Button href={primaryAction.href} size={isCenter ? 'wide' : 'md'}>
+            {primaryAction.label}
+          </Button>
+        )}
+        {secondaryAction && (
+          <Button href={secondaryAction.href} variant="outline" size={isCenter ? 'wide' : 'md'}>
+            {secondaryAction.label}
+          </Button>
+        )}
+      </div>
+    )}
+    <slot name="content-bottom" />
+  </div>
+
+  <div class="hero__media">
+    <slot name="media" />
+  </div>
+</section>

@@ -1,0 +1,56 @@
+/* =========================================================================
+   COMPONENTE · VIDEO
+   Marco con regla y radio; botón de play circular blanco al centro.
+   ========================================================================= */
+.video {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--video-ratio, 16 / 9);
+  overflow: hidden;
+  background-color: var(--color-bg-inverse);
+  border: var(--rule);
+  border-radius: var(--video-radius, var(--radius-md));
+}
+
+.video--square { --video-radius: 0; }
+
+.video img,
+.video video,
+.video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+.video__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: var(--z-content);
+  display: grid;
+  place-items: center;
+  width: clamp(4.5rem, 3.5rem + 4vw, 7.5rem);
+  aspect-ratio: 1;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  transform: translate(-50%, -50%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.video__play svg {
+  width: 30%;
+  height: 30%;
+  margin-left: 8%;
+}
+
+.video:hover .video__play,
+.video__play:focus-visible {
+  transform: translate(-50%, -50%) scale(1.06);
+}

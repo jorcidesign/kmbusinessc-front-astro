@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "title": "Contacto y Cotización | KM Business Consulting",
+    "description": "Inicia tu cotización de importación, flete marítimo o inspección de proveedores en China. Respuesta en menos de 24 horas laborables."
+  },
+  "header": {
+    "tag": "CANALES DIRECTOS",
+    "title": "Empecemos tu próxima importación",
+    "lead": "Pide una cotización formal, agenda una videollamada o contáctanos de inmediato por WhatsApp."
+  },
+  "channels": {
+    "whatsapp": {
+      "tag": "WHATSAPP DIRECTO",
+      "description": "Respuesta inmediata en horario comercial para consultas rápidas.",
+      "whatsappMessage": "Hola Kattya, deseo solicitar información sobre una importación.",
+      "buttonLabel": "Abrir WhatsApp"
+    },
+    "email": {
+      "tag": "CORREO ELECTRÓNICO",
+      "description": "Envíanos tus fichas técnicas, packing lists o solicitudes de cotización.",
+      "buttonLabel": "Escribir correo"
+    },
+    "office": {
+      "tag": "OFICINAS Y OPERACIONES",
+      "title": "Lima · China",
+      "description": "Coordinación comercial en Lima y presencia operativa directa en clusters de China.",
+      "hours": "Atención de Lunes a Viernes 8:30 - 18:00"
+    }
+  },
+  "form": {
+    "tag": "FORMULARIO TÉCNICO",
+    "title": "Detalles de tu requerimiento",
+    "lead": "Completa la información esencial. Evaluamos la viabilidad, verificamos requisitos aduaneros y te enviamos una estimación en 24 a 48 horas.",
+    "trustPoints": [
+      "Trato confidencial y protección de datos comerciales",
+      "Sin comisiones ocultas ni cobros fantasma",
+      "Respuesta técnica guiada por Kattya Mejía"
+    ]
+  },
+  "faqHeader": {
+    "title": "¿Qué pasa después de enviar el formulario?",
+    "lead": "Conoce cómo procesamos tu consulta desde el primer minuto."
+  },
+  "faqs": [
+    {
+      "question": "1. Confirmación inmediata y revisión técnica",
+      "answer": "Revisamos la partida arancelaria, especificaciones y volumen solicitado. Si se requiere mayor precisión técnica, Kattya te contactará directamente por WhatsApp o llamada."
+    },
+    {
+      "question": "2. Búsqueda preliminar o cotización naviera",
+      "answer": "Consultamos con nuestras oficinas en China y navieras aliadas para obtener las tarifas más competitivas y actualizadas del mercado según la temporada."
+    },
+    {
+      "question": "3. Presentación de propuesta y plan de embarque",
+      "answer": "Te presentamos una cotización detallada con estructura de costos abierta, plazos estimados de fabricación y tránsito, e hitos de control."
+    }
+  ]
+}

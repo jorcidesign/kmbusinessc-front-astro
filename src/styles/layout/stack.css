@@ -1,0 +1,62 @@
+/* =========================================================================
+   LAYOUT · PRIMITIVAS DE COMPOSICIÓN
+   .stack   → ritmo vertical uniforme entre hijos.
+   .cluster → fila que envuelve (botones, tags, links).
+   .center  → centra contenido con medida máxima.
+   .switcher→ fila que pasa a columna bajo un umbral, sin media queries.
+   ========================================================================= */
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack > * + * {
+  margin-top: var(--stack-gap);
+}
+
+.stack--2xs { --stack-gap: var(--space-2xs); }
+.stack--xs  { --stack-gap: var(--space-xs); }
+.stack--sm  { --stack-gap: var(--space-sm); }
+.stack--lg  { --stack-gap: var(--space-lg); }
+.stack--xl  { --stack-gap: var(--space-xl); }
+.stack--2xl { --stack-gap: var(--space-2xl); }
+.stack--3xl { --stack-gap: var(--space-3xl); }
+
+/* Empuja el último hijo al fondo (cards con altura igual) */
+.stack--split-end > :last-child {
+  margin-top: auto;
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: var(--cluster-align, center);
+  justify-content: var(--cluster-justify, flex-start);
+  gap: var(--cluster-gap, var(--space-md));
+}
+
+.cluster--between { --cluster-justify: space-between; }
+.cluster--center  { --cluster-justify: center; }
+.cluster--end     { --cluster-justify: flex-end; }
+
+.center {
+  box-sizing: content-box;
+  max-width: var(--center-max, var(--measure));
+  margin-inline: auto;
+}
+
+.center--text {
+  text-align: center;
+}
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--switcher-gap, var(--grid-gap));
+}
+
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--switcher-threshold, 48rem) - 100%) * 999);
+}

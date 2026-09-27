@@ -1,0 +1,190 @@
+/* =========================================================================
+   COMPONENTE · FORMULARIOS
+   Inputs con regla navy y radio .5rem, altura 3rem. Variante inversa
+   para el newsletter del footer, con botón de flecha unido al input.
+   ========================================================================= */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.form__actions {
+  margin-top: var(--space-xs);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
+}
+
+.label__required {
+  color: var(--color-danger);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  min-height: 3rem;
+  padding: var(--space-xs) var(--space-md);
+  background-color: var(--color-surface);
+  border: var(--rule);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-placeholder);
+  opacity: 1;
+}
+
+.input:focus-visible,
+.textarea:focus-visible,
+.select:focus-visible {
+  outline: none;
+  border-color: var(--color-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.textarea {
+  min-height: 8rem;
+  padding-top: var(--space-sm);
+  resize: vertical;
+}
+
+.select {
+  appearance: none;
+  padding-right: var(--space-3xl);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23060640' stroke-width='1.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-md) center;
+  background-size: 1.25rem;
+}
+
+/* Estados */
+.input[aria-invalid="true"],
+.textarea[aria-invalid="true"],
+.select[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.input:disabled,
+.textarea:disabled,
+.select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.field__hint {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.field__error {
+  font-size: var(--text-xs);
+  color: var(--color-danger);
+}
+
+/* Mensajes de envío */
+.form-message {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+}
+
+.form-message--success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.form-message--error {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+/* Checkbox / radio nativos con color de marca */
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.check input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-action);
+}
+
+/* ---------- Input + botón unidos (newsletter) ---------- */
+.input-group {
+  display: flex;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.input-group .input {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  min-width: 0;
+}
+
+.input-group__button {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3rem;
+  border: var(--rule);
+  border-left: 0;
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  color: inherit;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.input-group__button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.input-group__button:hover svg {
+  transform: translateX(3px);
+}
+
+/* Variante inversa (sobre navy) */
+.input--inverse,
+.input-group--inverse .input {
+  background-color: transparent;
+  border-color: var(--white);
+  color: var(--color-text-inverse);
+}
+
+.input--inverse::placeholder,
+.input-group--inverse .input::placeholder {
+  color: var(--color-text-inverse);
+}
+
+.input-group--inverse .input-group__button {
+  border-color: var(--white);
+}
+
+.input-group--inverse .input-group__button:hover {
+  background-color: rgb(255 255 255 / 0.08);
+}

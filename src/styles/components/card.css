@@ -1,0 +1,75 @@
+/* =========================================================================
+   COMPONENTE · CARDS
+   .card          → caja blanca con regla (base de todas).
+   .card--stacked → con 2 capas desplazadas detrás (firma de marca).
+   .overlay-card  → card sobre imagen de fondo (ver media-overlay.css).
+   ========================================================================= */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--card-pad, var(--cell-pad-lg));
+  background-color: var(--card-bg, var(--color-surface));
+  border: var(--rule);
+}
+
+.card__title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.card__text {
+  margin-top: var(--space-lg);
+  max-width: var(--measure);
+}
+
+.card__action {
+  margin-top: var(--space-2xl);
+  align-self: flex-start;
+}
+
+/* Card interactiva: se desplaza con sombra dura al hover */
+.card--interactive {
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.card--interactive:hover {
+  transform: translate(-0.25rem, -0.25rem);
+  box-shadow: var(--shadow-offset);
+}
+
+/* ---------- Apilada (papel) ----------
+   Se reconstruye la sombra aquí para que --stack-fill-* sean
+   personalizables por instancia. */
+.card--stacked,
+.stacked {
+  --fill-1: var(--stack-fill-1);
+  --fill-2: var(--stack-fill-2);
+  box-shadow:
+    var(--stack-offset) var(--stack-offset) 0 calc(var(--border-thin) * -1) var(--fill-1),
+    var(--stack-offset) var(--stack-offset) 0 0 var(--color-border),
+    calc(var(--stack-offset) * 2) calc(var(--stack-offset) * 2) 0 calc(var(--border-thin) * -1) var(--fill-2),
+    calc(var(--stack-offset) * 2) calc(var(--stack-offset) * 2) 0 0 var(--color-border);
+  margin-right: calc(var(--stack-offset) * 2);
+  margin-bottom: calc(var(--stack-offset) * 2);
+}
+
+/* Apilado genérico para imágenes */
+.stacked {
+  position: relative;
+  border: var(--rule);
+  background-color: var(--color-surface);
+}
+
+.stacked > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stacked--on-subtle {
+  --fill-1: var(--color-bg);
+  --fill-2: var(--color-bg-subtle);
+}

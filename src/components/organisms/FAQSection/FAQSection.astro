@@ -1,0 +1,94 @@
+---
+// src/components/organisms/FAQSection/FAQSection.astro
+import Accordion from '@molecules/Accordion/Accordion.astro';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface FAQCategory {
+  title: string;
+  items: FAQItem[];
+}
+
+interface Props {
+  title?: string;
+  lead?: string;
+  categories?: FAQCategory[];
+  class?: string;
+}
+
+const defaultCategories: FAQCategory[] = [
+  {
+    title: 'Importación & Sourcing',
+    items: [
+      {
+        question: '¿Cómo garantizan que la fábrica en China sea real y confiable?',
+        answer: 'Realizamos una verificación legal, tributaria y presencial en China. Enviamos a nuestro equipo in situ a auditar las líneas de producción, licencias gubernamentales, maquinaria y condiciones operativas antes de que emitas cualquier orden de pago.'
+      },
+      {
+        question: '¿Qué tipo de productos pueden gestionar y qué volúmenes atienden?',
+        answer: 'Gestionamos desde maquinaria industrial, repuestos, equipos y empaques hasta textiles y artículos de consumo masivo. Trabajamos principalmente bajo modalidad FCL (contenedor completo) y proyectos de abastecimiento programado.'
+      },
+      {
+        question: '¿Puedo solicitar muestras físicas antes de la producción masiva?',
+        answer: 'Sí. Coordinamos la fabricación, revisión técnica y despacho express de muestras a tu oficina. Las evaluamos conjuntamente antes de dar la autorización de producción en masa.'
+      }
+    ]
+  },
+  {
+    title: 'Flete & Aduanas',
+    items: [
+      {
+        question: '¿Se encargan del desaduanamiento y los impuestos en destino?',
+        answer: 'Sí. Ofrecemos gestión integral coordinando con agentes aduaneros en destino (Callao y Latinoamérica), asegurando la correcta clasificación arancelaria para aprovechar los beneficios del TLC Perú-China y evitar multas o sobrecostos.'
+      },
+      {
+        question: '¿Cómo se manejan los tiempos y el seguimiento de la carga?',
+        answer: 'Desde el zarpe en el puerto de origen (Shanghai, Ningbo, Shenzhen) hasta el arribo en destino (habitualmente entre 28 y 35 días de tránsito marítimo), te brindamos reportes periódicos de posición y estado documental.'
+      },
+      {
+        question: '¿Cómo empezamos a trabajar?',
+        answer: 'Solo completa el formulario de contacto o escríbenos directamente por WhatsApp. Revisamos las especificaciones de tu producto y en 48 horas te presentamos una propuesta de trabajo clara y sin compromisos.'
+      }
+    ]
+  }
+];
+
+const {
+  title = 'Preguntas frecuentes',
+  lead = 'Todo lo que necesitas saber sobre cómo operamos entre Asia y Latinoamérica.',
+  categories = defaultCategories,
+  class: className = '',
+} = Astro.props;
+// `categories` sigue siendo un prop opcional (regla 2: este organismo
+// no importa astro:content) — quien lo use en un contexto ES/EN debe
+// pasar explícitamente las categorías leídas de la colección `faqs`;
+// el arreglo de arriba solo sirve de red de seguridad si se renderiza
+// sin props.
+---
+
+<section class={`section section--flush ${className}`} id="faqs">
+  <div class="container gutter pt-section pb-0">
+    <div class="section-header section-header--spaced">
+      <h2 class="section-header__title">{title}</h2>
+      <p class="section-header__lead">{lead}</p>
+    </div>
+  </div>
+
+  {categories.map((cat, catIdx) => (
+    <div class="faq">
+      <div class="faq__category">
+        <h3 class="faq__category-title">{cat.title}</h3>
+      </div>
+      <div class="faq__list">
+        {cat.items.map((item, itemIdx) => (
+          <Accordion title={item.question} open={catIdx === 0 && itemIdx === 0}>
+            <p>{item.answer}</p>
+          </Accordion>
+        ))}
+      </div>
+    </div>
+  ))}
+</section>

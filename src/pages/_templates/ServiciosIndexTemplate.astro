@@ -1,0 +1,232 @@
+---
+// src/pages/_templates/ServiciosIndexTemplate.astro
+// Ver HomeTemplate.astro para la explicación del patrón _templates/.
+import { getEntry, getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@organisms/Hero/Hero.astro';
+import Button from '@atoms/Button/Button.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+
+interface Props {
+  locale: 'es' | 'en';
+}
+
+const { locale } = Astro.props;
+const withLocale = (path: string) => getRelativeLocaleUrl(locale, path);
+
+const pageEntry = await getEntry('pageServiciosIndex', locale);
+if (!pageEntry) throw new Error(`Falta src/content/pages/servicios-index/${locale}.json`);
+const page = pageEntry.data;
+
+const rawServices = await getCollection('servicios', (entry) => entry.id.startsWith(`${locale}/`));
+const services = rawServices.sort((a, b) => a.data.orden - b.data.orden);
+
+const serviceSlugs: Record<string, string> = {
+  '01-logistica-integral': 'logistica-integral',
+  '02-busqueda-proveedores': 'busqueda-proveedores',
+  '03-inspeccion-fabricas': 'inspeccion-fabricas',
+  '04-flete-maritimo': 'flete-maritimo',
+};
+
+const bareId = (id: string) => id.replace(/^\w+\//, '');
+---
+
+<BaseLayout title={page.seo.title} description={page.seo.description} locale={locale}>
+  <!-- HERO DE SERVICIOS -->
+  <Hero
+    variant="split"
+    eyebrow={page.hero.eyebrow}
+    title={page.hero.title}
+    lead={page.hero.lead}
+    primaryAction={{ label: page.hero.primaryActionLabel, href: withLocale('/contacto') }}
+    secondaryAction={{ label: page.hero.secondaryActionLabel, href: '#proceso' }}
+  >
+    <div slot="media" class="services-hero__media">
+      <img
+        src="/images/barco-test.png"
+        alt={page.hero.imageAlt}
+        class="services-hero__image"
+        width="1031"
+        height="783"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+  </Hero>
+
+  <!-- GRID DE LOS 4 SERVICIOS CON TARJETAS DETALLADAS -->
+  <section class="section section--ruled section--framed" id="catalogo">
+    <div class="container gutter">
+      <div class="section-header section-header--spaced">
+        <h2 class="section-header__title">{page.catalog.title}</h2>
+        <p class="section-header__lead">
+          {page.catalog.lead}
+        </p>
+      </div>
+
+      <div class="ruled-grid ruled-grid--2 ruled-grid--surface mt-3xl">
+        {services.map((srv) => {
+          const bare = bareId(srv.id);
+          const slug = serviceSlugs[bare] || bare.replace(/^\d+-/, '');
+          return (
+            <article class="service-card-item">
+              <div class="service-card-item__top">
+                <span class="tag tag--navy">{srv.data.badge || `${page.catalog.moduleFallbackPrefix}${srv.data.orden}`}</span>
+                <span class="service-card-item__num">0{srv.data.orden}</span>
+              </div>
+              <h3 class="service-card-item__title">{srv.data.titulo}</h3>
+              <p class="service-card-item__desc">{srv.data.descripcion}</p>
+
+              {srv.data.queHacemos && (
+                <ul class="service-card-item__bullets">
+                  {srv.data.queHacemos.slice(0, 3).map((item) => (
+                    <li>
+                      <Icon name="check" size="xs" class="bullet-check" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <div class="service-card-item__footer">
+                <Button href={withLocale(`/servicios/${slug}`)} variant="outline" size="sm">
+                  {page.catalog.specsCtaLabel} &rarr;
+                </Button>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- PASOS DEL PROCESO -->
+  <section class="section section--subtle section--ruled section--framed" id="proceso">
+    <div class="container gutter">
+      <div class="grid items-start">
+        <div class="col-5">
+          <span class="tag tag--navy mb-sm">{page.process.tag}</span>
+          <h2 class="heading-lg">{page.process.title}</h2>
+          <p class="mt-md text-color-muted">
+            {page.process.lead}
+          </p>
+          <div class="mt-xl">
+            <Button href={withLocale('/contacto')}>{page.process.ctaLabel}</Button>
+          </div>
+        </div>
+        <div class="col-7">
+          <ol class="steps" role="list">
+            {page.process.steps.map((step) => (
+              <li class="steps__item">
+                <span class="steps__marker"></span>
+                <div class="steps__body">
+                  <strong class="steps__label">{step.label}</strong>
+                  <p class="steps__desc">{step.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA DE CIERRE -->
+  <section class="section section--inverse">
+    <div class="container gutter text-center">
+      <h2 class="heading-lg" style="max-width: 42rem; margin-inline: auto;">
+        {page.closingCta.title}
+      </h2>
+      <p class="mt-lg text-lg" style="color: var(--color-text-inverse-muted); max-width: 32rem; margin-inline: auto;">
+        {page.closingCta.lead}
+      </p>
+      <div class="mt-2xl cluster justify-center">
+        <Button href={withLocale('/contacto')} variant="solid" size="wide">{page.closingCta.ctaLabel}</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .services-hero__media {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+  }
+  .services-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .service-card-item {
+    display: flex;
+    flex-direction: column;
+    padding: var(--cell-pad-lg);
+    background-color: var(--color-surface);
+  }
+  .service-card-item__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+  }
+  .service-card-item__num {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-subtle);
+  }
+  .service-card-item__title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-sm);
+  }
+  .service-card-item__desc {
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-lg);
+  }
+  .service-card-item__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-xl) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .service-card-item__bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+  .bullet-check {
+    color: var(--color-decor-1);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .service-card-item__footer {
+    margin-top: auto;
+    padding-top: var(--space-md);
+  }
+  .steps__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+  .steps__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+</style>
