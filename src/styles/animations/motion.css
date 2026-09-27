@@ -61,7 +61,12 @@
     will-change: opacity, transform;
   }
 
-  [data-reveal].is-visible {
+  /* .is-active: la usa FlowChinaLatam.astro como data-reveal-class
+     propio (dispara la coreografía interna del SVG, no solo un
+     fade genérico) — sin esto, en la rama de Safari se queda en
+     opacity:0 para siempre porque el JS nunca agrega .is-visible. */
+  [data-reveal].is-visible,
+  [data-reveal].is-active {
     opacity: 1;
     transform: translateY(0);
   }

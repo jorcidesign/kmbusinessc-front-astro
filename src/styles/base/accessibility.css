@@ -49,11 +49,21 @@
   border-radius: var(--radius-md);
   font-size: var(--text-base);
   font-weight: var(--weight-medium);
+  opacity: 0;
+  pointer-events: none;
   transform: translateY(-150%);
-  transition: transform var(--duration-fast) var(--ease-standard);
+  transition: transform var(--duration-fast) var(--ease-standard),
+              opacity var(--duration-fast) var(--ease-standard);
 }
 
+/* Ocultar solo con transform deja al elemento en coordenadas Y
+   negativas (por encima del documento) — el rebote elástico de iOS
+   al hacer scroll-up en el tope revela esa zona y lo muestra. Sumar
+   opacity/pointer-events lo deja invisible e inerte aunque el rebote
+   lo traiga a la vista. */
 .skip-link:focus {
+  opacity: 1;
+  pointer-events: auto;
   transform: translateY(0);
 }
 
