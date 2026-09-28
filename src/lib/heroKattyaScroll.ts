@@ -6,7 +6,8 @@
 // se comportan mediante flujo normal de CSS con position: sticky y z-index: 50.
 export function initHeroKattyaScroll(): void {
   const section = document.querySelector<HTMLElement>('[data-hero-kattya]');
-  if (!section) return;
+  if (!section || section.dataset.heroInitialized === 'true') return;
+  section.dataset.heroInitialized = 'true';
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://kmbusinessc.pe/sitemap-index.xml
+

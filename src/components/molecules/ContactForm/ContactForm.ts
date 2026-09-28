@@ -9,11 +9,24 @@ import { trackEvent } from '@lib/analytics';
 
 export function initContactForm(): void {
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  if (!form) return;
+  if (!form || form.dataset.contactFormInitialized === 'true') return;
+  form.dataset.contactFormInitialized = 'true';
 
   const statusEl = form.querySelector('[data-form-status]') as HTMLElement;
   const submitLabel = form.querySelector('[data-submit-label]') as HTMLElement;
   const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  // Track micro-conversión: primer contacto con el formulario
+  form.addEventListener(
+    'focusin',
+    () => {
+      if (!form.dataset.formStarted) {
+        form.dataset.formStarted = 'true';
+        trackEvent('form_start', { event_category: 'lead_engagement' });
+      }
+    },
+    { once: true }
+  );
 
   // Strings traducibles (ES/EN) inyectadas por ContactForm.astro vía
   // data-* — este script es JS puro y no puede leer astro:content.

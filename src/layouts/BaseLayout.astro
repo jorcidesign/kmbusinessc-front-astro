@@ -18,7 +18,7 @@ const {
   title,
   description,
   image = '/og-default.jpg',
-  locale = 'en',
+  locale = 'es',
 } = Astro.props;
 
 const uiEntry = await getEntry('ui', locale);
@@ -32,7 +32,8 @@ const withLocale = (path: string) => getRelativeLocaleUrl(locale, path);
 const siteUrl = Astro.site || new URL('https://kmbusinessc.pe');
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 const ogImageURL = new URL(image, siteUrl);
-const gtmId = import.meta.env.PUBLIC_GTM_ID;
+const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-5RTC4ZPC';
+const enableIndexing = import.meta.env.PUBLIC_ENABLE_INDEXING === 'true';
 
 // hreflang: la misma ruta (sin el prefijo de idioma) existe siempre en
 // ambos locales porque los slugs no se traducen (ver plan, fuera de
@@ -53,11 +54,36 @@ const footerEmpresaLinks = ui.footer.empresa.links.map((l) => ({ ...l, href: wit
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <!-- Google Tag Manager (posicionado lo más arriba posible en head) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <script is:inline define:vars={{ gtmId }}>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', gtmId);
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Control de indexación para buscadores: noindex en staging / demo -->
+    <meta
+      name="robots"
+      content={enableIndexing
+        ? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+        : 'noindex, nofollow'}
+    />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="es" href={esHref} />
     <link rel="alternate" hreflang="en" href={enHref} />
-    <link rel="alternate" hreflang="x-default" href={enHref} />
+    <link rel="alternate" hreflang="x-default" href={esHref} />
 
     <title>{title} | KM Business Consulting</title>
     <meta name="description" content={description} />
@@ -69,27 +95,46 @@ const footerEmpresaLinks = ui.footer.empresa.links.map((l) => ({ ...l, href: wit
     <meta property="og:url" content={canonicalURL} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    {gtmId && gtmId !== 'GTM-XXXXXXX' && (
-      <script is:inline define:vars={{ gtmId }}>
-        (function (w, d, s, l, i) {
-          w[l] = w[l] || [];
-          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-          j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-          f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', gtmId);
-      </script>
-    )}
+    <!-- Datos estructurados Schema.org (Organization y ProfessionalService) -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': ['Organization', 'ProfessionalService'],
+      name: 'KM Business Consulting SAC',
+      url: 'https://kmbusinessc.pe',
+      logo: 'https://kmbusinessc.pe/favicon.svg',
+      image: ogImageURL.toString(),
+      description: description,
+      founder: {
+        '@type': 'Person',
+        name: 'Kattya Mejía',
+        jobTitle: 'Especialista en compras e importaciones desde China',
+      },
+      areaServed: ['PE', 'CL', 'CO', 'MX', 'CN'],
+      knowsAbout: [
+        'Sourcing y compras en China',
+        'Inspección y auditoría de fábricas',
+        'Flete marítimo y consolidado',
+        'Logística internacional',
+      ],
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+51-945-832-446',
+        contactType: 'customer service',
+        availableLanguage: ['es', 'en'],
+      },
+    })} />
   </head>
   <body>
-    {gtmId && gtmId !== 'GTM-XXXXXXX' && (
-      <noscript>
-        <iframe
-          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-          height="0" width="0" style="display:none;visibility:hidden"
-        ></iframe>
-      </noscript>
-    )}
+    <!-- Google Tag Manager (noscript) justo después de <body> -->
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <a class="skip-link" href="#main">{ui.skipLink}</a>
 
@@ -152,10 +197,12 @@ const footerEmpresaLinks = ui.footer.empresa.links.map((l) => ({ ...l, href: wit
       import { initDecorParallax } from '@lib/decorParallax';
       import { initHeroKattyaScroll } from '@lib/heroKattyaScroll';
       import { initContactForm } from '@molecules/ContactForm/ContactForm';
+      import { initAnalyticsListeners } from '@lib/analytics';
       initScrollReveal();
       initDecorParallax();
       initHeroKattyaScroll();
       initContactForm();
+      initAnalyticsListeners();
     </script>
   </body>
 </html>
