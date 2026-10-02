@@ -17,10 +17,11 @@
     "servicios": {
       "heading": "Servicios",
       "links": [
-        { "href": "/servicios/logistica-integral", "label": "Logística Integral" },
-        { "href": "/servicios/busqueda-proveedores", "label": "Búsqueda de Proveedores" },
-        { "href": "/servicios/inspeccion-fabricas", "label": "Inspección de Fábricas" },
-        { "href": "/servicios/flete-maritimo", "label": "Flete Marítimo FCL" }
+        { "href": "/servicios/proveedores-china", "label": "Búsqueda de Proveedores" },
+        { "href": "/servicios/verificacion-proveedores-china", "label": "Verificación de Proveedores" },
+        { "href": "/servicios/inspeccion-fabricas-china", "label": "Inspección de Fábricas" },
+        { "href": "/servicios/flete-maritimo-china", "label": "Flete Marítimo FCL" },
+        { "href": "/servicios/logistica-integral", "label": "Logística Integral" }
       ]
     },
     "empresa": {
@@ -70,7 +71,10 @@
     "labels": {
       "nombre": "Nombre completo",
       "whatsapp": "WhatsApp",
+      "empresa": "Empresa",
+      "correo": "Correo electrónico",
       "producto": "Producto que deseas importar o cotizar",
+      "servicio": "Servicio de interés",
       "cantidad": "Volumen o presupuesto aproximado",
       "mensaje": "Detalles adicionales",
       "honeypot": "No llenar este campo"
@@ -78,10 +82,13 @@
     "placeholders": {
       "nombre": "Nombre completo *",
       "whatsapp": "WhatsApp (ej. +51 987 654 321) *",
+      "empresa": "Nombre de tu empresa (opcional)",
+      "correo": "Correo electrónico (opcional)",
       "producto": "Producto o servicio que necesitas *",
       "cantidad": "Volumen o cantidad (ej. 1 contenedor, 500 uds)",
       "mensaje": "Detalles de tu proyecto o requerimientos específicos (opcional)"
     },
+    "servicioOptionsLabel": "Selecciona un servicio (opcional)",
     "submitLabel": "Enviar solicitud",
     "sendingLabel": "Enviando...",
     "validationError": "Completa nombre, WhatsApp y producto.",
@@ -92,15 +99,10 @@
     "eyebrowFallbackPrefix": "SERVICIO 0",
     "primaryActionLabel": "Cotizar este servicio",
     "secondaryActionLabel": "Ver todos los servicios",
-    "scopeTag": "ALCANCE OPERATIVO",
-    "scopeTitle": "Qué incluye el servicio",
     "specsTitle": "Especificaciones clave",
-    "deliverablesTitle": "Entregables y acciones concretas",
-    "benefitsTitle": "Por qué confiar esta etapa a KM",
-    "benefitsLead": "Seguridad operativa, criterios técnicos de clase mundial y cero intermediación especulativa.",
-    "stagesTag": "PASO A PASO",
-    "stagesTitle": "Fases de ejecución",
-    "stagesLead": "Así coordinamos este servicio desde la primera consulta hasta la entrega satisfactoria.",
+    "pendienteLabel": "Nota de validación pendiente",
+    "faqsTitle": "Preguntas frecuentes",
+    "relatedTitle": "Servicios relacionados",
     "quoteTag": "COTIZACIÓN DIRECTA",
     "quoteTitlePrefix": "Cotiza ",
     "quoteLead": "Indícanos los detalles de tu producto, cantidades estimadas o puerto de destino y te remitiremos una propuesta económica detallada.",

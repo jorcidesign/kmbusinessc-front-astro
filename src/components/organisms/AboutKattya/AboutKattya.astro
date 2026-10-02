@@ -15,6 +15,17 @@
 import Badge from '@atoms/Badge/Badge.astro';
 
 const MOSTRAR_150_CLIENTES = false; // ⚠️ cambiar a true solo cuando Kattya lo confirme
+
+// ⚠️ CONTRADICCIÓN SIN RESOLVER (mapa maestro SEO, rollout de 9 URLs):
+// las badges de abajo ("10+ años de experiencia" / "Magíster en
+// Negocios Internacionales") vienen del brief grabado de Kattya del
+// 23 de septiembre, pero el documento SEO maestro aprobado después
+// pide explícitamente NO publicar esas credenciales sin su
+// confirmación directa. Este componente está huérfano (no lo importa
+// ninguna página en uso) — si algún día se reactiva, no reintroducir
+// estas badges sin pasar por esa confirmación. Mismo caso ya activo
+// hoy en pages/nosotros/<locale>.json → profileCard y en
+// pages/home/<locale>.json → manifiesto.authorRole.
 ---
 
 <section id="kattya" class="o-about-kattya">

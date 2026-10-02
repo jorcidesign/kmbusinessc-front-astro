@@ -85,11 +85,17 @@ const footerEmpresaLinks = ui.footer.empresa.links.map((l) => ({ ...l, href: wit
     <link rel="alternate" hreflang="en" href={enHref} />
     <link rel="alternate" hreflang="x-default" href={esHref} />
 
-    <title>{title} | KM Business Consulting</title>
+    <!-- `title` ya es el SEO Title completo y aprobado por el cliente
+         (mapa maestro SEO: "SEO Title y Meta Description deben
+         administrarse como campos independientes" — no se construyen
+         a partir de otro texto). Antes este layout le concatenaba
+         " | KM Business Consulting" a ciegas, lo que duplicaba la
+         marca en cada título que ya la traía incluida desde el doc. -->
+    <title>{title}</title>
     <meta name="description" content={description} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={`${title} | KM Business Consulting`} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:url" content={canonicalURL} />

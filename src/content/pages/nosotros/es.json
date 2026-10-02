@@ -1,14 +1,14 @@
 {
   "seo": {
-    "title": "Sobre Nosotros | Kattya Mejía y KM Business Consulting",
-    "description": "Conoce la historia, valores y trayectoria de Kattya Mejía y KM Business Consulting: más de una década conectando empresas con Asia con integridad, transparencia y rigor técnico."
+    "title": "KM Business Consulting y Kattya Mejía | Nosotros",
+    "description": "Conoce a Kattya Mejía y la visión de KM Business Consulting: confianza, integridad, transparencia y relaciones empresariales de largo plazo."
   },
   "hero": {
-    "eyebrow": "NUESTRA HISTORIA & VALORES",
-    "title": "Comercio exterior basado en confianza e integridad.",
-    "lead": "Detrás de cada contenedor que llega al puerto hay un compromiso humano inquebrantable. Ayudamos a empresas a crecer protegiendo su patrimonio en cada etapa de la importación.",
-    "primaryActionLabel": "Conversar con Kattya",
-    "secondaryActionLabel": "Nuestros servicios"
+    "eyebrow": "NUESTRA HISTORIA Y VALORES",
+    "title": "Una empresa construida desde la confianza, la integridad y las relaciones de largo plazo",
+    "lead": "KM Business Consulting nace de la visión de Kattya Mejía y de una forma de hacer negocios basada en principios sólidos, transparencia, cercanía y compromiso con cada relación comercial.",
+    "primaryActionLabel": "Conversar con KM",
+    "secondaryActionLabel": "Conocer servicios"
   },
   "profileCard": {
     "badge": "10+ AÑOS DE EXPERIENCIA",
@@ -23,41 +23,42 @@
     ]
   },
   "manifiesto": {
-    "tag": "MANIFIESTO DE MARCA",
-    "title": "\"Para mí, lo más importante es ser un buen ser humano y hablar con la verdad.\"",
+    "tag": "QUIÉN ES KATTYA MEJÍA",
+    "title": "El significado detrás de KM",
     "paragraphs": [
-      "Comencé en el comercio exterior hace más de diez años viendo la frustración constante de empresarios que perdían capital por intermediarios sin escrúpulos: muestras que no coincidían con la producción masiva, recargos inventados en aduanas y fábricas fantasmas que desaparecían tras el anticipo.",
-      "En KM Business Consulting fundamos nuestra práctica sobre una premisa radical: trabajar con transparencia absoluta. Si un proveedor no cumple los estándares de calidad o una ruta no es conveniente para tu presupuesto, te lo decimos de frente. No buscamos cerrar una operación apresurada, sino construir una alianza de largo plazo que proteja tu tranquilidad."
+      "KM nace de la identidad de su fundadora: K por Kattya y M por Mejía. La marca representa su esencia, sus valores y su visión de construir relaciones empresariales basadas en confianza e integridad.",
+      "Kattya es la fundadora de KM Business Consulting y la persona detrás de una propuesta que busca combinar profesionalismo, cercanía y una visión internacional del comercio y la logística.",
+      "\"Quiero ser reconocida, ante todo, por ser un buen ser humano, una persona íntegra que trabaja con amor, pasión y propósito.\" — Kattya Mejía"
     ],
-    "whatsappMessage": "Hola Kattya, leí tu manifiesto en la web y me gustaría conversar sobre una importación.",
+    "whatsappMessage": "Hola Kattya, leí tu historia en la web y me gustaría conversar sobre una importación.",
     "whatsappLabel": "Escribir a Kattya"
   },
   "principios": {
-    "title": "Nuestros cuatro principios innegociables",
-    "lead": "La base de cómo operamos y gestionamos el dinero y las mercancías de nuestros clientes.",
+    "title": "Nuestra forma de construir relaciones",
+    "lead": "Confianza, integridad, atención y visión: así queremos construir cada relación con nuestros clientes y aliados.",
     "items": [
       {
-        "title": "1. Integridad y verdad técnica",
-        "description": "Sin falsas promesas de plazos imposibles ni cotizaciones engañosas. Información veraz y contratos formales desde el día uno."
+        "title": "Confianza",
+        "description": "Queremos que cada cliente sienta tranquilidad y sepa que está trabajando con un aliado que cuida la relación a largo plazo."
       },
       {
-        "title": "2. Control directo en origen",
-        "description": "No triangulamos con terceros desconocidos. Tenemos inspectores propios en China que pisan las plantas y validan los empaques."
+        "title": "Integridad",
+        "description": "Los principios y la transparencia forman parte de la manera en que KM quiere relacionarse con clientes y aliados."
       },
       {
-        "title": "3. Eficiencia en costos",
-        "description": "Estructuras de costos abiertas (Open-Book) donde conoces con exactitud el valor de fábrica, flete y aranceles."
+        "title": "Atención extraordinaria",
+        "description": "KM busca entender realmente a cada cliente y ofrecer un acompañamiento cercano y personalizado."
       },
       {
-        "title": "4. Relaciones de por vida",
-        "description": "Nos enorgullece que nuestros clientes crezcan y continúen importando con nosotros año tras año, como socios de negocio."
+        "title": "Visión internacional",
+        "description": "La empresa proyecta su crecimiento con propósito y una visión de posicionamiento internacional."
       }
     ]
   },
   "contactSection": {
     "tag": "CONVERSEMOS",
-    "title": "Hablemos de tu próximo contenedor",
-    "lead": "Agenda una sesión de asesoría inicial sin costo para revisar tus objetivos de importación o evaluar la confiabilidad de tus proveedores en Asia.",
+    "title": "Hablemos de tu próxima operación",
+    "lead": "Conversemos sobre tus objetivos de importación o la confiabilidad de tus proveedores en Asia.",
     "whatsappLabel": "Hablar por WhatsApp con Kattya"
   }
 }

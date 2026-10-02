@@ -1,69 +1,57 @@
 {
   "seo": {
-    "title": "Importación y Logística Integral desde Asia a Latinoamérica",
-    "description": "KM Business Consulting: Búsqueda y validación de proveedores en China, inspección de calidad pre-embarque, fletes marítimos FCL y gestión logística integral."
+    "title": "Logística y Proveedores en Asia | KM Business Consulting",
+    "description": "Soluciones de búsqueda y verificación de proveedores, inspección de fábricas, logística integral y flete marítimo FCL desde Asia hacia Latinoamérica."
   },
   "hero": {
-    "heading": "Kattya Mejía & KM Business Consulting: Soluciones de sourcing en China, auditoría en fábrica y logística integral.",
+    "heading": "Soluciones logísticas y proveedores confiables para importar desde Asia a Latinoamérica",
     "titleFade": "Sourcing en China.",
     "titleRiseLines": ["Importa directo", "con control total."],
-    "lead": "Soluciones de abastecimiento estratégico en China para empresas y emprendedores: validación de proveedores en fábrica, auditorías de calidad en producción y gestión logística internacional puerta a puerta.",
-    "ctaLabel": "Agenda tu asesoría estratégica",
+    "lead": "KM acompaña a importadores en la búsqueda y verificación de proveedores, inspección de fábricas, logística integral y flete marítimo FCL desde Asia hacia Latinoamérica.",
+    "ctaLabel": "Solicitar asesoría",
     "imageAlt": "Kattya Mejía - Especialista en sourcing y compras en China"
   },
   "manifiesto": {
-    "tag": "NUESTRA VISIÓN",
-    "title": "No buscamos una operación, sino construir relaciones duraderas.",
-    "quote": "\"Para mí, lo más importante es ser un buen ser humano y hablar con la verdad. En el comercio exterior no hay soluciones mágicas: hay auditorías rigurosas, contratos claros y un equipo que cuida tu patrimonio como propio.\"",
+    "tag": "KATTYA MEJÍA: CONFIANZA DETRÁS DE KM",
+    "title": "Una empresa construida desde la confianza.",
+    "quote": "\"Quiero ser reconocida, ante todo, por ser un buen ser humano, una persona íntegra que trabaja con amor, pasión y propósito.\"",
     "authorName": "Kattya Mejía",
     "authorRole": "Fundadora & Directora de Operaciones · Magíster en Negocios Internacionales (10+ años de experiencia)",
     "ctaLabel": "Conocer nuestra historia"
   },
-  "splitServices": {
-    "cell1": {
-      "title": "Búsqueda & Verificación en China",
-      "text": "Auditamos fábricas directamente en China. Verificamos licencias gubernamentales, instalaciones, capacidad real de producción y controlamos muestras antes de que comprometas capital.",
-      "ctaLabel": "Ver solución de verificación"
-    },
-    "cell2": {
-      "title": "Flete Marítimo & Logística Integral",
-      "text": "Transporte marítimo por contenedor completo (FCL) desde los principales puertos asiáticos hacia el Callao y Latinoamérica. Despacho aduanero y entrega directa con tarifas transparentes y sin cobros ocultos.",
-      "ctaLabel": "Conocer fletes y logística"
-    }
+  "servicesIntro": {
+    "title": "Nuestros 5 servicios",
+    "lead": "Soluciones para cada etapa de tu operación con Asia: búsqueda y verificación de proveedores, inspección de fábricas, logística integral y flete marítimo FCL."
+  },
+  "comoTrabajamos": {
+    "title": "Cómo trabajamos"
   },
   "ruledGrid": {
-    "title": "Tú haz crecer tu negocio. Nosotros nos encargamos de Asia.",
-    "lead": "Eliminamos la incertidumbre y los intermediarios opacos en tu cadena de importación.",
+    "title": "Confianza para construir relaciones de largo plazo",
+    "lead": "Por qué trabajar con KM.",
     "items": [
       {
-        "title": "Cero sorpresas en costos y aranceles",
-        "description": "Tarifas All-In transparentes desde el inicio, liquidación clara y optimización de partidas arancelarias."
+        "title": "Confianza",
+        "description": "Buscamos que cada cliente sienta tranquilidad al trabajar con KM y cuente con un aliado cercano durante su operación."
       },
       {
-        "title": "Negociación directa con fábricas auditadas",
-        "description": "Equipo bilingüe propio en China para auditar instalaciones físicas y negociar directo con directores de planta."
+        "title": "Integridad",
+        "description": "Trabajamos con transparencia, principios sólidos y una comunicación clara en cada relación comercial."
       },
       {
-        "title": "Control de calidad estricto pre-embarque",
-        "description": "Inspecciones AQL con reporte fotográfico y de video en menos de 24 horas antes de pagar el saldo."
+        "title": "Atención personalizada",
+        "description": "Entendemos cada necesidad antes de proponer una solución. El objetivo no es cerrar una operación aislada, sino construir relaciones duraderas."
       },
       {
-        "title": "Acompañamiento cercano y personalizado",
-        "description": "Kattya Mejía lidera directamente la estrategia de tu cuenta para construir relaciones comerciales sólidas a largo plazo."
+        "title": "Visión internacional",
+        "description": "Conectamos empresas con proveedores y soluciones logísticas que facilitan sus operaciones de comercio internacional."
       }
-    ]
-  },
-  "stats": {
-    "items": [
-      { "value": "10+", "label": "Años de experiencia en comercio internacional" },
-      { "value": "100%", "label": "Fábricas auditadas in situ en China" },
-      { "value": "FCL", "label": "Contenedor completo y logística integral" }
     ]
   },
   "contactHome": {
     "tag": "HABLEMOS HOY",
     "title": "Empecemos tu importación",
-    "lead": "Cuéntanos qué producto necesitas traer o qué etapa operativa deseas optimizar. Te respondemos en menos de 24 horas con una propuesta clara.",
+    "lead": "Cuéntanos qué producto necesitas traer o qué etapa operativa deseas optimizar. Te respondemos pronto con una propuesta clara.",
     "whatsappLabel": "Escribir por WhatsApp"
   },
   "faq": {

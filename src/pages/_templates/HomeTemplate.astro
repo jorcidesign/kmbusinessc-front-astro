@@ -4,19 +4,27 @@
 // Template compartido de la home ES/EN. Astro ignora todo lo que
 // empieza con "_" dentro de src/pages/, así que este archivo no genera
 // ninguna ruta propia — lo renderizan src/pages/es/index.astro y
-// src/pages/en/index.astro pasándole `locale`. Markup idéntico al
-// index.astro original; el único cambio es que cada literal en
-// español ahora sale de src/content/pages/home/<locale>.json.
+// src/pages/en/index.astro pasándole `locale`. Cada literal en español
+// sale de src/content/pages/home/<locale>.json.
+//
+// Rearmado para el mapa maestro SEO (9 URLs): el orden de bloques que
+// pide el documento es Hero → Servicios (5, con link a su landing) →
+// Por qué KM → Cómo trabajamos → Kattya → FAQs → Contacto. El bloque
+// de "China → Latinoamérica" del documento ya vive dentro del propio
+// Hero (ver FlowChinaLatam en HeroKattya.astro) y el bloque de
+// stats/cifras se eliminó — el documento prohíbe publicar números sin
+// confirmar, y su contenido queda cubierto por "Por qué KM" + "Cómo
+// trabajamos".
 import { getEntry, getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import HeroKattya from '@organisms/HeroKattya/HeroKattya.astro';
-import SplitServicesSection from '@organisms/SplitServicesSection/SplitServicesSection.astro';
 import RuledGridSection from '@organisms/RuledGridSection/RuledGridSection.astro';
 import FAQSection from '@organisms/FAQSection/FAQSection.astro';
 import Marquee from '@organisms/Marquee/Marquee.astro';
 import ContactForm from '@molecules/ContactForm/ContactForm.astro';
 import WhatsAppButton from '@atoms/WhatsAppButton/WhatsAppButton.astro';
+import Button from '@atoms/Button/Button.astro';
 
 interface Props {
   locale: 'es' | 'en';
@@ -33,6 +41,12 @@ const uiEntry = await getEntry('ui', locale);
 if (!uiEntry) throw new Error(`Falta src/content/ui/${locale}.json`);
 const ui = uiEntry.data;
 
+const servicios = (await getCollection('servicios', (entry) => entry.id.startsWith(`${locale}/`)))
+  .sort((a, b) => a.data.orden - b.data.orden);
+
+const proceso = (await getCollection('proceso', (entry) => entry.id.startsWith(`${locale}/`)))
+  .sort((a, b) => a.data.orden - b.data.orden);
+
 const faqEntries = (await getCollection('faqs', (entry) => entry.id.startsWith(`${locale}/`)))
   .sort((a, b) => a.data.orden - b.data.orden);
 const faqCategories = faqEntries.map((entry) => ({
@@ -44,7 +58,7 @@ const contactForm = ui.contactForm;
 ---
 
 <BaseLayout title={page.seo.title} description={page.seo.description} locale={locale}>
-  <!-- 1. HERO CON FOTO DE KATTYA Y DOS TITULARES CORPORATIVOS -->
+  <!-- 1. HERO CON FOTO DE KATTYA, DOS TITULARES Y EL FLUJO CHINA → LATAM -->
   <HeroKattya
     heading={page.hero.heading}
     titleFade={page.hero.titleFade}
@@ -59,16 +73,62 @@ const contactForm = ui.contactForm;
     }}
   />
 
-  <!-- 2. SPLIT DE SERVICIOS CON ILUSTRACIONES VECTORIALES -->
-  <SplitServicesSection
-    cell1={{ ...page.splitServices.cell1, href: withLocale('/servicios/busqueda-proveedores') }}
-    cell2={{ ...page.splitServices.cell2, href: withLocale('/servicios/flete-maritimo') }}
-  />
+  <!-- 2. NUESTROS 5 SERVICIOS, CADA UNO CON LINK A SU LANDING -->
+  <section class="section section--ruled section--framed" id="servicios">
+    <div class="container gutter">
+      <div class="section-header section-header--spaced">
+        <h2 class="section-header__title">{page.servicesIntro.title}</h2>
+        <p class="section-header__lead">
+          {page.servicesIntro.lead}
+        </p>
+      </div>
 
-  <!-- 3. RULED GRID DE VALOR TÉCNICO -->
+      <div class="ruled-grid ruled-grid--2 ruled-grid--surface ruled-grid--odd-span mt-3xl">
+        {servicios.map((srv) => (
+          <article class="service-card-item">
+            <div class="service-card-item__top">
+              <span class="tag tag--navy">{srv.data.badge || `0${srv.data.orden}`}</span>
+              <span class="service-card-item__num">0{srv.data.orden}</span>
+            </div>
+            <h3 class="service-card-item__title">{srv.data.titulo}</h3>
+            <p class="service-card-item__desc">{srv.data.descripcion}</p>
+            <div class="service-card-item__footer">
+              <Button href={withLocale(`/servicios/${srv.data.slug}`)} variant="outline" size="sm">
+                {srv.data.ctaPrincipal.label} &rarr;
+              </Button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. POR QUÉ TRABAJAR CON KM (CONFIANZA, INTEGRIDAD, ATENCIÓN, VISIÓN) -->
   <RuledGridSection heading={page.ruledGrid.title} lead={page.ruledGrid.lead} items={page.ruledGrid.items} />
 
-  <!-- 4. MANIFIESTO KATTYA MEJÍA CON LÍNEAS TÉCNICAS -->
+  <!-- 4. CÓMO TRABAJAMOS (4 PASOS) -->
+  {proceso.length > 0 && (
+    <section class="section section--subtle section--ruled section--framed" id="proceso">
+      <div class="container gutter">
+        <div class="section-header">
+          <h2 class="section-header__title">{page.comoTrabajamos.title}</h2>
+        </div>
+        <ol class="steps steps--horizontal mt-2xl" role="list">
+          {proceso.map((paso) => (
+            <li class="steps__item">
+              <span class="steps__marker"></span>
+              <div class="steps__body">
+                <strong class="steps__label">{paso.data.paso}</strong>
+                <p class="steps__desc">{paso.data.descripcion}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )}
+
+  <!-- 5. KATTYA: CONFIANZA DETRÁS DE KM -->
   <section class="section section--subtle section--framed section--clip" id="manifiesto">
     <div class="decor-field" aria-hidden="true">
       <div class="decor-field__line-wrap" style="--x:2%; --y:8%" data-parallax-speed="0.05">
@@ -96,6 +156,17 @@ const contactForm = ui.contactForm;
             <p class="cta-box__text">
               {page.manifiesto.quote}
             </p>
+            {/*
+              ⚠️ CONTRADICCIÓN SIN RESOLVER (mismo caso que
+              NosotrosTemplate.astro → page.profileCard): `authorRole`
+              publica "Magíster en Negocios Internacionales (10+ años
+              de experiencia)", confirmado por Kattya en la llamada
+              grabada del 23 de septiembre, pero el documento SEO
+              maestro aprobado después pide no publicar esa credencial
+              sin su confirmación directa. No se tocó por instrucción
+              expresa del encargo — lo resuelve Jorge con Renzo y
+              Kattya.
+            */}
             <div class="cta-box__author mt-md">
               <strong>{page.manifiesto.authorName}</strong> &middot; <span style="color:var(--color-text-muted)">{page.manifiesto.authorRole}</span>
             </div>
@@ -104,20 +175,6 @@ const contactForm = ui.contactForm;
             <a class="btn" href={withLocale('/nosotros')}>{page.manifiesto.ctaLabel}</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. STATS DESTACADAS -->
-  <section class="section section--stats-bg section--ruled-both section--framed">
-    <div class="container gutter">
-      <div class="stats">
-        {page.stats.items.map((stat) => (
-          <div>
-            <p class="stat__value">{stat.value}</p>
-            <p class="stat__label">{stat.label}</p>
-          </div>
-        ))}
       </div>
     </div>
   </section>
@@ -141,17 +198,24 @@ const contactForm = ui.contactForm;
         </div>
         <div class="contact__divider" aria-hidden="true"></div>
         <ContactForm
+          servicios={servicios.map((s) => ({ slug: s.data.slug, titulo: s.data.titulo }))}
           labelNombre={contactForm.labels.nombre}
           labelWhatsapp={contactForm.labels.whatsapp}
+          labelEmpresa={contactForm.labels.empresa}
+          labelCorreo={contactForm.labels.correo}
           labelProducto={contactForm.labels.producto}
+          labelServicio={contactForm.labels.servicio}
           labelCantidad={contactForm.labels.cantidad}
           labelMensaje={contactForm.labels.mensaje}
           labelHoneypot={contactForm.labels.honeypot}
           placeholderNombre={contactForm.placeholders.nombre}
           placeholderWhatsapp={contactForm.placeholders.whatsapp}
+          placeholderEmpresa={contactForm.placeholders.empresa}
+          placeholderCorreo={contactForm.placeholders.correo}
           placeholderProducto={contactForm.placeholders.producto}
           placeholderCantidad={contactForm.placeholders.cantidad}
           placeholderMensaje={contactForm.placeholders.mensaje}
+          servicioOptionsLabel={contactForm.servicioOptionsLabel}
           submitLabel={contactForm.submitLabel}
           sendingLabel={contactForm.sendingLabel}
           validationError={contactForm.validationError}
@@ -170,5 +234,66 @@ const contactForm = ui.contactForm;
   .cta-box__author {
     font-size: var(--text-sm);
     line-height: 1.5;
+  }
+  .service-card-item {
+    display: flex;
+    flex-direction: column;
+    padding: var(--cell-pad-lg);
+    background-color: var(--color-surface);
+  }
+  .service-card-item__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+  }
+  .service-card-item__num {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-subtle);
+  }
+  .service-card-item__title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-sm);
+  }
+  .service-card-item__desc {
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-lg);
+  }
+  .service-card-item__footer {
+    margin-top: auto;
+    padding-top: var(--space-md);
+  }
+  /* 5 servicios en un grid de 2 columnas: la última tarjeta queda sola
+     en la fila final — se extiende a lo ancho en vez de dejar un hueco. */
+  @media (min-width: 48em) {
+    .ruled-grid--odd-span > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+  }
+  .steps--horizontal {
+    display: grid;
+    gap: var(--space-xl);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 48em) {
+    .steps--horizontal { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 64em) {
+    .steps--horizontal { grid-template-columns: repeat(4, 1fr); }
+  }
+  .steps__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+  .steps__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.4;
   }
 </style>

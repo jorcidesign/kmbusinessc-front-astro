@@ -48,7 +48,10 @@ export function initContactForm(): void {
     const payload = {
       nombre: String(formData.get('nombre') || '').trim(),
       whatsapp: String(formData.get('whatsapp') || '').trim(),
+      empresa: String(formData.get('empresa') || '').trim(),
+      correo: String(formData.get('correo') || '').trim(),
       producto: String(formData.get('producto') || '').trim(),
+      servicio: String(formData.get('servicio') || '').trim(),
       cantidad: String(formData.get('cantidad') || '').trim(),
       mensaje: String(formData.get('mensaje') || '').trim(),
     };

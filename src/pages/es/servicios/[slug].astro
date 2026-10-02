@@ -4,29 +4,16 @@ import ServicioDetalleTemplate from '../../_templates/ServicioDetalleTemplate.as
 
 export const prerender = true;
 
-// `slugMap`/`bareId` viven DENTRO de getStaticPaths a propósito: Astro
-// extrae esta función de forma aislada del resto del frontmatter para
-// generar las rutas, así que no puede cerrar sobre consts declaradas
-// como hermanas a nivel de módulo (ver error "bareId is not defined").
+// El slug viene directo del campo `slug` del schema (ver
+// content.config.ts) — ya no hace falta un mapa hardcodeado por id de
+// archivo, así que agregar un servicio nuevo es solo JSON, cero código.
 export async function getStaticPaths() {
-  const slugMap: Record<string, string> = {
-    '01-logistica-integral': 'logistica-integral',
-    '02-busqueda-proveedores': 'busqueda-proveedores',
-    '03-inspeccion-fabricas': 'inspeccion-fabricas',
-    '04-flete-maritimo': 'flete-maritimo',
-  };
-  const bareId = (id: string) => id.replace(/^\w+\//, '');
-
   const allServices = await getCollection('servicios', (entry) => entry.id.startsWith('es/'));
 
-  return allServices.map((service) => {
-    const bare = bareId(service.id);
-    const slug = slugMap[bare] || bare.replace(/^\d+-/, '');
-    return {
-      params: { slug },
-      props: { service, allServices },
-    };
-  });
+  return allServices.map((service) => ({
+    params: { slug: service.data.slug },
+    props: { service, allServices },
+  }));
 }
 
 interface Props {

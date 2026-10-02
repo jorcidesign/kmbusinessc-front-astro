@@ -2,26 +2,45 @@
 // src/components/molecules/ContactForm/ContactForm.astro
 //
 // Props opcionales para soportar ES/EN (ver src/content/ui/*.json):
-// los valores por defecto son el español actual, tal cual. Las 4
+// los valores por defecto son el español actual, tal cual. Las
 // cadenas que necesita el script cliente (ContactForm.ts) viajan como
 // data-* en el <form>, porque ese script es JS puro y no puede
 // importar astro:content.
+//
+// `empresa`/`correo`/`servicio` son campos NUEVOS y opcionales (ver
+// documento SEO maestro): el cliente pidió soportarlos, pero es
+// explícito en que "los campos definitivos deben validarse antes de
+// producción" — no se marcan `required` ni se cierra este set como
+// final. `servicios` alimenta el <select> de "servicio de interés"
+// desde la colección `servicios` (lo arma quien use este componente).
 import Button from '@atoms/Button/Button.astro';
+
+interface ServicioOption {
+  slug: string;
+  titulo: string;
+}
 
 interface Props {
   class?: string;
   defaultService?: string;
+  servicios?: ServicioOption[];
   labelNombre?: string;
   labelWhatsapp?: string;
+  labelEmpresa?: string;
+  labelCorreo?: string;
   labelProducto?: string;
+  labelServicio?: string;
   labelCantidad?: string;
   labelMensaje?: string;
   labelHoneypot?: string;
   placeholderNombre?: string;
   placeholderWhatsapp?: string;
+  placeholderEmpresa?: string;
+  placeholderCorreo?: string;
   placeholderProducto?: string;
   placeholderCantidad?: string;
   placeholderMensaje?: string;
+  servicioOptionsLabel?: string;
   submitLabel?: string;
   sendingLabel?: string;
   validationError?: string;
@@ -32,17 +51,24 @@ interface Props {
 const {
   class: className = '',
   defaultService = '',
+  servicios = [],
   labelNombre = 'Nombre completo',
   labelWhatsapp = 'WhatsApp',
+  labelEmpresa = 'Empresa',
+  labelCorreo = 'Correo electrónico',
   labelProducto = 'Producto que deseas importar o cotizar',
+  labelServicio = 'Servicio de interés',
   labelCantidad = 'Volumen o presupuesto aproximado',
   labelMensaje = 'Detalles adicionales',
   labelHoneypot = 'No llenar este campo',
   placeholderNombre = 'Nombre completo *',
   placeholderWhatsapp = 'WhatsApp (ej. +51 987 654 321) *',
+  placeholderEmpresa = 'Nombre de tu empresa (opcional)',
+  placeholderCorreo = 'Correo electrónico (opcional)',
   placeholderProducto = 'Producto o servicio que necesitas *',
   placeholderCantidad = 'Volumen o cantidad (ej. 1 contenedor, 500 uds)',
   placeholderMensaje = 'Detalles de tu proyecto o requerimientos específicos (opcional)',
+  servicioOptionsLabel = 'Selecciona un servicio (opcional)',
   submitLabel = 'Enviar solicitud',
   sendingLabel = 'Enviando...',
   validationError = 'Completa nombre, WhatsApp y producto.',
@@ -72,9 +98,31 @@ const {
   </div>
 
   <div class="field">
+    <label class="sr-only" for="empresa">{labelEmpresa}</label>
+    <input class="input" id="empresa" name="empresa" type="text" autocomplete="organization" placeholder={placeholderEmpresa} />
+  </div>
+
+  <div class="field">
+    <label class="sr-only" for="correo">{labelCorreo}</label>
+    <input class="input" id="correo" name="correo" type="email" autocomplete="email" placeholder={placeholderCorreo} />
+  </div>
+
+  <div class="field">
     <label class="sr-only" for="producto">{labelProducto}</label>
     <input class="input" id="producto" name="producto" type="text" required placeholder={placeholderProducto} value={defaultService} />
   </div>
+
+  {servicios.length > 0 && (
+    <div class="field">
+      <label class="sr-only" for="servicio">{labelServicio}</label>
+      <select class="input" id="servicio" name="servicio">
+        <option value="">{servicioOptionsLabel}</option>
+        {servicios.map((s) => (
+          <option value={s.titulo} selected={s.titulo === defaultService}>{s.titulo}</option>
+        ))}
+      </select>
+    </div>
+  )}
 
   <div class="field">
     <label class="sr-only" for="cantidad">{labelCantidad}</label>

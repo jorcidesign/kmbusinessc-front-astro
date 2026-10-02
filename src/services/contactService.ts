@@ -8,7 +8,13 @@
 export interface ContactPayload {
   nombre: string;
   whatsapp: string;
+  // Campos nuevos, opcionales (ver documento SEO maestro): el set
+  // definitivo del formulario todavía debe validarse antes de
+  // producción — no asumir que esta lista ya es la final.
+  empresa?: string;
+  correo?: string;
   producto: string;
+  servicio?: string;
   cantidad: string;
   mensaje: string;
 }

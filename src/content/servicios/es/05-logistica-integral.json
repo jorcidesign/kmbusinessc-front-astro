@@ -1,0 +1,84 @@
+{
+  "orden": 5,
+  "slug": "logistica-integral",
+  "titulo": "Logística integral",
+  "subtitulo": "Coordinación cercana de tu operación entre Asia y Latinoamérica, de punta a punta.",
+  "badge": "Coordinación end-to-end",
+  "descripcion": "KM Business Consulting acompaña a empresas que buscan una solución logística integral para conectar sus operaciones en Asia con sus mercados de destino en Latinoamérica.",
+  "seoTitle": "Logística Internacional desde Asia | KM Business Consulting",
+  "metaDescription": "KM coordina soluciones de logística internacional entre Asia y Latinoamérica con acompañamiento cercano y personalizado en cada operación.",
+  "h1": "Logística integral para operaciones entre Asia y Latinoamérica",
+  "keywordPrincipal": "logística internacional desde Asia",
+  "keywordsSecundarias": [
+    "logística integral importaciones",
+    "coordinación logística internacional",
+    "logística China Perú",
+    "logística Asia Latinoamérica"
+  ],
+  "heroIntro": "KM Business Consulting acompaña a empresas que buscan una solución logística integral para conectar sus operaciones en Asia con sus mercados de destino en Latinoamérica.",
+  "ctaPrincipal": { "label": "Solicitar asesoría logística" },
+  "ctaSecundario": { "label": "Conocer servicios" },
+  "secciones": [
+    {
+      "h2": "Un acompañamiento integral para tu operación",
+      "cuerpo": "La logística integral permite abordar la operación como un conjunto, en lugar de tratar cada necesidad de forma aislada.\n\nKM busca convertirse en un punto de apoyo cercano para empresas que necesitan coordinar su operación internacional con mayor claridad y confianza."
+    },
+    {
+      "h2": "Servicios que pueden formar parte de la solución",
+      "items": [
+        {
+          "titulo": "Búsqueda de proveedores",
+          "texto": "Cuando la empresa todavía necesita identificar opciones de abastecimiento."
+        },
+        {
+          "titulo": "Verificación de proveedores",
+          "texto": "Cuando ya existe un proveedor y se necesita mayor seguridad antes de avanzar."
+        },
+        {
+          "titulo": "Inspección de fábricas",
+          "texto": "Cuando la operación requiere información adicional en origen."
+        },
+        {
+          "titulo": "Flete marítimo FCL",
+          "texto": "Cuando la carga debe trasladarse por contenedor completo desde Asia hacia Latinoamérica."
+        }
+      ]
+    },
+    {
+      "h2": "Una relación pensada para el largo plazo",
+      "cuerpo": "El diferencial que KM quiere construir no se limita a concretar una operación. La atención personalizada, la transparencia y la confianza son la base para desarrollar relaciones empresariales duraderas."
+    }
+  ],
+  "faqs": [
+    {
+      "pregunta": "¿Qué significa logística integral para KM?",
+      "respuesta": "Es una forma de acompañar distintas necesidades de la operación internacional de manera coordinada, según el alcance que requiera cada cliente."
+    },
+    {
+      "pregunta": "¿Debo contratar todos los servicios de KM?",
+      "respuesta": "No necesariamente. El cliente puede necesitar una solución puntual o una combinación de servicios. El alcance se define según la operación."
+    },
+    {
+      "pregunta": "¿KM trabaja solo con clientes nuevos en importación?",
+      "respuesta": "No. El público principal definido por el cliente son importadores frecuentes que buscan un socio más confiable y cercano."
+    }
+  ],
+  "serviciosRelacionados": ["proveedores-china", "verificacion-proveedores-china", "inspeccion-fabricas-china", "flete-maritimo-china"],
+  "resumenBullets": [
+    "Coordinación de punta a punta",
+    "Combina los servicios según tu operación",
+    "Un único punto de contacto"
+  ],
+  "specs": {
+    "Cobertura": "Asia (China continental) hacia Perú y Latinoamérica",
+    "Modalidad": "FCL (Contenedor Completo)",
+    "Soporte": "Atención directa de Kattya Mejía y equipo operativo"
+  },
+  "heroImage": {
+    "src": "/images/logistica-integral-hero.jpg",
+    "alt": "Logística integral de importación desde China a Latinoamérica",
+    "width": 678,
+    "height": 381
+  },
+  "icono": "package"
+}

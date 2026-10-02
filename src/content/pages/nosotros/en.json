@@ -1,63 +1,64 @@
 {
   "seo": {
-    "title": "About Us | Kattya Mejía and KM Business Consulting",
-    "description": "Learn the story, values, and track record of Kattya Mejía and KM Business Consulting: over a decade connecting companies with Asia with integrity, transparency, and technical rigor."
+    "title": "KM Business Consulting y Kattya Mejía | Nosotros",
+    "description": "Conoce a Kattya Mejía y la visión de KM Business Consulting: confianza, integridad, transparencia y relaciones empresariales de largo plazo."
   },
   "hero": {
-    "eyebrow": "OUR STORY & VALUES",
-    "title": "Foreign trade built on trust and integrity.",
-    "lead": "Behind every container that reaches port is an unwavering human commitment. We help companies grow while protecting their assets at every stage of importing.",
-    "primaryActionLabel": "Talk to Kattya",
-    "secondaryActionLabel": "Our services"
+    "eyebrow": "NUESTRA HISTORIA Y VALORES",
+    "title": "Una empresa construida desde la confianza, la integridad y las relaciones de largo plazo",
+    "lead": "KM Business Consulting nace de la visión de Kattya Mejía y de una forma de hacer negocios basada en principios sólidos, transparencia, cercanía y compromiso con cada relación comercial.",
+    "primaryActionLabel": "Conversar con KM",
+    "secondaryActionLabel": "Conocer servicios"
   },
   "profileCard": {
-    "badge": "10+ YEARS OF EXPERIENCE",
+    "badge": "10+ AÑOS DE EXPERIENCIA",
     "name": "Kattya Mejía",
-    "role": "Founder & Director of Operations",
-    "imagePlaceholder": "Photo pending",
-    "imageAlt": "Photo of Kattya Mejía — pending",
+    "role": "Fundadora & Directora de Operaciones",
+    "imagePlaceholder": "Aquí va imagen",
+    "imageAlt": "Foto de Kattya Mejía — pendiente",
     "creds": [
-      "Master's in International Business",
-      "Sourcing & Negotiation Specialist in China",
-      "Advisor to importers in Peru and Latin America"
+      "Magíster en Negocios Internacionales",
+      "Especialista en Sourcing & Negociación en China",
+      "Asesora de importadores en Perú y Latinoamérica"
     ]
   },
   "manifiesto": {
-    "tag": "BRAND MANIFESTO",
-    "title": "\"To me, the most important thing is being a good human being and speaking the truth.\"",
+    "tag": "QUIÉN ES KATTYA MEJÍA",
+    "title": "El significado detrás de KM",
     "paragraphs": [
-      "I started in foreign trade more than ten years ago, seeing the constant frustration of business owners losing capital to unscrupulous middlemen: samples that didn't match mass production, made-up customs surcharges, and phantom factories that disappeared after the deposit.",
-      "At KM Business Consulting we built our practice on one radical premise: working with absolute transparency. If a supplier doesn't meet quality standards or a route isn't right for your budget, we tell you upfront. We're not looking to rush a deal — we're building a long-term partnership that protects your peace of mind."
+      "KM nace de la identidad de su fundadora: K por Kattya y M por Mejía. La marca representa su esencia, sus valores y su visión de construir relaciones empresariales basadas en confianza e integridad.",
+      "Kattya es la fundadora de KM Business Consulting y la persona detrás de una propuesta que busca combinar profesionalismo, cercanía y una visión internacional del comercio y la logística.",
+      "\"Quiero ser reconocida, ante todo, por ser un buen ser humano, una persona íntegra que trabaja con amor, pasión y propósito.\" — Kattya Mejía"
     ],
-    "whatsappMessage": "Hi Kattya, I read your manifesto on the website and I'd like to talk about an import.",
-    "whatsappLabel": "Message Kattya"
+    "whatsappMessage": "Hola Kattya, leí tu historia en la web y me gustaría conversar sobre una importación.",
+    "whatsappLabel": "Escribir a Kattya"
   },
   "principios": {
-    "title": "Our four non-negotiable principles",
-    "lead": "The foundation of how we operate and handle our clients' money and goods.",
+    "title": "Nuestra forma de construir relaciones",
+    "lead": "Confianza, integridad, atención y visión: así queremos construir cada relación con nuestros clientes y aliados.",
     "items": [
       {
-        "title": "1. Integrity and technical truth",
-        "description": "No false promises of impossible timelines or misleading quotes. Truthful information and formal contracts from day one."
+        "title": "Confianza",
+        "description": "Queremos que cada cliente sienta tranquilidad y sepa que está trabajando con un aliado que cuida la relación a largo plazo."
       },
       {
-        "title": "2. Direct control at origin",
-        "description": "We don't triangulate through unknown third parties. We have our own inspectors in China who walk the plants and check the packaging."
+        "title": "Integridad",
+        "description": "Los principios y la transparencia forman parte de la manera en que KM quiere relacionarse con clientes y aliados."
       },
       {
-        "title": "3. Cost efficiency",
-        "description": "Open-book cost structures where you know exactly the factory value, freight, and tariffs."
+        "title": "Atención extraordinaria",
+        "description": "KM busca entender realmente a cada cliente y ofrecer un acompañamiento cercano y personalizado."
       },
       {
-        "title": "4. Lifelong relationships",
-        "description": "We take pride in seeing our clients grow and keep importing with us year after year, as business partners."
+        "title": "Visión internacional",
+        "description": "La empresa proyecta su crecimiento con propósito y una visión de posicionamiento internacional."
       }
     ]
   },
   "contactSection": {
-    "tag": "LET'S TALK",
-    "title": "Let's talk about your next container",
-    "lead": "Book a free initial consultation to review your import goals or assess the reliability of your suppliers in Asia.",
-    "whatsappLabel": "Talk to Kattya on WhatsApp"
+    "tag": "CONVERSEMOS",
+    "title": "Hablemos de tu próxima operación",
+    "lead": "Conversemos sobre tus objetivos de importación o la confiabilidad de tus proveedores en Asia.",
+    "whatsappLabel": "Hablar por WhatsApp con Kattya"
   }
 }

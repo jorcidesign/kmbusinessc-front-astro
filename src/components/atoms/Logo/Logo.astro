@@ -11,9 +11,10 @@ import logoInline from './logo-inline.svg?raw';
 import logoVertical from './logo-vertical.svg?raw';
 import logoColorInline from './logo-color-inline.svg?raw';
 import logoMark from './logo-mark.svg?raw';
+import logoWhite from './logo-white.svg?raw';
 
 interface Props {
-  variant?: 'inline' | 'vertical' | 'color' | 'mark';
+  variant?: 'inline' | 'vertical' | 'color' | 'mark' | 'white';
   href?: string;
   ariaLabel?: string;
   class?: string;
@@ -31,6 +32,7 @@ const svgByVariant = {
   vertical: logoVertical,
   color: logoColorInline,
   mark: logoMark,
+  white: logoWhite,
 };
 ---
 

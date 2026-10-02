@@ -1,3 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <text y=".9em" font-size="90">KM</text>
-</svg>
+<svg
+   version="1.1"
+   id="favicon"
+   xml:space="preserve"
+   width="336"
+   height="192"
+   viewBox="0 0 336 192"
+   xmlns="http://www.w3.org/2000/svg"><g
+     transform="translate(-2913.5196,-635)"><path
+       d="M 0,0 H 0.031 L 0,0.031 Z"
+       style="fill:#3cb4e5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,3105.1728,826.6536)" /><path
+       d="M 0,0 63.945,-63.938 H 17.371 L -23.283,-23.283 -38.29,-8.276 V -63.938 H -71.225 V 69.493 H -38.29 V 8.284 l 61.209,61.209 h 46.575 z"
+       style="fill:#3cb4e5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,3008.4863,727.6576)" /><path
+       d="m 0,0 v -133.431 l -32.935,0.009 v 63.413 l -37.546,-37.546 -23.292,23.283 -14.255,14.254 v -53.853 l -32.935,32.935 v 42.893 l 28.772,28.772 41.71,-41.71 37.546,37.546 L -9.5,0 Z"
+       style="fill:#3cb4e5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,3248.9199,635)" /></g></svg>

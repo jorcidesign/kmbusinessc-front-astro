@@ -1,0 +1,79 @@
+{
+  "orden": 1,
+  "slug": "proveedores-china",
+  "titulo": "Búsqueda de proveedores",
+  "subtitulo": "Identificamos opciones de proveedores confiables en China según la necesidad real de tu operación.",
+  "badge": "Sourcing en China",
+  "descripcion": "Si tu empresa necesita encontrar un proveedor en China, KM Business Consulting puede acompañarte en la búsqueda de opciones alineadas a las necesidades de tu operación.",
+  "seoTitle": "Búsqueda de Proveedores en China | KM Business Consulting",
+  "metaDescription": "KM acompaña a empresas que necesitan encontrar proveedores confiables en China para sus operaciones de importación y abastecimiento.",
+  "h1": "Búsqueda de proveedores confiables en China",
+  "keywordPrincipal": "búsqueda de proveedores en China",
+  "keywordsSecundarias": [
+    "proveedores confiables en China",
+    "encontrar proveedores China",
+    "sourcing China",
+    "fabricantes en China"
+  ],
+  "heroIntro": "Si tu empresa necesita encontrar un proveedor en China, KM Business Consulting puede acompañarte en la búsqueda de opciones alineadas a las necesidades de tu operación.",
+  "ctaPrincipal": { "label": "Solicitar búsqueda de proveedor" },
+  "ctaSecundario": { "label": "Hablar con KM" },
+  "secciones": [
+    {
+      "h2": "Cuándo necesitas encontrar un proveedor en China",
+      "cuerpo": "Buscar un proveedor no consiste solo en encontrar un nombre o un contacto. Para una empresa importadora, la decisión debe partir de lo que necesita comprar, cómo quiere operar y qué nivel de acompañamiento requiere antes de avanzar.\n\nKM acompaña este proceso con un enfoque cercano y orientado a construir relaciones comerciales confiables."
+    },
+    {
+      "h2": "Qué busca resolver este servicio",
+      "items": [
+        {
+          "titulo": "Identificar opciones de proveedor",
+          "texto": "Explorar alternativas que puedan responder a la necesidad de abastecimiento planteada por el cliente."
+        },
+        {
+          "titulo": "Dar mayor claridad antes de avanzar",
+          "texto": "Organizar la búsqueda para que la empresa pueda evaluar sus siguientes pasos con mayor información."
+        },
+        {
+          "titulo": "Conectar la búsqueda con el resto de la operación",
+          "texto": "Si el proyecto lo requiere, la búsqueda puede complementarse posteriormente con verificación, inspección de fábrica, logística integral o flete marítimo FCL."
+        }
+      ]
+    },
+    {
+      "h2": "Búsqueda y verificación no son lo mismo",
+      "cuerpo": "La búsqueda aplica cuando todavía necesitas encontrar opciones de proveedor. La verificación aplica cuando ya tienes un proveedor identificado y quieres obtener mayor seguridad antes de continuar con la compra."
+    },
+    {
+      "h2": "Después de encontrar un proveedor",
+      "cuerpo": "Según la necesidad de tu operación, KM puede acompañarte en las siguientes etapas con verificación de proveedor, inspección de fábrica, logística integral o flete marítimo FCL."
+    }
+  ],
+  "faqs": [
+    {
+      "pregunta": "¿KM puede ayudarme si todavía no tengo proveedor?",
+      "respuesta": "Sí. La búsqueda de proveedores está pensada para empresas que necesitan identificar opciones antes de avanzar con una relación de abastecimiento."
+    },
+    {
+      "pregunta": "¿La búsqueda incluye automáticamente la verificación?",
+      "respuesta": "Son necesidades diferentes. El alcance de cada servicio debe definirse según el caso. Si ya tienes un proveedor, la landing de Verificación de proveedores es el punto de entrada más adecuado."
+    },
+    {
+      "pregunta": "¿Qué pasa después de encontrar un proveedor?",
+      "respuesta": "KM puede acompañarte con otros servicios de acuerdo con tu operación, como verificación, inspección de fábrica, logística integral o flete marítimo FCL."
+    }
+  ],
+  "serviciosRelacionados": ["verificacion-proveedores-china", "inspeccion-fabricas-china", "logistica-integral", "flete-maritimo-china"],
+  "resumenBullets": [
+    "Identificar opciones de proveedor",
+    "Dar mayor claridad antes de avanzar",
+    "Conectar la búsqueda con el resto de la operación"
+  ],
+  "heroImage": {
+    "src": "/images/busqueda-proveedores-hero.jpg",
+    "alt": "Búsqueda de proveedores confiables en China",
+    "width": 730,
+    "height": 427
+  },
+  "icono": "search"
+}

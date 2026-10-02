@@ -51,15 +51,19 @@ todo el copy nuevo debe partir de sus palabras, no de las nuestras.
   las relaciones que construimos y el impacto positivo que dejamos en
   los demás."
 
-### Una discrepancia a confirmar con ella, no a resolver por nuestra cuenta
+### Discrepancia FCL/LCL — RESUELTA (ver mapa maestro SEO)
 
 En la llamada telefónica mencionó carga "por contenedor completo **o
 consolidado**" y que su equipo en China conecta con otros países
-además de China. En este brief escrito solo menciona **"fletes
-marítimos FCL"**, sin mencionar LCL/consolidado. Puede ser una
-omisión al escribir rápido, o puede ser que quiera enfocar el mensaje
-solo en FCL. No lo decidimos nosotros — se le pregunta directo antes
-de fijar el copy de servicios.
+además de China. El brief escrito de arriba solo mencionaba "fletes
+marítimos FCL". El documento "Documento Maestro SEO + Copy Final KM –
+V1" (recibido después, ya aprobado) zanjó esto explícitamente: **"FCL
+confirmado, LCL fuera"** — todo el copy de flete marítimo usa
+exclusivamente "flete marítimo FCL"/"contenedor completo", nunca LCL
+ni carga consolidada. La única mención a LCL que queda en el sitio es
+una FAQ de la propia landing de flete (`/es/servicios/flete-maritimo-china/`)
+respondiendo "¿ofrecen LCL?" con "por ahora no, hasta confirmación" —
+no es una nota de desarrollo, es copy aprobado por el cliente.
 
 ## De dónde viene este proyecto
 
@@ -69,6 +73,53 @@ dejó una página de "en renovación". Se hizo una auditoría completa
 (documento Word, "Auditoría del sitio web") y una cotización (Excel,
 "Cotización KM Business Consulting") — ambos entregados a Kattya.
 Este repo es la ejecución de esa propuesta.
+
+## Arquitectura actual: 9 URLs (no un one-pager)
+
+El sitio **ya es multi-página y bilingüe** (`/es/...` y `/en/...`,
+`routing: { prefixDefaultLocale: true }` en `astro.config.mjs`) desde
+antes del rollout del mapa maestro SEO — no hay anclas de one-pager en
+el código (`#quienes-somos`, `#servicios`, etc. no existen). Si algún
+encargo futuro describe el sitio como "una sola página con anclas",
+esa descripción está desactualizada: verificar contra
+`src/pages/es/` antes de asumir que hace falta reconstruir routing.
+
+Las 9 URLs del mapa maestro SEO, todas en `/es/` con espejo `/en/`
+(contenido EN = copia literal del español, fallback temporal — ver
+`AGENTS.md`):
+
+| # | URL | Estado |
+|---|---|---|
+| 1 | `/es/` | Copy del mapa maestro SEO implementado. Stats sin confirmar eliminadas; bloque "Cómo trabajamos" activado. |
+| 2 | `/es/servicios/` | Copy actualizado (hero/catálogo/cierre); el proceso de 5 pasos del hub quedó igual a propósito (el doc no pidió cambiarlo). |
+| 3 | `/es/servicios/proveedores-china/` | Nuevo slug — antes era parte de `busqueda-proveedores`. |
+| 4 | `/es/servicios/verificacion-proveedores-china/` | Servicio nuevo, separado de búsqueda por confirmación del cliente. |
+| 5 | `/es/servicios/inspeccion-fabricas-china/` | Renombrado desde `inspeccion-fabricas`. `pendiente[]` con las notas de validación del doc (AQL, ISO, reportes, fotos/video, inspectores propios). |
+| 6 | `/es/servicios/flete-maritimo-china/` | Renombrado desde `flete-maritimo`. FCL confirmado, LCL fuera (ver discrepancia resuelta arriba). `pendiente[]` con puertos/navieras/tránsito/aduanas/DDP. |
+| 7 | `/es/servicios/logistica-integral/` | Slug sin cambios. |
+| 8 | `/es/nosotros/` | Copy actualizado — **excepto `profileCard` (credenciales de Kattya), ver contradicción sin resolver abajo**. |
+| 9 | `/es/contacto/` | Copy actualizado, quitadas promesas de tiempo de respuesta y cifras sin confirmar que tenía el borrador anterior. |
+
+## Contradicción sin resolver: credenciales de Kattya
+
+**Esto ya está publicado en el sitio hoy, no es solo un flag apagado.**
+`src/content/pages/nosotros/{es,en}.json` → `profileCard.badge`/`creds`
+y `src/content/pages/home/{es,en}.json` → `manifiesto.authorRole`
+publican "10+ años de experiencia" y "Magíster en Negocios
+Internacionales" — confirmados por Kattya en la llamada grabada del 23
+de septiembre (ver brief de marca arriba). El "Documento Maestro SEO +
+Copy Final KM – V1", aprobado DESPUÉS, dice lo opuesto para
+`/es/nosotros/`: "No publicar años de experiencia, grados académicos,
+número de clientes, presencia física u otras credenciales hasta
+confirmación directa del cliente."
+
+No se resolvió por cuenta propia durante el rollout del mapa SEO — se
+dejó el contenido tal cual y se agregó un comentario de advertencia en
+`NosotrosTemplate.astro` y `HomeTemplate.astro` justo donde se consume.
+**Lo resuelve Jorge con Renzo y Kattya.** (Nota: la badge de "150+
+clientes" en `AboutKattya.astro`, detrás de `MOSTRAR_150_CLIENTES`, es
+un caso distinto y menor — ese componente está huérfano, no se usa en
+ninguna página en vivo.)
 
 ## Los 3 problemas principales que este sitio tiene que resolver
 
@@ -202,14 +253,19 @@ ninguna conversación con Kattya.
 |---|---|
 | Logo vectorial, paleta y tipografía definitivas | Diseñador |
 | Foto de Kattya (Hero + sección "quién está detrás") | Kattya |
-| Confirmar FCL solo, o FCL + consolidado/LCL (ver discrepancia arriba) | Kattya |
+| **Resolver contradicción de credenciales** ("10+ años"/"Magíster...": confirmadas en la llamada del 23 sep, pero el doc SEO pide no publicarlas sin confirmación directa — ya publicadas hoy en `/nosotros` y en la Home, ver sección arriba) | Jorge + Renzo + Kattya |
+| Validar el set definitivo de campos del formulario de contacto (el doc sugiere Empresa/Correo/Servicio de interés, ya soportados en el código pero no cerrados) | Kattya + equipo comercial |
 | Categorías de producto, plazos, pedido mínimo reales | Kattya |
-| Confirmar cifra "150+ clientes" antes de activar el badge | Kattya |
+| Confirmar cifra "150+ clientes" antes de activar el badge (componente huérfano, no en uso) | Kattya |
 | Testimonios reales con permiso | Kattya |
+| Traducir `/en/*` (hoy es copia literal del español, fallback temporal) después de aprobar el español | Renzo / Jorge |
+| Actualizar las columnas del Google Sheet del Apps Script para los campos nuevos del formulario (empresa/correo/servicio) | Jorge |
 | ~~Brief de marca / posicionamiento~~ | ✅ Recibido 23 sep |
-| Pasar el copy grounded en el brief por investigación de palabras clave | Renzo |
+| ~~Confirmar FCL solo, o FCL + consolidado/LCL~~ | ✅ Resuelto: FCL confirmado, LCL fuera (mapa maestro SEO) |
+| ~~Pasar el copy grounded en el brief por investigación de palabras clave~~ | ✅ Mapa maestro SEO recibido e implementado |
 | Contenedor GTM + conversiones GA4 | Renzo |
 | Confirmar registrador/titular del dominio y proveedor de correo | Kattya / Jorge |
 | Crear el Apps Script en la cuenta de Kattya y probarlo | Jorge |
 | Definir si el hosting Cloudflare queda a nombre de Kattya | Jorge |
 | Asset `public/og-default.jpg` (imagen para compartir en redes) | Jorge + diseñador |
+| Foto propia para "Verificación de proveedores" (hoy reutiliza `busqueda-proveedores-hero.jpg` — las otras 4 landings ya tienen su imagen distintiva) | Jorge + diseñador |

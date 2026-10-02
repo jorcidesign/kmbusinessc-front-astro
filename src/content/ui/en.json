@@ -17,10 +17,11 @@
     "servicios": {
       "heading": "Services",
       "links": [
-        { "href": "/servicios/logistica-integral", "label": "Integrated Logistics" },
-        { "href": "/servicios/busqueda-proveedores", "label": "Supplier Sourcing" },
-        { "href": "/servicios/inspeccion-fabricas", "label": "Factory Inspection" },
-        { "href": "/servicios/flete-maritimo", "label": "FCL Ocean Freight" }
+        { "href": "/servicios/proveedores-china", "label": "Supplier Sourcing" },
+        { "href": "/servicios/verificacion-proveedores-china", "label": "Supplier Verification" },
+        { "href": "/servicios/inspeccion-fabricas-china", "label": "Factory Inspection" },
+        { "href": "/servicios/flete-maritimo-china", "label": "FCL Ocean Freight" },
+        { "href": "/servicios/logistica-integral", "label": "Integrated Logistics" }
       ]
     },
     "empresa": {
@@ -70,7 +71,10 @@
     "labels": {
       "nombre": "Full name",
       "whatsapp": "WhatsApp",
+      "empresa": "Company",
+      "correo": "Email",
       "producto": "Product you want to import or quote",
+      "servicio": "Service of interest",
       "cantidad": "Approximate volume or budget",
       "mensaje": "Additional details",
       "honeypot": "Do not fill this field"
@@ -78,10 +82,13 @@
     "placeholders": {
       "nombre": "Full name *",
       "whatsapp": "WhatsApp (e.g. +51 987 654 321) *",
+      "empresa": "Your company name (optional)",
+      "correo": "Email address (optional)",
       "producto": "Product or service you need *",
       "cantidad": "Volume or quantity (e.g. 1 container, 500 units)",
       "mensaje": "Details about your project or specific requirements (optional)"
     },
+    "servicioOptionsLabel": "Select a service (optional)",
     "submitLabel": "Send request",
     "sendingLabel": "Sending...",
     "validationError": "Please fill in name, WhatsApp, and product.",
@@ -92,15 +99,10 @@
     "eyebrowFallbackPrefix": "SERVICE 0",
     "primaryActionLabel": "Request a quote",
     "secondaryActionLabel": "View all services",
-    "scopeTag": "OPERATIONAL SCOPE",
-    "scopeTitle": "What the service includes",
     "specsTitle": "Key specifications",
-    "deliverablesTitle": "Deliverables and concrete actions",
-    "benefitsTitle": "Why trust this stage to KM",
-    "benefitsLead": "Operational security, world-class technical criteria, and zero speculative intermediation.",
-    "stagesTag": "STEP BY STEP",
-    "stagesTitle": "Execution phases",
-    "stagesLead": "This is how we coordinate this service from the first inquiry to a successful delivery.",
+    "pendienteLabel": "Pending validation note",
+    "faqsTitle": "Frequently asked questions",
+    "relatedTitle": "Related services",
     "quoteTag": "DIRECT QUOTE",
     "quoteTitlePrefix": "Get a quote for ",
     "quoteLead": "Tell us the details of your product, estimated quantities, or destination port, and we'll send you a detailed cost proposal.",

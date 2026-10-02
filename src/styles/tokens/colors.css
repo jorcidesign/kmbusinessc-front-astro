@@ -80,6 +80,11 @@
   --color-success:      #0f9d6e;
   --color-success-bg:   #dff8ef;
   --color-warning:      #f2cd75;
+  --color-warning-bg:   #fdf6e3;
+  /* #f2cd75 solo no tiene contraste suficiente como color de texto —
+     este tono más oscuro es el que se usa para letras sobre
+     --color-warning-bg (ver patrón "pendiente" en ServicioDetalleTemplate). */
+  --color-warning-text: #8a5a00;
 
   /* ---------- Semánticos: Decoración ---------- */
   --color-decor-1: var(--mint-400);

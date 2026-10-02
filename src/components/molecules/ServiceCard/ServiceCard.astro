@@ -14,8 +14,10 @@ const formattedIndex = (index + 1).toString().padStart(2, '0');
   <span class="m-service-card__index">{formattedIndex}</span>
   <h3 class="m-service-card__title">{servicio.titulo}</h3>
   <p class="m-service-card__description">{servicio.descripcion}</p>
-  {servicio.pendiente && (
-    <p class="m-service-card__pending">⚠ {servicio.pendiente}</p>
+  {servicio.pendiente && servicio.pendiente.length > 0 && (
+    <ul class="m-service-card__pending" role="list">
+      {servicio.pendiente.map((nota) => <li>⚠ {nota}</li>)}
+    </ul>
   )}
 </article>
 
@@ -45,14 +47,16 @@ const formattedIndex = (index + 1).toString().padStart(2, '0');
     line-height: var(--lh-relaxed);
   }
   /* Nota de desarrollo, visible solo mientras el detalle operativo
-     sigue pendiente de confirmación — no debería llegar a producción. */
+     sigue pendiente de confirmación — no debería llegar a producción.
+     Tokens --color-warning-* (tokens/colors.css), nunca hex suelto. */
   .m-service-card__pending {
-    margin-top: var(--space-3);
+    margin: var(--space-3) 0 0;
     padding: var(--space-2) var(--space-3);
     border-radius: var(--radius-sm);
-    background: #fdeaea;
-    color: #a61e2e;
+    background: var(--color-warning-bg);
+    color: var(--color-warning-text);
     font-size: var(--text-xs);
     font-style: italic;
+    list-style: none;
   }
 </style>

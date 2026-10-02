@@ -1,7 +1,7 @@
 ---
 // src/pages/_templates/NosotrosTemplate.astro
 // Ver HomeTemplate.astro para la explicación del patrón _templates/.
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@organisms/Hero/Hero.astro';
@@ -26,6 +26,10 @@ if (!uiEntry) throw new Error(`Falta src/content/ui/${locale}.json`);
 const ui = uiEntry.data;
 const contactForm = ui.contactForm;
 
+const servicios = (await getCollection('servicios', (entry) => entry.id.startsWith(`${locale}/`)))
+  .sort((a, b) => a.data.orden - b.data.orden)
+  .map((s) => ({ slug: s.data.slug, titulo: s.data.titulo }));
+
 const principiosIcons: FeatureIconName[] = ['verified-check', 'inspection', 'open-ledger', 'care'];
 const principiosAccents: FeatureIconAccent[] = ['blue', 'mint', 'amber', 'coral'];
 ---
@@ -41,6 +45,22 @@ const principiosAccents: FeatureIconAccent[] = ['blue', 'mint', 'amber', 'coral'
     secondaryAction={{ label: page.hero.secondaryActionLabel, href: withLocale('/servicios') }}
   >
     <div slot="media" class="about-hero__media">
+      {/*
+        ⚠️ CONTRADICCIÓN SIN RESOLVER (ver AGENTS.md / PROJECT_CONTEXT.md
+        y resumen de la implementación del mapa maestro SEO):
+        `page.profileCard.badge`/`creds` publican "10+ años de
+        experiencia" y "Magíster en Negocios Internacionales" —
+        confirmados por Kattya en la llamada grabada del 23 de
+        septiembre (ver PROJECT_CONTEXT.md). El documento SEO maestro
+        aprobado DESPUÉS dice lo opuesto, explícito, para esta misma
+        página: "No publicar años de experiencia, grados académicos,
+        número de clientes, presencia física u otras credenciales
+        hasta confirmación directa del cliente."
+        No se tocó por instrucción expresa del encargo ("NO
+        RESOLVER" — no decidir por cuenta propia). Esto lo resuelve
+        Jorge con Renzo y Kattya, no un agente. La misma credencial se
+        repite en pages/home/<locale>.json → manifiesto.authorRole.
+      */}
       <div class="about-hero__profile-card">
         <div class="profile-card__badge">{page.profileCard.badge}</div>
         <div class="profile-card__avatar" role="img" aria-label={page.profileCard.imageAlt}>
@@ -154,17 +174,24 @@ const principiosAccents: FeatureIconAccent[] = ['blue', 'mint', 'amber', 'coral'
         </div>
         <div class="contact__divider" aria-hidden="true"></div>
         <ContactForm
+          servicios={servicios}
           labelNombre={contactForm.labels.nombre}
           labelWhatsapp={contactForm.labels.whatsapp}
+          labelEmpresa={contactForm.labels.empresa}
+          labelCorreo={contactForm.labels.correo}
           labelProducto={contactForm.labels.producto}
+          labelServicio={contactForm.labels.servicio}
           labelCantidad={contactForm.labels.cantidad}
           labelMensaje={contactForm.labels.mensaje}
           labelHoneypot={contactForm.labels.honeypot}
           placeholderNombre={contactForm.placeholders.nombre}
           placeholderWhatsapp={contactForm.placeholders.whatsapp}
+          placeholderEmpresa={contactForm.placeholders.empresa}
+          placeholderCorreo={contactForm.placeholders.correo}
           placeholderProducto={contactForm.placeholders.producto}
           placeholderCantidad={contactForm.placeholders.cantidad}
           placeholderMensaje={contactForm.placeholders.mensaje}
+          servicioOptionsLabel={contactForm.servicioOptionsLabel}
           submitLabel={contactForm.submitLabel}
           sendingLabel={contactForm.sendingLabel}
           validationError={contactForm.validationError}

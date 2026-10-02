@@ -9,6 +9,7 @@ import { getEntry, type CollectionEntry } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@organisms/Hero/Hero.astro';
+import FAQSection from '@organisms/FAQSection/FAQSection.astro';
 import RuledFeature from '@molecules/RuledFeature/RuledFeature.astro';
 import type { FeatureIconName, FeatureIconAccent } from '@atoms/FeatureIcon/FeatureIcon.astro';
 import ContactForm from '@molecules/ContactForm/ContactForm.astro';
@@ -30,190 +31,120 @@ const ui = uiEntry.data;
 const sd = ui.serviceDetail;
 const contactForm = ui.contactForm;
 
-const isLogistica = slug === 'logistica-integral';
-const isBusqueda = slug === 'busqueda-proveedores';
-const isInspeccion = slug === 'inspeccion-fabricas';
-const isFlete = slug === 'flete-maritimo';
-
-const slugMap: Record<string, string> = {
-  '01-logistica-integral': 'logistica-integral',
-  '02-busqueda-proveedores': 'busqueda-proveedores',
-  '03-inspeccion-fabricas': 'inspeccion-fabricas',
-  '04-flete-maritimo': 'flete-maritimo',
-};
-const bareId = (id: string) => id.replace(/^\w+\//, '');
-
 const sortedServices = [...allServices].sort((a, b) => a.data.orden - b.data.orden);
 const currentIndex = sortedServices.findIndex((s) => s.id === service.id);
 const prevService = currentIndex > 0 ? sortedServices[currentIndex - 1] : null;
 const nextService = currentIndex < sortedServices.length - 1 ? sortedServices[currentIndex + 1] : null;
 
-const prevSlug = prevService ? (slugMap[bareId(prevService.id)] || bareId(prevService.id).replace(/^\d+-/, '')) : null;
-const nextSlug = nextService ? (slugMap[bareId(nextService.id)] || bareId(nextService.id).replace(/^\d+-/, '')) : null;
+const relatedServices = service.data.serviciosRelacionados
+  .map((relSlug) => allServices.find((s) => s.data.slug === relSlug))
+  .filter((s): s is CollectionEntry<'servicios'> => Boolean(s));
 
 const benefitAccents: FeatureIconAccent[] = ['blue', 'mint', 'amber', 'coral'];
 const benefitIcons: FeatureIconName[] = ['verified-check', 'handshake', 'open-ledger', 'shield'];
 ---
 
-<BaseLayout
-  title={`${service.data.titulo} | ${locale === 'es' ? 'Servicios' : 'Services'}`}
-  description={service.data.descripcion}
-  locale={locale}
->
-  <!-- HERO SPLIT DEL SERVICIO CON LA ANIMACIÓN VECTORIAL CORRESPONDIENTE -->
+<BaseLayout title={service.data.seoTitle} description={service.data.metaDescription} locale={locale}>
+  <!-- HERO SPLIT DEL SERVICIO -->
   <Hero
     variant="split"
     eyebrow={service.data.badge || `${sd.eyebrowFallbackPrefix}${service.data.orden}`}
-    title={service.data.titulo}
-    lead={service.data.subtitulo || service.data.descripcion}
-    primaryAction={{ label: sd.primaryActionLabel, href: '#cotizar' }}
-    secondaryAction={{ label: sd.secondaryActionLabel, href: withLocale('/servicios') }}
+    title={service.data.h1}
+    lead={service.data.heroIntro}
+    primaryAction={{ label: service.data.ctaPrincipal.label, href: '#cotizar' }}
+    secondaryAction={{ label: service.data.ctaSecundario?.label || sd.secondaryActionLabel, href: withLocale('/servicios') }}
   >
     <div slot="media" class="service-detail-hero__media service-detail-hero__media--image">
-      {isLogistica && (
-        <img
-          src="/images/logistica-integral-hero.jpg"
-          alt="Logística integral de importación desde China a Latinoamérica"
-          class="service-detail-hero__image"
-          width="678"
-          height="381"
-          loading="eager"
-          decoding="async"
-        />
-      )}
-      {isBusqueda && (
-        <img
-          src="/images/busqueda-proveedores-hero.jpg"
-          alt="Búsqueda y verificación de proveedores confiables en China"
-          class="service-detail-hero__image"
-          width="730"
-          height="427"
-          loading="eager"
-          decoding="async"
-        />
-      )}
-      {isInspeccion && (
-        <img
-          src="/images/inspeccion-fabricas-hero.jpg"
-          alt="Control de calidad e inspección de fábricas en China"
-          class="service-detail-hero__image"
-          width="626"
-          height="417"
-          loading="eager"
-          decoding="async"
-        />
-      )}
-      {isFlete && (
-        <img
-          src="/images/flete-maritimo-hero.jpg"
-          alt="Fletes marítimos internacionales y logística FCL"
-          class="service-detail-hero__image"
-          width="765"
-          height="550"
-          loading="eager"
-          decoding="async"
-        />
-      )}
+      <img
+        src={service.data.heroImage?.src ?? '/images/servicio-generic-hero.jpg'}
+        alt={service.data.heroImage?.alt ?? service.data.titulo}
+        class="service-detail-hero__image"
+        width={service.data.heroImage?.width ?? 700}
+        height={service.data.heroImage?.height ?? 420}
+        loading="eager"
+        decoding="async"
+      />
     </div>
   </Hero>
 
-  <!-- QUÉ HACEMOS Y ESPECIFICACIONES TÉCNICAS -->
-  <section class="section section--ruled section--framed" id="detalles">
-    <div class="container gutter">
-      <div class="grid items-start">
-        <div class="col-5">
-          <span class="tag tag--navy mb-sm">{sd.scopeTag}</span>
-          <h2 class="heading-lg">{sd.scopeTitle}</h2>
-          <p class="mt-md text-color-muted">
-            {service.data.descripcion}
-          </p>
-
-          {service.data.specs && (
-            <div class="mt-2xl">
-              <h3 class="heading-sm mb-md text-color-main">{sd.specsTitle}</h3>
-              <dl class="specs-list">
-                {Object.entries(service.data.specs).map(([key, val]) => (
-                  <div class="spec-row">
-                    <dt class="spec-key">{key}</dt>
-                    <dd class="spec-val">{val}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          )}
-        </div>
-
-        <div class="col-7">
-          {service.data.queHacemos && (
-            <div class="scope-box">
-              <h3 class="heading-sm mb-lg">{sd.deliverablesTitle}</h3>
-              <ul class="scope-list" role="list">
-                {service.data.queHacemos.map((item, idx) => (
-                  <li class="scope-item">
-                    <span class="scope-badge">0{idx + 1}</span>
-                    <span class="scope-text">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BENEFICIOS CLAVE DEL SERVICIO (RULED GRID) -->
-  {service.data.beneficios && service.data.beneficios.length > 0 && (
-    <section class="section section--subtle section--ruled section--framed section--sm">
-      <div class="container gutter">
-        <div class="section-header">
-          <h2 class="section-header__title">{sd.benefitsTitle}</h2>
-          <p class="section-header__lead">
-            {sd.benefitsLead}
-          </p>
-        </div>
-      </div>
-    </section>
-
+  <!-- AVISO DE CONTENIDO PENDIENTE DE VALIDACIÓN — máxima visibilidad,
+       justo después del hero. Ver jerarquía de fuente del documento
+       SEO maestro: CONFIRMADO CLIENTE / PENDIENTE / PLACEHOLDER DEMO. -->
+  {service.data.pendiente && service.data.pendiente.length > 0 && (
     <section class="section--flush section--framed">
-      <div class={`ruled-grid ruled-grid--${service.data.beneficios.length >= 4 ? '4' : '2'} ruled-grid--no-left`}>
-        {service.data.beneficios.map((ben, bIdx) => (
-          <RuledFeature
-            title={ben.titulo}
-            description={ben.descripcion}
-            icon={benefitIcons[bIdx % benefitIcons.length]}
-            accent={benefitAccents[bIdx % benefitAccents.length]}
-          />
-        ))}
+      <div class="container gutter">
+        <div class="service-pending-notice" role="note">
+          <strong class="service-pending-notice__label">⚠ {sd.pendienteLabel}</strong>
+          <ul class="service-pending-notice__list" role="list">
+            {service.data.pendiente.map((nota) => <li>{nota}</li>)}
+          </ul>
+        </div>
       </div>
     </section>
   )}
 
-  <!-- ETAPAS DE EJECUCIÓN -->
-  {service.data.etapas && service.data.etapas.length > 0 && (
+  <!-- ESPECIFICACIONES (solo si el servicio las trae) -->
+  {service.data.specs && (
+    <section class="section section--ruled section--framed section--sm">
+      <div class="container gutter">
+        <h2 class="heading-sm mb-md text-color-main">{sd.specsTitle}</h2>
+        <dl class="specs-list">
+          {Object.entries(service.data.specs).map(([key, val]) => (
+            <div class="spec-row">
+              <dt class="spec-key">{key}</dt>
+              <dd class="spec-val">{val}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )}
+
+  <!-- SECCIONES DE CONTENIDO (H2 + prosa o sub-puntos, ver content.config.ts) -->
+  {service.data.secciones.map((sec) => (
     <section class="section section--ruled section--framed">
       <div class="container gutter">
-        <div class="grid items-start">
-          <div class="col-5">
-            <span class="tag tag--navy mb-sm">{sd.stagesTag}</span>
-            <h2 class="heading-lg">{sd.stagesTitle}</h2>
-            <p class="mt-md text-color-muted">
-              {sd.stagesLead}
-            </p>
+        <h2 class="heading-lg">{sec.h2}</h2>
+        {sec.cuerpo && (
+          <div class="mt-md text-color-muted">
+            {sec.cuerpo.split('\n\n').map((parrafo) => <p class="mb-md">{parrafo}</p>)}
           </div>
-          <div class="col-7">
-            <ol class="steps" role="list">
-              {service.data.etapas.map((etapa) => (
-                <li class="steps__item">
-                  <span class="steps__marker"></span>
-                  <div class="steps__body">
-                    <strong class="steps__label">{etapa.paso}</strong>
-                    <p class="steps__desc">{etapa.detalle}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+        )}
+        {sec.items && sec.items.length > 0 && (
+          <div class={`ruled-grid ruled-grid--${sec.items.length >= 4 ? '4' : '2'} ruled-grid--no-left mt-xl`}>
+            {sec.items.map((it, idx) => (
+              <RuledFeature
+                title={it.titulo}
+                description={it.texto}
+                icon={benefitIcons[idx % benefitIcons.length]}
+                accent={benefitAccents[idx % benefitAccents.length]}
+              />
+            ))}
           </div>
+        )}
+      </div>
+    </section>
+  ))}
+
+  <!-- PREGUNTAS FRECUENTES DEL SERVICIO -->
+  {service.data.faqs.length > 0 && (
+    <FAQSection
+      title={sd.faqsTitle}
+      categories={[{ title: service.data.titulo, items: service.data.faqs.map((f) => ({ question: f.pregunta, answer: f.respuesta })) }]}
+    />
+  )}
+
+  <!-- ENLAZADO INTERNO SUGERIDO -->
+  {relatedServices.length > 0 && (
+    <section class="section section--subtle section--ruled section--framed section--sm">
+      <div class="container gutter">
+        <h2 class="heading-sm mb-md text-color-main">{sd.relatedTitle}</h2>
+        <div class="related-services" role="list">
+          {relatedServices.map((rel) => (
+            <a class="btn btn--outline btn--sm" href={withLocale(`/servicios/${rel.data.slug}`)} role="listitem">
+              {rel.data.titulo}
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -241,17 +172,24 @@ const benefitIcons: FeatureIconName[] = ['verified-check', 'handshake', 'open-le
         <div class="contact__divider" aria-hidden="true"></div>
         <ContactForm
           defaultService={service.data.titulo}
+          servicios={allServices.map((s) => ({ slug: s.data.slug, titulo: s.data.titulo }))}
           labelNombre={contactForm.labels.nombre}
           labelWhatsapp={contactForm.labels.whatsapp}
+          labelEmpresa={contactForm.labels.empresa}
+          labelCorreo={contactForm.labels.correo}
           labelProducto={contactForm.labels.producto}
+          labelServicio={contactForm.labels.servicio}
           labelCantidad={contactForm.labels.cantidad}
           labelMensaje={contactForm.labels.mensaje}
           labelHoneypot={contactForm.labels.honeypot}
           placeholderNombre={contactForm.placeholders.nombre}
           placeholderWhatsapp={contactForm.placeholders.whatsapp}
+          placeholderEmpresa={contactForm.placeholders.empresa}
+          placeholderCorreo={contactForm.placeholders.correo}
           placeholderProducto={contactForm.placeholders.producto}
           placeholderCantidad={contactForm.placeholders.cantidad}
           placeholderMensaje={contactForm.placeholders.mensaje}
+          servicioOptionsLabel={contactForm.servicioOptionsLabel}
           submitLabel={contactForm.submitLabel}
           sendingLabel={contactForm.sendingLabel}
           validationError={contactForm.validationError}
@@ -266,15 +204,15 @@ const benefitIcons: FeatureIconName[] = ['verified-check', 'handshake', 'open-le
   <nav class="service-nav-bar section--framed" aria-label={sd.navAriaLabel}>
     <div class="container gutter">
       <div class="service-nav-bar__inner">
-        {prevService && prevSlug ? (
-          <a class="service-nav-link service-nav-link--prev" href={withLocale(`/servicios/${prevSlug}`)}>
+        {prevService ? (
+          <a class="service-nav-link service-nav-link--prev" href={withLocale(`/servicios/${prevService.data.slug}`)}>
             <span class="service-nav-dir">&larr; {sd.prevLabel}</span>
             <strong class="service-nav-name">{prevService.data.titulo}</strong>
           </a>
         ) : <div />}
 
-        {nextService && nextSlug ? (
-          <a class="service-nav-link service-nav-link--next" href={withLocale(`/servicios/${nextSlug}`)}>
+        {nextService ? (
+          <a class="service-nav-link service-nav-link--next" href={withLocale(`/servicios/${nextService.data.slug}`)}>
             <span class="service-nav-dir">{sd.nextLabel} &rarr;</span>
             <strong class="service-nav-name">{nextService.data.titulo}</strong>
           </a>
@@ -329,57 +267,30 @@ const benefitIcons: FeatureIconName[] = ['verified-check', 'handshake', 'open-le
     color: var(--color-text);
     margin-top: 2px;
   }
-  .scope-box {
-    background-color: var(--color-surface);
-    border: var(--rule-hairline);
-    padding: var(--space-2xl);
-  }
-  .scope-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-  .scope-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
-    padding-bottom: var(--space-md);
-    border-bottom: var(--rule-hairline);
-  }
-  .scope-item:last-child {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-  .scope-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
+  /* Patrón "pendiente": siempre con los tokens --color-warning-*, nunca
+     hex hardcodeado (ver el defecto que tenía ServiceCard.astro). */
+  .service-pending-notice {
+    background-color: var(--color-warning-bg);
+    color: var(--color-warning-text);
+    border: 1px solid var(--color-warning);
     border-radius: var(--radius-sm);
-    background-color: var(--color-bg-subtle);
-    color: var(--color-brand);
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    flex-shrink: 0;
+    padding: var(--space-md) var(--space-lg);
   }
-  .scope-text {
-    font-size: var(--text-base);
-    color: var(--color-text);
+  .service-pending-notice__label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-size: var(--text-sm);
+  }
+  .service-pending-notice__list {
+    margin: 0;
+    padding-left: var(--space-lg);
+    font-size: var(--text-sm);
     line-height: 1.5;
   }
-  .steps__body {
+  .related-services {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-2xs);
-  }
-  .steps__desc {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    line-height: 1.4;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
   }
   .service-nav-bar {
     border-top: var(--rule-hairline);

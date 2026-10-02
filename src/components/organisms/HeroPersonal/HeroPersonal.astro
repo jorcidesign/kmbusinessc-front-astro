@@ -9,8 +9,18 @@
 // relación de confianza, no la operación puntual) — pero SIGUE sin
 // pasar por la investigación de palabras clave de Renzo (líneas D2/9
 // de la cotización). No usar en producción sin que él lo revise.
-// No menciona FCL/LCL a propósito: ver la discrepancia sin resolver
-// en PROJECT_CONTEXT.md antes de ser más específico ahí.
+// La discrepancia FCL/LCL mencionada abajo quedó RESUELTA con el mapa
+// maestro SEO: FCL confirmado, LCL fuera (ver PROJECT_CONTEXT.md).
+//
+// ⚠️ CONTRADICCIÓN SIN RESOLVER (distinta de la de FCL/LCL): las
+// badges de abajo ("10+ años de experiencia" / "Magíster en Negocios
+// Internacionales") vienen del brief grabado de Kattya del 23 de
+// septiembre, pero el documento SEO maestro aprobado después pide
+// explícitamente NO publicarlas sin su confirmación directa. Este
+// componente está huérfano (ninguna página en uso lo importa) — si se
+// reactiva, no reintroducir estas badges sin esa confirmación. Mismo
+// caso ya activo hoy en pages/nosotros/<locale>.json → profileCard y
+// en pages/home/<locale>.json → manifiesto.authorRole.
 import WhatsAppButton from '@atoms/WhatsAppButton/WhatsAppButton.astro';
 import Badge from '@atoms/Badge/Badge.astro';
 ---

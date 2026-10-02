@@ -1,0 +1,78 @@
+{
+  "orden": 3,
+  "slug": "inspeccion-fabricas-china",
+  "titulo": "Inspección de fábricas",
+  "subtitulo": "Mayor visibilidad sobre una fábrica en China antes de avanzar con tu operación.",
+  "badge": "Inspección en origen",
+  "descripcion": "KM Business Consulting ofrece inspección de fábricas en China para empresas que necesitan conocer mejor una operación en origen antes de tomar sus siguientes decisiones.",
+  "seoTitle": "Inspección de Fábricas en China | KM Business Consulting",
+  "metaDescription": "Servicio de inspección de fábricas en China para obtener mayor visibilidad antes de avanzar con una operación de importación.",
+  "h1": "Inspección de fábricas en China para avanzar con mayor información",
+  "keywordPrincipal": "inspección de fábricas en China",
+  "keywordsSecundarias": [
+    "inspección fábrica China",
+    "revisión de fábrica China",
+    "supervisión de proveedor en China",
+    "auditoría de fábrica"
+  ],
+  "heroIntro": "KM Business Consulting ofrece inspección de fábricas en China para empresas que necesitan conocer mejor una operación en origen antes de tomar sus siguientes decisiones.",
+  "ctaPrincipal": { "label": "Solicitar inspección" },
+  "ctaSecundario": { "label": "Hablar con KM" },
+  "secciones": [
+    {
+      "h2": "Cuándo puede ayudarte una inspección de fábrica",
+      "cuerpo": "Una inspección puede ser útil cuando tu empresa necesita información adicional sobre una fábrica en China antes de avanzar con una compra, una relación de abastecimiento o una etapa posterior de la operación."
+    },
+    {
+      "h2": "Un servicio definido según tu operación",
+      "cuerpo": "El alcance de la inspección debe definirse según la necesidad concreta del cliente y el momento en el que se encuentra la operación.\n\nKM no plantea la inspección como un servicio genérico: primero entendemos qué necesitas revisar y qué decisión quieres tomar con esa información."
+    },
+    {
+      "h2": "Cómo se relaciona con otros servicios de KM",
+      "items": [
+        {
+          "titulo": "Con búsqueda de proveedores",
+          "texto": "Puede complementar una operación en la que previamente se identificaron opciones de proveedor."
+        },
+        {
+          "titulo": "Con verificación de proveedores",
+          "texto": "Puede formar parte de una necesidad más amplia de obtener mayor seguridad sobre un proveedor ya identificado."
+        },
+        {
+          "titulo": "Con logística y flete FCL",
+          "texto": "Después de la etapa en origen, KM puede acompañar las necesidades logísticas de la operación según el alcance contratado."
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "pregunta": "¿KM realiza inspecciones de fábrica en China?",
+      "respuesta": "Sí. La inspección de fábricas en China forma parte de los servicios confirmados por KM Business Consulting."
+    },
+    {
+      "pregunta": "¿Qué incluye exactamente una inspección?",
+      "respuesta": "El alcance debe definirse según la necesidad de la operación. No se deben publicar metodologías, estándares, tiempos de reporte ni entregables específicos hasta que Kattya los confirme."
+    },
+    {
+      "pregunta": "¿Puedo combinar inspección con otros servicios?",
+      "respuesta": "Sí. Dependiendo de tu operación, puede complementarse con búsqueda o verificación de proveedores, logística integral y flete marítimo FCL."
+    }
+  ],
+  "serviciosRelacionados": ["proveedores-china", "verificacion-proveedores-china", "logistica-integral", "flete-maritimo-china"],
+  "resumenBullets": [
+    "Visibilidad sobre la fábrica antes de avanzar",
+    "Alcance definido según tu operación",
+    "Se complementa con otros servicios de KM"
+  ],
+  "pendiente": [
+    "No publicar AQL, ISO, reportes en 12/24h, fotos/video, inspectores propios u otros alcances del demo hasta confirmación expresa."
+  ],
+  "heroImage": {
+    "src": "/images/inspeccion-fabricas-hero.jpg",
+    "alt": "Control de calidad e inspección de fábricas en China",
+    "width": 626,
+    "height": 417
+  },
+  "icono": "clipboard-check"
+}

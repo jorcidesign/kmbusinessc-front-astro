@@ -139,6 +139,55 @@ hilo de la conversación sobre el proyecto — ver el resumen en
   solo con datos no sensibles (tipo de producto) — nunca nombre,
   teléfono o el mensaje. Ver el comentario en `src/lib/analytics.ts`.
 
+## Content Collections — convenciones del rollout del mapa maestro SEO
+
+- **`servicios`** creció de 4 a 5 entradas (slugs con `-china`/`-fcl`
+  donde aplica, ver `src/content/servicios/{es,en}/`) y su schema
+  consolidó `queHacemos`/`beneficios`/`etapas` en un único
+  `secciones: [{h2, cuerpo?, items?}]` — modela mejor la estructura
+  real del documento SEO (H2 + prosa o sub-puntos titulados) que tres
+  arrays de forma fija. `pendiente` pasó de `string` a `string[]` (dos
+  servicios necesitan varios puntos de advertencia). Nuevos campos
+  obligatorios: `slug`, `seoTitle`, `metaDescription`, `h1`,
+  `heroIntro`, `ctaPrincipal`; nuevos opcionales: `keywordsSecundarias`,
+  `ctaSecundario`, `faqs`, `serviciosRelacionados`, `resumenBullets`,
+  `heroImage`.
+- **`slug` en el schema de `servicios` es el id de ruta** —
+  `getStaticPaths` en `src/pages/{es,en}/servicios/[slug].astro` lo lee
+  directo del contenido, ya no hay mapas hardcodeados por archivo.
+  Agregar un servicio nuevo es solo JSON, cero cambios de código.
+  ⚠️ **Trampa de Astro a tener presente**: el `glob()` loader usa
+  `data.slug` como id de la entrada SI el campo existe (ver
+  `generateIdDefault` en `astro/dist/content/loaders/glob.js`), lo que
+  pisa el id basado en ruta de archivo que el resto del proyecto usa
+  para filtrar por locale (`entry.id.startsWith('es/')`) — sin el
+  `generateId` explícito que tiene la colección `servicios` en
+  `content.config.ts`, es/ y en/ colisionan en un mismo id y la
+  colección queda silenciosamente vacía al filtrar (sin error de
+  build, sin warning — las páginas simplemente no se generan). Si se
+  agrega un campo `slug` a OTRA colección en el futuro, replicar el
+  mismo `generateId`.
+- **`proceso`** pasó a tener locale (`es/`/`en/`, mismo patrón que
+  `servicios`/`faqs`) — antes existía pero ningún componente en uso la
+  leía; ahora alimenta el bloque "Cómo trabajamos" de la Home.
+- **Patrón "pendiente"**: siempre con los tokens `--color-warning`,
+  `--color-warning-bg`, `--color-warning-text` de `tokens/colors.css`
+  (namespace `--color-*`, no el `--c-*` legacy de `_colors.css`) —
+  nunca hex hardcodeado. Ver el bloque de aviso en
+  `ServicioDetalleTemplate.astro`, justo después del Hero de cada
+  servicio.
+- **SEO Title / Meta Description son el texto final, completo**, no un
+  fragmento que `BaseLayout` complete — `<title>`/`og:title` ya no le
+  concatenan " | KM Business Consulting" al `title` prop (lo hacían
+  antes; duplicaba la marca en cualquier página cuyo `seoTitle` ya la
+  trajera incluida, como ahora pasa en las 9 URLs del mapa SEO). Cada
+  `seoTitle`/`seo.title` debe ser ya el string final a publicar.
+- **`/en/*.json` de las colecciones tocadas en este rollout
+  (`servicios`, `proceso`, `faqs`, `pages/*`) son copia literal del
+  español**, no traducción — instrucción explícita del encargo para no
+  inventar copy en inglés antes de aprobar el español. Ver los
+  `README.md` de cada carpeta de contenido antes de traducir.
+
 ## Qué falta y quién lo destraba
 
 Ver la sección "Pendientes" de `PROJECT_CONTEXT.md` para la lista

@@ -12,27 +12,75 @@
 // el locale como prefijo (p.ej. "es/01-logistica-integral"). Los
 // consumidores filtran con `entry.id.startsWith(`${locale}/`)`.
 //
-// `proceso` y `testimonios` NO se tocaron en esta migración: ningún
-// componente en uso las lee hoy (solo los organismos huérfanos
-// ProcessSection/ServicesSection, fuera de alcance) — se quedan tal
-// cual, sin carpeta de locale, para no traducir contenido que nadie
-// renderiza.
+// `proceso` pasó a tener locale (es/en) a partir del rollout del mapa
+// maestro SEO: la Home activa por primera vez el bloque "Cómo
+// trabajamos" leyendo esta colección, así que ya no puede quedarse sin
+// traducir. `testimonios` sigue sin tocar: sigue sin componente en uso.
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const servicios = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/servicios' }),
+  // Astro's glob loader usa `data.slug` como id de la entrada si el
+  // campo existe (ver generateIdDefault en astro/dist/content/loaders/
+  // glob.js) — eso pisaba el id basado en ruta de archivo que el resto
+  // del proyecto usa para filtrar por locale (`entry.id.startsWith
+  // ('es/')`), y como `slug` no lleva el prefijo de locale, es/ y en/
+  // colisionaban en un solo id y la colección quedaba vacía al
+  // filtrar. `generateId` explícito restaura el id basado en ruta
+  // (igual que el resto de colecciones) y deja `slug` como campo de
+  // datos normal, no especial.
+  loader: glob({
+    pattern: '**/*.json',
+    base: './src/content/servicios',
+    generateId: ({ entry }) => entry.replace(/\.json$/, ''),
+  }),
   schema: z.object({
     orden: z.number(),
+    // Mismo valor en es/ y en/ (los slugs no se traducen) — reemplaza
+    // los 4 mapas de slug que antes vivían hardcodeados en
+    // [slug].astro (es/en) y en los templates de índice/detalle.
+    slug: z.string(),
     titulo: z.string(),
     subtitulo: z.string().optional(),
     badge: z.string().optional(),
     descripcion: z.string(),
-    queHacemos: z.array(z.string()).optional(),
-    beneficios: z.array(z.object({ titulo: z.string(), descripcion: z.string() })).optional(),
-    etapas: z.array(z.object({ paso: z.string(), detalle: z.string() })).optional(),
+
+    // SEO Title / Meta Description / H1 son campos independientes a
+    // propósito (ver documento SEO maestro): no deben construirse
+    // automáticamente a partir de `titulo` ni de `descripcion`.
+    seoTitle: z.string(),
+    metaDescription: z.string(),
+    h1: z.string(),
+    keywordPrincipal: z.string(),
+    keywordsSecundarias: z.array(z.string()).default([]),
+    heroIntro: z.string(),
+    ctaPrincipal: z.object({ label: z.string(), href: z.string().optional() }),
+    ctaSecundario: z.object({ label: z.string(), href: z.string().optional() }).optional(),
+
+    // Reemplaza queHacemos + beneficios + etapas: el copy real del doc
+    // SEO es una secuencia de H2 con prosa o con sub-puntos titulados,
+    // no tres arrays de forma fija distinta.
+    secciones: z.array(z.object({
+      h2: z.string(),
+      cuerpo: z.string().optional(),
+      items: z.array(z.object({ titulo: z.string(), texto: z.string() })).optional(),
+    })).default([]),
+
+    faqs: z.array(z.object({ pregunta: z.string(), respuesta: z.string() })).default([]),
+    serviciosRelacionados: z.array(z.string()).default([]), // slugs
+    resumenBullets: z.array(z.string()).optional(), // preview corto para tarjetas (hub/home)
+
     specs: z.record(z.string()).optional(),
-    pendiente: z.string().optional(),
+    // Antes era un string único; pasa a array porque dos servicios
+    // (inspección de fábricas, flete marítimo) necesitan varios puntos
+    // de advertencia distintos. Se renderiza en ServicioDetalleTemplate.
+    pendiente: z.array(z.string()).optional(),
+    heroImage: z.object({
+      src: z.string(),
+      alt: z.string(),
+      width: z.number(),
+      height: z.number(),
+    }).optional(),
     icono: z.string(),
   }),
 });
@@ -123,7 +171,10 @@ const ui = defineCollection({
       labels: z.object({
         nombre: z.string(),
         whatsapp: z.string(),
+        empresa: z.string(),
+        correo: z.string(),
         producto: z.string(),
+        servicio: z.string(),
         cantidad: z.string(),
         mensaje: z.string(),
         honeypot: z.string(),
@@ -131,10 +182,16 @@ const ui = defineCollection({
       placeholders: z.object({
         nombre: z.string(),
         whatsapp: z.string(),
+        empresa: z.string(),
+        correo: z.string(),
         producto: z.string(),
         cantidad: z.string(),
         mensaje: z.string(),
       }),
+      // "Servicio de interés": soporta el select nuevo, pero el doc es
+      // explícito en que los campos definitivos del formulario deben
+      // validarse antes de producción — no se marca como obligatorio.
+      servicioOptionsLabel: z.string().optional(),
       submitLabel: z.string(),
       sendingLabel: z.string(),
       validationError: z.string(),
@@ -145,15 +202,13 @@ const ui = defineCollection({
       eyebrowFallbackPrefix: z.string(),
       primaryActionLabel: z.string(),
       secondaryActionLabel: z.string(),
-      scopeTag: z.string(),
-      scopeTitle: z.string(),
       specsTitle: z.string(),
-      deliverablesTitle: z.string(),
-      benefitsTitle: z.string(),
-      benefitsLead: z.string(),
-      stagesTag: z.string(),
-      stagesTitle: z.string(),
-      stagesLead: z.string(),
+      // `secciones`, `faqs` y `serviciosRelacionados` ahora vienen del
+      // contenido de cada servicio (content.config.ts); este bloque
+      // solo da los rótulos fijos de cada sub-sección de la página.
+      pendienteLabel: z.string(),
+      faqsTitle: z.string(),
+      relatedTitle: z.string(),
       quoteTag: z.string(),
       quoteTitlePrefix: z.string(),
       quoteLead: z.string(),
@@ -197,18 +252,27 @@ const pageHome = defineCollection({
       authorRole: z.string(),
       ctaLabel: z.string(),
     }),
-    splitServices: z.object({
-      cell1: z.object({ title: z.string(), text: z.string(), ctaLabel: z.string() }),
-      cell2: z.object({ title: z.string(), text: z.string(), ctaLabel: z.string() }),
+    // Reemplaza `splitServices` (2 celdas con copy fija): las 5
+    // tarjetas de servicio ahora se leen directo de la colección
+    // `servicios`, esto solo da el título/lead de la intro del bloque.
+    servicesIntro: z.object({
+      title: z.string(),
+      lead: z.string(),
     }),
     ruledGrid: z.object({
       title: z.string(),
       lead: z.string(),
       items: z.array(z.object({ title: z.string(), description: z.string() })),
     }),
-    stats: z.object({
-      items: z.array(z.object({ value: z.string(), label: z.string() })),
+    // Bloque "Cómo trabajamos": solo el título — los 4 pasos en sí
+    // vienen de la colección `proceso`, no de este JSON de página.
+    comoTrabajamos: z.object({
+      title: z.string(),
     }),
+    // `stats` (cifras "10+"/"100%"/"FCL") se eliminó: el documento SEO
+    // prohíbe publicar cifras de la empresa sin confirmación de
+    // Kattya. Su contenido queda cubierto por `ruledGrid` + el nuevo
+    // bloque "Cómo trabajamos" (colección `proceso`).
     contactHome: z.object({
       tag: z.string(),
       title: z.string(),

@@ -1,0 +1,69 @@
+{
+  "orden": 4,
+  "slug": "flete-maritimo-china",
+  "titulo": "Flete marítimo FCL",
+  "subtitulo": "Transporte marítimo por contenedor completo desde Asia hacia Latinoamérica.",
+  "badge": "FCL",
+  "descripcion": "KM Business Consulting ofrece flete marítimo por contenedor completo (FCL) para empresas que necesitan trasladar su carga desde Asia hacia Latinoamérica y buscan un acompañamiento cercano durante la operación.",
+  "seoTitle": "Flete Marítimo FCL desde Asia | KM Business Consulting",
+  "metaDescription": "Cotiza flete marítimo FCL desde Asia hacia Latinoamérica con acompañamiento cercano y una solución logística adaptada a tu operación.",
+  "h1": "Flete marítimo FCL desde Asia hacia Latinoamérica",
+  "keywordPrincipal": "flete marítimo FCL desde China",
+  "keywordsSecundarias": [
+    "flete FCL China",
+    "contenedor desde China",
+    "transporte marítimo China Perú",
+    "flete marítimo Asia Latinoamérica"
+  ],
+  "heroIntro": "KM Business Consulting ofrece flete marítimo por contenedor completo (FCL) para empresas que necesitan trasladar su carga desde Asia hacia Latinoamérica y buscan un acompañamiento cercano durante la operación.",
+  "ctaPrincipal": { "label": "Cotizar flete FCL" },
+  "ctaSecundario": { "label": "Solicitar asesoría" },
+  "secciones": [
+    {
+      "h2": "Una solución para operaciones por contenedor completo",
+      "cuerpo": "El servicio FCL está orientado a empresas que necesitan transportar su carga en un contenedor completo desde Asia hacia su mercado de destino en Latinoamérica."
+    },
+    {
+      "h2": "Más que mover un contenedor",
+      "cuerpo": "KM busca integrar el flete dentro de una relación de acompañamiento cercana, entendiendo la necesidad de cada operación y conectándola con otros servicios cuando sea necesario."
+    },
+    {
+      "h2": "Si ya tienes proveedor, también podemos continuar contigo",
+      "cuerpo": "Si tu empresa ya cuenta con un proveedor en China, KM puede ayudarte primero con su verificación y luego acompañarte con el flete marítimo FCL y la solución logística integral hasta destino."
+    },
+    {
+      "h2": "Información para solicitar una cotización",
+      "cuerpo": "El formulario o contacto comercial debe solicitar únicamente la información necesaria para que KM pueda entender la operación y continuar la conversación. Los campos definitivos se validarán con el equipo antes del lanzamiento."
+    }
+  ],
+  "faqs": [
+    {
+      "pregunta": "¿KM trabaja con flete marítimo FCL?",
+      "respuesta": "Sí. El flete marítimo por contenedor completo (FCL) desde Asia hacia Latinoamérica es un servicio confirmado por el cliente."
+    },
+    {
+      "pregunta": "¿KM ofrece carga consolidada o LCL?",
+      "respuesta": "Por ahora no debe publicarse como servicio confirmado. El brief escrito del cliente menciona FCL; cualquier modalidad adicional debe validarse antes de incorporarse al sitio."
+    },
+    {
+      "pregunta": "¿Puedo contratar el flete si ya tengo proveedor?",
+      "respuesta": "Sí. KM puede trabajar con clientes que ya tienen proveedor y acompañarlos con verificación y flete marítimo FCL."
+    }
+  ],
+  "serviciosRelacionados": ["verificacion-proveedores-china", "logistica-integral"],
+  "resumenBullets": [
+    "Transporte por contenedor completo (FCL)",
+    "Acompañamiento cercano durante la operación",
+    "Se conecta con verificación y logística integral"
+  ],
+  "pendiente": [
+    "No publicar puertos, navieras, tiempos de tránsito, espacios garantizados, tarifas All-In, aduanas, DDP o LCL hasta confirmación."
+  ],
+  "heroImage": {
+    "src": "/images/flete-maritimo-hero.jpg",
+    "alt": "Fletes marítimos internacionales y logística FCL",
+    "width": 765,
+    "height": 550
+  },
+  "icono": "ship"
+}

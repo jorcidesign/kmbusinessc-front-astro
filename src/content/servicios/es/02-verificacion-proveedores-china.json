@@ -1,0 +1,79 @@
+{
+  "orden": 2,
+  "slug": "verificacion-proveedores-china",
+  "titulo": "Verificación de proveedores",
+  "subtitulo": "Validamos al proveedor que ya identificaste en China antes de que avances con tu compra.",
+  "badge": "Reducción de riesgo",
+  "descripcion": "Si ya encontraste un proveedor en China, KM Business Consulting puede ofrecerte un servicio de verificación para ayudarte a tomar la siguiente decisión con mayor seguridad.",
+  "seoTitle": "Verificación de Proveedores en China | KM Business Consulting",
+  "metaDescription": "¿Ya tienes un proveedor en China? KM puede ayudarte a verificarlo antes de avanzar y acompañarte luego con flete marítimo FCL y logística.",
+  "h1": "Verificación de proveedores en China antes de avanzar con tu compra",
+  "keywordPrincipal": "verificación de proveedores en China",
+  "keywordsSecundarias": [
+    "verificar proveedor China",
+    "validar proveedor chino",
+    "proveedor confiable China",
+    "comprobar proveedor antes de comprar"
+  ],
+  "heroIntro": "Si ya encontraste un proveedor en China, KM Business Consulting puede ofrecerte un servicio de verificación para ayudarte a tomar la siguiente decisión con mayor seguridad.",
+  "ctaPrincipal": { "label": "Verificar mi proveedor" },
+  "ctaSecundario": { "label": "Solicitar asesoría" },
+  "secciones": [
+    {
+      "h2": "Ya tengo un proveedor: ¿qué puede hacer KM?",
+      "cuerpo": "No necesitas empezar desde cero. Si ya cuentas con un proveedor, KM puede enfocarse en verificarlo antes de que continúes con la operación.\n\nEste servicio está pensado para empresas que quieren reducir incertidumbre antes de avanzar con una compra y contar con un aliado que pueda acompañar también la etapa logística si así lo requieren."
+    },
+    {
+      "h2": "Qué busca aportar la verificación",
+      "items": [
+        {
+          "titulo": "Mayor seguridad antes de avanzar",
+          "texto": "Obtener información adicional antes de continuar con una relación comercial o una compra."
+        },
+        {
+          "titulo": "Una decisión más informada",
+          "texto": "Contar con una revisión enfocada en el proveedor que ya identificaste."
+        },
+        {
+          "titulo": "Continuidad de la operación",
+          "texto": "Una vez verificado el proveedor, KM puede acompañarte con flete marítimo FCL y una solución logística integral hasta destino, según el alcance contratado."
+        }
+      ]
+    },
+    {
+      "h2": "Cuándo conviene verificar a un proveedor",
+      "cuerpo": "Cuando tu empresa ya tiene un proveedor identificado en China y necesita mayor tranquilidad antes de continuar con la compra o coordinar las siguientes etapas de la importación."
+    },
+    {
+      "h2": "Verificación, inspección y búsqueda: servicios distintos",
+      "cuerpo": "Búsqueda de proveedores sirve para encontrar opciones. Verificación de proveedores se enfoca en un proveedor que ya tienes. Inspección de fábricas responde a la necesidad de revisar una fábrica en origen. Dependiendo del caso, los servicios pueden complementarse."
+    }
+  ],
+  "faqs": [
+    {
+      "pregunta": "¿Puedo contratar solo la verificación si yo encontré al proveedor?",
+      "respuesta": "Sí. KM puede ofrecer la verificación de un proveedor que ya fue identificado por la empresa."
+    },
+    {
+      "pregunta": "¿Después de verificar al proveedor KM puede encargarse del flete?",
+      "respuesta": "Sí. KM también puede ofrecer flete marítimo FCL y una solución logística integral hasta destino, según las necesidades de la operación."
+    },
+    {
+      "pregunta": "¿Verificación de proveedor e inspección de fábrica son lo mismo?",
+      "respuesta": "No. Son servicios con objetivos distintos. La verificación se enfoca en el proveedor ya identificado; la inspección de fábrica responde a la necesidad de revisar la fábrica en origen."
+    }
+  ],
+  "serviciosRelacionados": ["flete-maritimo-china", "logistica-integral", "inspeccion-fabricas-china", "proveedores-china"],
+  "resumenBullets": [
+    "Mayor seguridad antes de avanzar",
+    "Una decisión más informada",
+    "Continuidad de la operación"
+  ],
+  "heroImage": {
+    "src": "/images/busqueda-proveedores-hero.jpg",
+    "alt": "Verificación de proveedores confiables en China",
+    "width": 730,
+    "height": 427
+  },
+  "icono": "verified-check"
+}

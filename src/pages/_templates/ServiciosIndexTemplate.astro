@@ -21,15 +21,6 @@ const page = pageEntry.data;
 
 const rawServices = await getCollection('servicios', (entry) => entry.id.startsWith(`${locale}/`));
 const services = rawServices.sort((a, b) => a.data.orden - b.data.orden);
-
-const serviceSlugs: Record<string, string> = {
-  '01-logistica-integral': 'logistica-integral',
-  '02-busqueda-proveedores': 'busqueda-proveedores',
-  '03-inspeccion-fabricas': 'inspeccion-fabricas',
-  '04-flete-maritimo': 'flete-maritimo',
-};
-
-const bareId = (id: string) => id.replace(/^\w+\//, '');
 ---
 
 <BaseLayout title={page.seo.title} description={page.seo.description} locale={locale}>
@@ -65,38 +56,34 @@ const bareId = (id: string) => id.replace(/^\w+\//, '');
         </p>
       </div>
 
-      <div class="ruled-grid ruled-grid--2 ruled-grid--surface mt-3xl">
-        {services.map((srv) => {
-          const bare = bareId(srv.id);
-          const slug = serviceSlugs[bare] || bare.replace(/^\d+-/, '');
-          return (
-            <article class="service-card-item">
-              <div class="service-card-item__top">
-                <span class="tag tag--navy">{srv.data.badge || `${page.catalog.moduleFallbackPrefix}${srv.data.orden}`}</span>
-                <span class="service-card-item__num">0{srv.data.orden}</span>
-              </div>
-              <h3 class="service-card-item__title">{srv.data.titulo}</h3>
-              <p class="service-card-item__desc">{srv.data.descripcion}</p>
+      <div class="ruled-grid ruled-grid--2 ruled-grid--surface ruled-grid--odd-span mt-3xl">
+        {services.map((srv) => (
+          <article class="service-card-item">
+            <div class="service-card-item__top">
+              <span class="tag tag--navy">{srv.data.badge || `${page.catalog.moduleFallbackPrefix}${srv.data.orden}`}</span>
+              <span class="service-card-item__num">0{srv.data.orden}</span>
+            </div>
+            <h3 class="service-card-item__title">{srv.data.titulo}</h3>
+            <p class="service-card-item__desc">{srv.data.descripcion}</p>
 
-              {srv.data.queHacemos && (
-                <ul class="service-card-item__bullets">
-                  {srv.data.queHacemos.slice(0, 3).map((item) => (
-                    <li>
-                      <Icon name="check" size="xs" class="bullet-check" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+            {srv.data.resumenBullets && (
+              <ul class="service-card-item__bullets">
+                {srv.data.resumenBullets.map((item) => (
+                  <li>
+                    <Icon name="check" size="xs" class="bullet-check" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
-              <div class="service-card-item__footer">
-                <Button href={withLocale(`/servicios/${slug}`)} variant="outline" size="sm">
-                  {page.catalog.specsCtaLabel} &rarr;
-                </Button>
-              </div>
-            </article>
-          );
-        })}
+            <div class="service-card-item__footer">
+              <Button href={withLocale(`/servicios/${srv.data.slug}`)} variant="outline" size="sm">
+                {page.catalog.specsCtaLabel} &rarr;
+              </Button>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -170,6 +157,14 @@ const bareId = (id: string) => id.replace(/^\w+\//, '');
     flex-direction: column;
     padding: var(--cell-pad-lg);
     background-color: var(--color-surface);
+  }
+  /* 5 servicios en un grid de 2 columnas: la última tarjeta queda
+     sola en la fila final — se extiende a lo ancho en vez de dejar un
+     hueco a su lado. */
+  @media (min-width: 48em) {
+    .ruled-grid--odd-span > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
   }
   .service-card-item__top {
     display: flex;

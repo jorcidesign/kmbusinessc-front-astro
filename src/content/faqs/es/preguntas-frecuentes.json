@@ -1,0 +1,30 @@
+{
+  "orden": 1,
+  "categoria": "Preguntas frecuentes",
+  "preguntas": [
+    {
+      "pregunta": "¿Qué servicios ofrece KM Business Consulting?",
+      "respuesta": "KM ofrece logística integral, búsqueda y verificación de proveedores confiables, inspección de fábricas en China y flete marítimo FCL desde Asia hacia Latinoamérica."
+    },
+    {
+      "pregunta": "¿Puedo trabajar con KM si ya tengo un proveedor en China?",
+      "respuesta": "Sí. KM puede ofrecerte el servicio de verificación de proveedor confiable y, si lo necesitas, acompañarte también con flete marítimo FCL y una solución logística integral hasta tu destino."
+    },
+    {
+      "pregunta": "¿KM puede ayudarme a encontrar un proveedor?",
+      "respuesta": "Sí. La búsqueda de proveedores forma parte de las soluciones de KM para empresas que necesitan identificar opciones confiables para su operación."
+    },
+    {
+      "pregunta": "¿KM realiza inspección de fábricas en China?",
+      "respuesta": "Sí. KM ofrece inspección de fábricas en China. El alcance concreto de la inspección se define de acuerdo con las necesidades de la operación."
+    },
+    {
+      "pregunta": "¿KM trabaja con flete marítimo?",
+      "respuesta": "Sí. KM ofrece flete marítimo FCL desde Asia hacia Latinoamérica."
+    },
+    {
+      "pregunta": "¿Cómo empiezo a trabajar con KM?",
+      "respuesta": "Puedes solicitar una asesoría o enviar los datos básicos de tu operación. KM revisará tu necesidad para identificar qué servicio o combinación de servicios puede ayudarte."
+    }
+  ]
+}

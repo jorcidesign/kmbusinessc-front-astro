@@ -1,7 +1,7 @@
 ---
 // src/pages/_templates/ContactoTemplate.astro
 // Ver HomeTemplate.astro para la explicación del patrón _templates/.
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ContactForm from '@molecules/ContactForm/ContactForm.astro';
 import WhatsAppButton from '@atoms/WhatsAppButton/WhatsAppButton.astro';
@@ -22,6 +22,10 @@ const uiEntry = await getEntry('ui', locale);
 if (!uiEntry) throw new Error(`Falta src/content/ui/${locale}.json`);
 const ui = uiEntry.data;
 const contactForm = ui.contactForm;
+
+const servicios = (await getCollection('servicios', (entry) => entry.id.startsWith(`${locale}/`)))
+  .sort((a, b) => a.data.orden - b.data.orden)
+  .map((s) => ({ slug: s.data.slug, titulo: s.data.titulo }));
 
 const email = 'kattya@kmbusinessc.pe';
 const phone = '+51 945 832 446';
@@ -96,17 +100,24 @@ const phoneHref = 'tel:+51945832446';
         <div class="contact__divider" aria-hidden="true"></div>
 
         <ContactForm
+          servicios={servicios}
           labelNombre={contactForm.labels.nombre}
           labelWhatsapp={contactForm.labels.whatsapp}
+          labelEmpresa={contactForm.labels.empresa}
+          labelCorreo={contactForm.labels.correo}
           labelProducto={contactForm.labels.producto}
+          labelServicio={contactForm.labels.servicio}
           labelCantidad={contactForm.labels.cantidad}
           labelMensaje={contactForm.labels.mensaje}
           labelHoneypot={contactForm.labels.honeypot}
           placeholderNombre={contactForm.placeholders.nombre}
           placeholderWhatsapp={contactForm.placeholders.whatsapp}
+          placeholderEmpresa={contactForm.placeholders.empresa}
+          placeholderCorreo={contactForm.placeholders.correo}
           placeholderProducto={contactForm.placeholders.producto}
           placeholderCantidad={contactForm.placeholders.cantidad}
           placeholderMensaje={contactForm.placeholders.mensaje}
+          servicioOptionsLabel={contactForm.servicioOptionsLabel}
           submitLabel={contactForm.submitLabel}
           sendingLabel={contactForm.sendingLabel}
           validationError={contactForm.validationError}

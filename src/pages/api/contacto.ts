@@ -12,7 +12,16 @@ export const prerender = false;
 interface ContactPayload {
   nombre: string;
   whatsapp: string;
+  // Campos nuevos, opcionales (ver documento SEO maestro): el set
+  // definitivo del formulario todavía debe validarse antes de
+  // producción. El Apps Script que recibe este POST (cuenta de
+  // Kattya, fuera de este repo) también necesita que sus columnas se
+  // actualicen para no descartarlos en silencio — coordinación fuera
+  // de código, ver resumen de la implementación.
+  empresa?: string;
+  correo?: string;
   producto: string;
+  servicio?: string;
   cantidad: string;
   mensaje: string;
 }
@@ -52,7 +61,10 @@ export const POST: APIRoute = async ({ request }) => {
     token: scriptToken,
     nombre: body.nombre,
     whatsapp: body.whatsapp,
+    empresa: body.empresa ?? '',
+    correo: body.correo ?? '',
     producto: body.producto,
+    servicio: body.servicio ?? '',
     cantidad: body.cantidad ?? '',
     mensaje: body.mensaje ?? '',
   });

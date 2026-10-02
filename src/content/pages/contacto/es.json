@@ -1,17 +1,17 @@
 {
   "seo": {
     "title": "Contacto y Cotización | KM Business Consulting",
-    "description": "Inicia tu cotización de importación, flete marítimo o inspección de proveedores en China. Respuesta en menos de 24 horas laborables."
+    "description": "Cuéntanos qué necesitas para tu operación con Asia. Contacta a KM Business Consulting para solicitar información, asesoría o una cotización."
   },
   "header": {
-    "tag": "CANALES DIRECTOS",
-    "title": "Empecemos tu próxima importación",
-    "lead": "Pide una cotización formal, agenda una videollamada o contáctanos de inmediato por WhatsApp."
+    "tag": "CANALES DE CONTACTO",
+    "title": "Hablemos de tu próxima operación con Asia",
+    "lead": "Cuéntanos en qué etapa se encuentra tu operación y qué necesitas resolver. KM revisará tu caso para identificar el servicio o combinación de servicios más adecuada."
   },
   "channels": {
     "whatsapp": {
       "tag": "WHATSAPP DIRECTO",
-      "description": "Respuesta inmediata en horario comercial para consultas rápidas.",
+      "description": "Escríbenos directamente para conversar sobre tu operación.",
       "whatsappMessage": "Hola Kattya, deseo solicitar información sobre una importación.",
       "buttonLabel": "Abrir WhatsApp"
     },
@@ -23,36 +23,36 @@
     "office": {
       "tag": "OFICINAS Y OPERACIONES",
       "title": "Lima · China",
-      "description": "Coordinación comercial en Lima y presencia operativa directa en clusters de China.",
+      "description": "Coordinación comercial en Lima, con operaciones en China.",
       "hours": "Atención de Lunes a Viernes 8:30 - 18:00"
     }
   },
   "form": {
-    "tag": "FORMULARIO TÉCNICO",
-    "title": "Detalles de tu requerimiento",
-    "lead": "Completa la información esencial. Evaluamos la viabilidad, verificamos requisitos aduaneros y te enviamos una estimación en 24 a 48 horas.",
+    "tag": "CUÉNTANOS QUÉ NECESITAS",
+    "title": "Cuéntanos qué necesitas",
+    "lead": "Comparte los datos básicos de tu operación para que podamos continuar la conversación. Los campos del formulario terminarán de definirse antes del lanzamiento.",
     "trustPoints": [
-      "Trato confidencial y protección de datos comerciales",
-      "Sin comisiones ocultas ni cobros fantasma",
-      "Respuesta técnica guiada por Kattya Mejía"
+      "Comunicación cercana y transparente en cada etapa",
+      "Kattya Mejía revisa directamente tu solicitud",
+      "Sin compromiso para empezar la conversación"
     ]
   },
   "faqHeader": {
-    "title": "¿Qué pasa después de enviar el formulario?",
-    "lead": "Conoce cómo procesamos tu consulta desde el primer minuto."
+    "title": "Preguntas frecuentes",
+    "lead": "Todo lo que necesitas saber antes de escribirnos."
   },
   "faqs": [
     {
-      "question": "1. Confirmación inmediata y revisión técnica",
-      "answer": "Revisamos la partida arancelaria, especificaciones y volumen solicitado. Si se requiere mayor precisión técnica, Kattya te contactará directamente por WhatsApp o llamada."
+      "question": "¿Puedo contactar a KM por WhatsApp?",
+      "answer": "Sí. La web ofrece un acceso directo a WhatsApp como canal de contacto comercial."
     },
     {
-      "question": "2. Búsqueda preliminar o cotización naviera",
-      "answer": "Consultamos con nuestras oficinas en China y navieras aliadas para obtener las tarifas más competitivas y actualizadas del mercado según la temporada."
+      "question": "¿Tengo que saber exactamente qué servicio necesito?",
+      "answer": "No. Puedes explicar tu situación y KM te ayudará a identificar qué servicio o combinación de servicios corresponde a tu caso."
     },
     {
-      "question": "3. Presentación de propuesta y plan de embarque",
-      "answer": "Te presentamos una cotización detallada con estructura de costos abierta, plazos estimados de fabricación y tránsito, e hitos de control."
+      "question": "¿Qué información debo enviar para una cotización?",
+      "answer": "Solo la información básica necesaria para entender tu operación. Los campos definitivos del formulario deben validarse con el equipo comercial antes del lanzamiento."
     }
   ]
 }

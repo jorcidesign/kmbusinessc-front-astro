@@ -1,20 +1,20 @@
 {
   "seo": {
-    "title": "Servicios de Importación y Logística Internacional",
-    "description": "Soluciones completas de comercio exterior entre Asia y Latinoamérica: búsqueda de proveedores, auditoría de fábricas, flete marítimo FCL y logística integral."
+    "title": "Servicios de Importación y Logística Internacional | KM",
+    "description": "Conoce las soluciones de KM Business Consulting para buscar y verificar proveedores, inspeccionar fábricas y coordinar logística y flete FCL desde Asia."
   },
   "hero": {
     "eyebrow": "SOLUCIONES TÉCNICAS",
-    "title": "Nuestros Servicios de Abastecimiento e Importación",
-    "lead": "Controlamos cada eslabón crítico de tu cadena de suministro en origen para que recibas tu carga con la calidad acordada y sin sobrecostos sorpresa.",
-    "primaryActionLabel": "Pedir cotización",
-    "secondaryActionLabel": "Ver proceso",
+    "title": "Soluciones para operar con Asia con mayor confianza y control",
+    "lead": "KM Business Consulting reúne servicios de abastecimiento y logística para importadores que necesitan encontrar proveedores, verificar relaciones comerciales, inspeccionar fábricas o coordinar su operación desde Asia hacia Latinoamérica.",
+    "primaryActionLabel": "Solicitar asesoría",
+    "secondaryActionLabel": "Ver los servicios",
     "imageAlt": "Barco portacontenedores en ruta marítima de China a Latinoamérica"
   },
   "catalog": {
-    "title": "Cuatro soluciones diseñadas para importadores exigentes",
-    "lead": "Puedes contratar el servicio integral llave en mano o activar únicamente los módulos que requiera tu operación actual.",
-    "specsCtaLabel": "Ver especificaciones completas",
+    "title": "Encuentra la solución que corresponde a tu operación",
+    "lead": "Cinco soluciones para diferentes etapas de la operación: puedes activar un servicio puntual o una combinación según lo que necesites.",
+    "specsCtaLabel": "Ver servicio",
     "moduleFallbackPrefix": "Módulo 0"
   },
   "process": {
@@ -46,8 +46,8 @@
     ]
   },
   "closingCta": {
-    "title": "¿Tienes un contenedor en mente o quieres auditar una fábrica?",
-    "lead": "Agenda una llamada técnica con Kattya Mejía o solicita una cotización formal.",
-    "ctaLabel": "Pedir cotización ahora"
+    "title": "¿No sabes por dónde empezar?",
+    "lead": "KM busca entender cada operación antes de plantear una solución. La atención cercana, la integridad y la transparencia son parte de la forma en que construimos relaciones con nuestros clientes.",
+    "ctaLabel": "Solicitar asesoría"
   }
 }
