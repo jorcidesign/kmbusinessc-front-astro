@@ -48,6 +48,8 @@ const svgByVariant = {
   .logo {
     display: block;
     color: inherit;
+    transition: filter var(--duration-fast, 0.2s) var(--ease-standard, ease),
+                opacity var(--duration-fast, 0.2s) var(--ease-standard, ease);
   }
 
   .logo :global(svg) {

@@ -199,6 +199,16 @@
     color: var(--color-action-text);
   }
 
+  .navbar[data-open] .navbar__brand .logo,
+  .navbar[data-open] .navbar__brand svg {
+    filter: brightness(0) invert(1);
+  }
+
+  .navbar[data-open] .navbar__brand svg tspan,
+  .navbar[data-open] .navbar__brand svg path {
+    fill: var(--color-action-text, #ffffff) !important;
+  }
+
   .navbar[data-open] .navbar__toggle {
     border-color: var(--color-action-text);
     color: var(--color-action-text);
